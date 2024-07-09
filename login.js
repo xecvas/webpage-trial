@@ -1,24 +1,34 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-    document.getElementById('login-form-submit').addEventListener('click', function() {
-        // Get the username and password input values
-        let username = document.getElementById('username').value;
-        let password = document.getElementById('password').value;
-        
-        // Check the username and password
-        if (username === 'user' && password === '123') {
-            console.log('Login successful');
-            
-            // Show the success modal if login is successful
-            var success = new bootstrap.Modal(document.getElementById('login_success'), {
-                keyboard: true
-            });
-            success.show();
-        } else {
-            // Handle login failure (e.g., show an error message)
-            var failed = new bootstrap.Modal(document.getElementById('login_failed'), {
-                keyboard: false
-            });
-            failed.show();
+document.addEventListener("DOMContentLoaded", (event) => {
+  const loginForm = document.getElementById("login-form");
+  loginForm.addEventListener("submit", function (event) {
+    // Prevent default form submission behavior
+    event.preventDefault();
+
+    // Get the username and password input values
+    const username = document.getElementById("username").value.trim(); // Trim whitespace
+    const password = document.getElementById("password").value;
+
+    // Check the username and password
+    if (username === "user" && password === "123") {
+      console.log("Login successful");
+
+      // Show the success modal if login is successful
+      const successModal = new bootstrap.Modal(
+        document.getElementById("login_success"),
+        {
+          keyboard: true,
         }
-    });
+      );
+      successModal.show();
+    } else {
+      // Handle login failure (show an error message)
+      const failedModal = new bootstrap.Modal(
+        document.getElementById("login_failed"),
+        {
+          keyboard: false,
+        }
+      );
+      failedModal.show();
+    }
+  });
 });
