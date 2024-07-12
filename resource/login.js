@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     // Check the username and password
     if (username === "user" && password === "123") {
       console.log("Login successful");
-
+    
       // Show the success modal if login is successful
       const successModal = new bootstrap.Modal(
         document.getElementById("login_success"),
@@ -19,7 +19,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
           keyboard: true,
         }
       );
+    
       successModal.show();
+    
+      // Redirect to the main page after showing the success modal
+      successModal._element.addEventListener('hidden.bs.modal', function (event) {
+        window.location.href = "main.html"; // Replace with your actual main page URL
+      });
     } else {
       // Handle login failure (show an error message)
       const failedModal = new bootstrap.Modal(
