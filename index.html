@@ -95,7 +95,8 @@
         <form id="login-form">
           <div class="mb-3">
             <label for="username" class="form-label">Username <i style="color: red">*</i></label>
-            <input type="text" name="username" id="username" class="form-control" aria-describedby="emailHelp" style="width: 335px;">
+            <input type="text" name="username" id="username" class="form-control" aria-describedby="emailHelp"
+              style="width: 335px;">
             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
           </div>
           <div class="mb-3">
@@ -111,15 +112,18 @@
               <label for="captchaInput" class="form-label">Enter the text you see above</label>
               <input type="text" class="form-control" id="captchaInput" required>
             </div>
-            <div class="mb-3 text-danger" id="captchaError" style="display: none;">Incorrect CAPTCHA. Please try again.</div>
+            <div class="mb-3 text-danger" id="captchaError" style="display: none;">Incorrect CAPTCHA. Please try again.
+            </div>
           </div>
           <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label gap-link" for="exampleCheck1">Remember me</label>
-            <span class="text-nowrap"><a href="#" data-bs-toggle="modal" data-bs-target="#forgot_pass" style="text-decoration:none">Forgot password?</a></span>
+            <span class="text-nowrap"><a href="#" data-bs-toggle="modal" data-bs-target="#forgot_pass"
+                style="text-decoration:none">Forgot password?</a></span>
           </div>
           <button type="submit" class="btn btn-primary" id="login-form-submit">Login</button>
-          <button type="button" class="btn btn-primary" id="register_button" data-bs-toggle="modal" data-bs-target="#register">Register</button>
+          <button type="button" class="btn btn-primary" id="register_button" data-bs-toggle="modal"
+            data-bs-target="#register">Register</button>
         </form>
       </div>
     </div>
@@ -244,35 +248,6 @@
       </div>
     </div>
   </div>
-
-  <!-- CAPTCHA Modal example -->
-  <!-- <div class="modal fade" id="captchaModal" tabindex="-1" aria-labelledby="captchaModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="captchaModalLabel">CAPTCHA Verification</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="captchaForm">
-            <div class="mb-3">
-              <canvas id="captchaCanvas" width="200" height="50" class="border"></canvas>
-              <button type="button" class="btn btn-link p-0 ms-2" id="refreshCaptcha">Refresh CAPTCHA</button>
-            </div>
-            <div class="mb-3">
-              <label for="captchaInput" class="form-label">Enter the text you see above</label>
-              <input type="text" class="form-control" id="captchaInput" required>
-            </div>
-            <div class="mb-3 text-danger" id="captchaError" style="display: none;">
-              Incorrect CAPTCHA. Please try again.
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
 </body>
 
 </html>
