@@ -20,9 +20,9 @@
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
   <!-- local js script -->
+  <script src="resource/datatable.js"></script>
   <script src="resource/script.js"></script>
   <script src="resource/login.js"></script>
-  <script src="resource/captcha.js"></script>
 
   <!-- styles -->
   <style>
@@ -40,6 +40,21 @@
     .gap-link {
       margin-right: 85px;
     }
+
+    #captchaForm .d-flex {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    #captchaInput {
+      width: 100%;
+      margin-bottom: 5px;
+      /* Space between input and refresh button */
+    }
+
+    #refreshCaptcha {
+      display: block;
+    }
   </style>
 
   <!-- navigation bar -->
@@ -48,40 +63,6 @@
       <a class="navbar-brand" href="index.html">
         <img src="resource/Icon.ico" width="40" height="40" class="d-inline-block align-text-top"> Dummy Page
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="datatable.html">datatables</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-          </li>
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
     </div>
   </nav>
 
@@ -103,32 +84,33 @@
             <label for="password" class="form-label">Password <i style="color: red">*</i></label>
             <input type="password" class="form-control" name="password" id="password" style="width: 335px;">
           </div>
+          <!-- captcha section -->
           <div id="captchaForm">
-            <div class="mb-3">
-              <canvas id="captchaCanvas" width="200" height="50" class="border"></canvas>
-              <button type="button" class="btn btn-link p-0 ms-2" id="refreshCaptcha">Refresh CAPTCHA</button>
+            <div class="d-flex align-items-center mb-3">
+              <canvas id="captchaCanvas" width="120" height="60" class="border"></canvas>
+              <div class="flex-grow-1 ms-2">
+                <input type="text" class="form-control mb-2" id="captchaInput" required
+                  placeholder="Enter the text you see">
+                <button type="button" class="btn btn-link p-0" id="refreshCaptcha" style="font-size: 11px;">Refresh CAPTCHA</button>
+              </div>
             </div>
-            <div class="mb-3">
-              <label for="captchaInput" class="form-label">Enter the text you see above</label>
-              <input type="text" class="form-control" id="captchaInput" required>
-            </div>
-            <div class="mb-3 text-danger" id="captchaError" style="display: none;">Incorrect CAPTCHA. Please try again.
+            <div class="mb-3 text-danger" id="captchaError" style="display: none;">
+              Incorrect CAPTCHA. Please try again.
             </div>
           </div>
           <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label gap-link" for="exampleCheck1">Remember me</label>
-            <span class="text-nowrap"><a href="#" data-bs-toggle="modal" data-bs-target="#forgot_pass"
-                style="text-decoration:none">Forgot password?</a></span>
           </div>
           <button type="submit" class="btn btn-primary" id="login-form-submit">Login</button>
           <button type="button" class="btn btn-primary" id="register_button" data-bs-toggle="modal"
             data-bs-target="#register">Register</button>
+            <button type="submit" class="btn btn-primary" id="login-form-submit" data-bs-toggle="modal" data-bs-target="#forgot_pass">Forgot Password</button>
         </form>
       </div>
     </div>
   </div>
-
+  
   <!-- login failed -->
   <div class="modal fade" id="login_failed" tabindex="-1" role="dialog" aria-labelledby="loginFailedLabel"
     aria-hidden="true">
@@ -184,6 +166,20 @@
               <input type="email" class="form-control" id="forgotEmail" aria-describedby="emailHelp">
               <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
             </div>
+            <!-- captcha section -->
+          <div id="captchaForm">
+            <div class="d-flex align-items-center mb-3">
+              <canvas id="captchaCanvas" width="120" height="60" class="border"></canvas>
+              <div class="flex-grow-1 ms-2">
+                <input type="text" class="form-control mb-2" id="captchaInput" required
+                  placeholder="Enter the text you see">
+                <button type="button" class="btn btn-link p-0" id="refreshCaptcha" style="font-size: 11px;">Refresh CAPTCHA</button>
+              </div>
+            </div>
+            <div class="mb-3 text-danger" id="captchaError" style="display: none;">
+              Incorrect CAPTCHA. Please try again.
+            </div>
+          </div>
           </form>
         </div>
         <div class="modal-footer">
