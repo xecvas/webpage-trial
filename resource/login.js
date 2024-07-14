@@ -1,40 +1,68 @@
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", function () {
+  const captchaCanvas = document.getElementById("captchaCanvas");
+  const captchaContext = captchaCanvas.getContext("2d");
+  const captchaInput = document.getElementById("captchaInput");
+  const captchaError = document.getElementById("captchaError");
+  const refreshCaptchaButton = document.getElementById("refreshCaptcha");
   const loginForm = document.getElementById("login-form");
+
+  let captchaText = "";
+
+  function generateCaptcha() {
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      captchaText = "";
+      for (let i = 0; i < 6; i++) {
+          captchaText += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      captchaContext.clearRect(0, 0, captchaCanvas.width, captchaCanvas.height);
+      captchaContext.font = "25px Arial";
+      captchaContext.textAlign = "center";
+      captchaContext.textBaseline = "middle";
+      const centerX = captchaCanvas.width / 2;
+      const centerY = captchaCanvas.height / 2;
+      captchaContext.strokeText(captchaText, centerX, centerY);
+  }
+
+  refreshCaptchaButton.addEventListener("click", generateCaptcha);
+  generateCaptcha();
+
   loginForm.addEventListener("submit", function (event) {
-    // Prevent default form submission behavior
-    event.preventDefault();
+      event.preventDefault();
 
-    // Get the username and password input values
-    const username = document.getElementById("username").value.trim(); // Trim whitespace
-    const password = document.getElementById("password").value;
+      if (captchaInput.value !== captchaText) {
+          captchaError.style.display = "block";
+          captchaInput.value = "";
+          generateCaptcha();
+          return;
+      }
 
-    // Check the username and password
-    if (username === "user" && password === "123") {
-      console.log("Login successful");
-    
-      // Show the success modal if login is successful
-      const successModal = new bootstrap.Modal(
-        document.getElementById("login_success"),
-        {
-          keyboard: true,
-        }
-      );
-    
-      successModal.show();
-    
-      // Redirect to the main page after showing the success modal
-      successModal._element.addEventListener('hidden.bs.modal', function (event) {
-        window.location.href = "main.html"; // Replace with your actual main page URL
-      });
-    } else {
-      // Handle login failure (show an error message)
-      const failedModal = new bootstrap.Modal(
-        document.getElementById("login_failed"),
-        {
-          keyboard: false,
-        }
-      );
-      failedModal.show();
-    }
+      captchaError.style.display = "none";
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+
+      if (username === "user" && password === "123") {
+          console.log("Login successful");
+
+          const successModal = new bootstrap.Modal(
+              document.getElementById("login_success"),
+              {
+                  keyboard: true,
+              }
+          );
+
+          successModal.show();
+
+          successModal._element.addEventListener('hidden.bs.modal', function (event) {
+              window.location.href = "main.html";
+          });
+      } else {
+          const failedModal = new bootstrap.Modal(
+              document.getElementById("login_failed"),
+              {
+                  keyboard: false,
+              }
+          );
+          failedModal.show();
+      }
   });
 });
