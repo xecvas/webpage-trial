@@ -9,53 +9,21 @@
   <link rel="icon" type="image/x-icon" href="resource/Icon.ico">
 
   <!-- css link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
+  <link rel="stylesheet" href="resource/styles.css">
 
   <!-- js script link -->
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
   <!-- local js script -->
   <script src="resource/datatable.js"></script>
   <script src="resource/script.js"></script>
   <script src="resource/login.js"></script>
-
-  <!-- styles -->
-  <style>
-    /* set padding nav-bar */
-    body {
-      padding-top: 80px;
-    }
-
-    /* set margin text sebelah button */
-    .gap-button {
-      margin-right: 20px;
-    }
-
-    /* set margin text sebelah button remember */
-    .gap-link {
-      margin-right: 85px;
-    }
-
-    #captchaForm .d-flex {
-      display: flex;
-      align-items: flex-start;
-    }
-
-    #captchaInput {
-      width: 100%;
-      margin-bottom: 5px;
-      /* Space between input and refresh button */
-    }
-
-    #refreshCaptcha {
-      display: block;
-    }
-  </style>
 
   <!-- navigation bar -->
   <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary">
@@ -64,6 +32,14 @@
         <img src="resource/Icon.ico" width="40" height="40" class="d-inline-block align-text-top"> Dummy Page
       </a>
     </div>
+    <div class="support">
+      <input type="checkbox" class="checkbox" id="checkbox">
+      <label for="checkbox" class="checkbox-label">
+          <i class="fas fa-moon"></i>
+          <i class="fas fa-sun"></i>
+          <span class="ball"></span>
+      </label>
+  </div>
   </nav>
 
 </head>
@@ -89,8 +65,7 @@
             <div class="d-flex align-items-center mb-3">
               <canvas id="captchaCanvas" width="120" height="60" class="border"></canvas>
               <div class="flex-grow-1 ms-2">
-                <input type="text" class="form-control mb-2" id="captchaInput" required
-                  placeholder="Enter the text you see">
+                <input type="text" class="form-control mb-2" id="captchaInput" required placeholder="Enter the text you see" style="width: 205px;">
                 <button type="button" class="btn btn-link p-0" id="refreshCaptcha" style="font-size: 11px;">Refresh CAPTCHA</button>
               </div>
             </div>
