@@ -132,3 +132,8 @@ canvas {
 body.dark .form-text {
     color: white;
 }
+
+body.dark .modal-content {
+    background-color: #292c35;
+    color: white;
+}
