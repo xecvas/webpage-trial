@@ -35,11 +35,11 @@
     <div class="support">
       <input type="checkbox" class="checkbox" id="checkbox">
       <label for="checkbox" class="checkbox-label">
-          <i class="fas fa-moon"></i>
-          <i class="fas fa-sun"></i>
-          <span class="ball"></span>
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+        <span class="ball"></span>
       </label>
-  </div>
+    </div>
   </nav>
 
 </head>
@@ -65,8 +65,10 @@
             <div class="d-flex align-items-center mb-3">
               <canvas id="captchaCanvas" width="120" height="60" class="border"></canvas>
               <div class="flex-grow-1 ms-2">
-                <input type="text" class="form-control mb-2" id="captchaInput" required placeholder="Enter the text you see" style="width: 205px;">
-                <button type="button" class="btn btn-link p-0" id="refreshCaptcha" style="font-size: 11px;">Refresh CAPTCHA</button>
+                <input type="text" class="form-control mb-2" id="captchaInput" required
+                  placeholder="Enter the text you see" style="width: 205px;">
+                <button type="button" class="btn btn-link p-0" id="refreshCaptcha" style="font-size: 11px;">Refresh
+                  CAPTCHA</button>
               </div>
             </div>
             <div class="mb-3 text-danger" id="captchaError" style="display: none;">
@@ -80,12 +82,13 @@
           <button type="submit" class="btn btn-primary" id="login-form-submit">Login</button>
           <button type="button" class="btn btn-primary" id="register_button" data-bs-toggle="modal"
             data-bs-target="#register">Register</button>
-            <button type="submit" class="btn btn-primary" id="login-form-submit" data-bs-toggle="modal" data-bs-target="#forgot_pass">Forgot Password</button>
+          <button type="submit" class="btn btn-primary" id="forgot_pass_button" data-bs-toggle="modal"
+            data-bs-target="#forgot_pass">Forgot Password</button>
         </form>
       </div>
     </div>
   </div>
-  
+
   <!-- login failed -->
   <div class="modal fade" id="login_failed" tabindex="-1" role="dialog" aria-labelledby="loginFailedLabel"
     aria-hidden="true">
@@ -142,19 +145,20 @@
               <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
             </div>
             <!-- captcha section -->
-          <div id="captchaForm">
-            <div class="d-flex align-items-center mb-3">
-              <canvas id="captchaCanvas" width="120" height="60" class="border"></canvas>
-              <div class="flex-grow-1 ms-2">
-                <input type="text" class="form-control mb-2" id="captchaInput" required
-                  placeholder="Enter the text you see">
-                <button type="button" class="btn btn-link p-0" id="refreshCaptcha" style="font-size: 11px;">Refresh CAPTCHA</button>
+            <div id="captchaForm">
+              <div class="d-flex align-items-center mb-3">
+                <canvas id="captchaCanvas" width="120" height="60" class="border"></canvas>
+                <div class="flex-grow-1 ms-2">
+                  <input type="text" class="form-control mb-2" id="captchaInput" required
+                    placeholder="Enter the text you see" style="width: 205px;">
+                  <button type="button" class="btn btn-link p-0" id="refreshCaptcha" style="font-size: 11px;">Refresh
+                    CAPTCHA</button>
+                </div>
+              </div>
+              <div class="mb-3 text-danger" id="captchaError" style="display: none;">
+                Incorrect CAPTCHA. Please try again.
               </div>
             </div>
-            <div class="mb-3 text-danger" id="captchaError" style="display: none;">
-              Incorrect CAPTCHA. Please try again.
-            </div>
-          </div>
           </form>
         </div>
         <div class="modal-footer">
