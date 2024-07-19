@@ -34,3 +34,27 @@ $(document).ready(function() {
   saveToggleSetting();
   $("#checkbox").change(saveToggleSetting);
 });
+
+//remember me function
+function toggleRememberMe(checkbox) {
+  if (checkbox.checked) {
+    // Remember the user
+    localStorage.setItem('username', document.getElementById('username').value);
+    localStorage.setItem('password', document.getElementById('password').value);
+  } else {
+    // Forget the user
+    localStorage.removeItem('username');
+    localStorage.removeItem('password');
+  }
+}
+
+// Check if the user is remembered
+window.addEventListener('DOMContentLoaded', function() {
+  var username = localStorage.getItem('username');
+  var password = localStorage.getItem('password');
+  if (username && password) {
+    document.getElementById('username').value = username;
+    document.getElementById('password').value = password;
+    document.getElementById('rememberMe').checked = true;
+  }
+});
