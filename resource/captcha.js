@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const loginCaptchaCanvas = document.getElementById("loginCaptchaCanvas");
   const loginCaptchaContext = loginCaptchaCanvas.getContext("2d");
   const loginCaptchaInput = document.getElementById("loginCaptchaInput");
-  const loginCaptchaError = document.getElementById("loginCaptchaError");
   const refreshLoginCaptchaButton = document.getElementById("refreshLoginCaptcha");
 
   let loginCaptchaText = generateCaptcha(loginCaptchaCanvas, loginCaptchaContext);
@@ -29,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const forgotCaptchaCanvas = document.getElementById("forgotCaptchaCanvas");
   const forgotCaptchaContext = forgotCaptchaCanvas.getContext("2d");
   const forgotCaptchaInput = document.getElementById("forgotCaptchaInput");
-  const forgotCaptchaError = document.getElementById("forgotCaptchaError");
   const refreshForgotCaptchaButton = document.getElementById("refreshForgotCaptcha");
 
   let forgotCaptchaText = generateCaptcha(forgotCaptchaCanvas, forgotCaptchaContext);

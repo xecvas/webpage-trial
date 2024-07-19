@@ -12,8 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (loginCaptchaInput.value !== loginCaptchaText) {
             // Show CAPTCHA error modal
-            const loginCaptchaError = document.getElementById("loginCaptchaError");
-            loginCaptchaError.style.display = "block";
             const captchaErrorModal = new bootstrap.Modal(document.getElementById("captchaError"));
             captchaErrorModal.show();
             captchaErrorModal.addEventListener('hidden.bs.modal', function () {
