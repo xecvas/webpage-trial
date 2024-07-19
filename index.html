@@ -20,18 +20,18 @@
   <!-- Author of the page -->
   <meta name="author" content="xecvas">
 
-  <!-- Open Graph meta tags for social media sharing -->
+  <!-- Open Graph meta tags for social media sharing
   <meta property="og:title" content="Dummy Page">
   <meta property="og:description" content="Welcome to My Website.">
   <meta property="og:image" content="https://www.mywebsite.com/images/og-image.jpg">
   <meta property="og:url" content="https://www.mywebsite.com">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="website"> -->
 
-  <!-- Twitter card meta tags for Twitter sharing -->
+  <!-- Twitter card meta tags for Twitter sharing
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Dummy Page">
   <meta name="twitter:description" content="Welcome to My Website.">
-  <meta name="twitter:image" content="https://www.mywebsite.com/images/twitter-image.jpg">
+  <meta name="twitter:image" content="https://www.mywebsite.com/images/twitter-image.jpg"> -->
 
   <!-- Favicon -->
   <link rel="icon" href="resource/Icon.ico" type="image/x-icon">
@@ -49,9 +49,10 @@
   <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js" defer></script>
   <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js" defer></script>
   <script src="resource/datatable.js" defer></script>
+  <script src="resource/captcha.js" defer></script>
   <script src="resource/script.js" defer></script>
   <script src="resource/login.js" defer></script>
-  <script src="resource/captcha.js" defer></script>
+  
 </head>
 
 <body>
@@ -100,11 +101,11 @@
             </div>
           </div>
           <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="rememberMe">
+            <input type="checkbox" class="form-check-input" id="rememberMe" onchange="toggleRememberMe(this)">
             <label class="form-check-label" for="rememberMe">Remember me</label>
           </div>
-          <button type="submit" class="btn btn-primary">Login</button>
-          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#register">Register</button>
+          <button type="submit" class="btn btn-success">Login</button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#register">Register</button>
           <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#forgotPass">Forgot Password</button>
         </form>
       </div>
@@ -147,6 +148,25 @@
       </div>
     </div>
   </div>
+
+  <!-- CAPTCHA Error modal -->
+<div class="modal fade" id="captchaError" tabindex="-1" aria-labelledby="captchaErrorLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger"><b>Error!</b></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img src="resource/Axolotl_Error.png" width="70" height="70" alt="Error Icon">
+        Incorrect CAPTCHA. Please try again.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- Forgot password modal -->
   <div class="modal fade" id="forgotPass" tabindex="-1" aria-labelledby="forgotPassLabel" aria-hidden="true">
