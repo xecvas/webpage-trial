@@ -2,48 +2,24 @@
 <html lang="en">
 
 <head>
-  <!-- Character encoding -->
+  <!-- Meta tags for SEO and responsive design -->
   <meta charset="UTF-8">
-
-  <!-- Viewport settings for responsive design -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Page title -->
-  <title>Dummy Page</title>
-
-  <!-- Meta description for SEO -->
   <meta name="description" content="Welcome to My Website.">
-
-  <!-- Keywords for SEO (less used now, but still sometimes useful) -->
   <meta name="keywords" content="Dummy Page, Example">
-
-  <!-- Author of the page -->
   <meta name="author" content="xecvas">
-
-  <!-- Open Graph meta tags for social media sharing
-  <meta property="og:title" content="Dummy Page">
-  <meta property="og:description" content="Welcome to My Website.">
-  <meta property="og:image" content="https://www.mywebsite.com/images/og-image.jpg">
-  <meta property="og:url" content="https://www.mywebsite.com">
-  <meta property="og:type" content="website"> -->
-
-  <!-- Twitter card meta tags for Twitter sharing
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Dummy Page">
-  <meta name="twitter:description" content="Welcome to My Website.">
-  <meta name="twitter:image" content="https://www.mywebsite.com/images/twitter-image.jpg"> -->
+  <title>Dummy Page</title>
 
   <!-- Favicon -->
   <link rel="icon" href="resource/Icon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="resource/Icon.ico" type="image/x-icon">
 
-  <!-- CSS -->
+  <!-- CSS dependencies -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
   <link rel="stylesheet" href="resource/styles.css">
-  
-  <!-- JS -->
+
+  <!-- JS dependencies -->
   <script src="https://code.jquery.com/jquery-3.6.4.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js" defer></script>
   <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js" defer></script>
@@ -52,7 +28,6 @@
   <script src="resource/captcha.js" defer></script>
   <script src="resource/script.js" defer></script>
   <script src="resource/login.js" defer></script>
-  
 </head>
 
 <body>
@@ -109,6 +84,7 @@
     </div>
   </div>
 
+  <!-- Modals -->
   <!-- Login failed modal -->
   <div class="modal fade" id="loginFailed" tabindex="-1" aria-labelledby="loginFailedLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -147,23 +123,23 @@
   </div>
 
   <!-- CAPTCHA Error modal -->
-<div class="modal fade" id="captchaError" tabindex="-1" aria-labelledby="captchaErrorLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-danger"><b>Error!</b></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <img src="resource/Axolotl_Error.png" width="70" height="70" alt="Error Icon">
-        Incorrect CAPTCHA. Please try again.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+  <div class="modal fade" id="captchaError" tabindex="-1" aria-labelledby="captchaErrorLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-danger"><b>Error!</b></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img src="resource/Axolotl_Error.png" width="70" height="70" alt="Error Icon">
+          Incorrect CAPTCHA. Please try again.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
   <!-- Forgot password modal -->
   <div class="modal fade" id="forgotPass" tabindex="-1" aria-labelledby="forgotPassLabel" aria-hidden="true">
@@ -190,68 +166,67 @@
                 </div>
               </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
-            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
           </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Register modal -->
+  <!-- Registration modal -->
   <div class="modal fade" id="register" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title text-primary"><b>Register</b></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form id="register-form">
             <div class="mb-3">
-              <label for="registerEmail" class="form-label">Email</label>
-              <input type="email" class="form-control" id="registerEmail" placeholder="Email" required>
+              <label for="registerUsername" class="form-label">Username <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="registerUsername" required>
             </div>
             <div class="mb-3">
-              <label for="registerPassword" class="form-label">Password</label>
-              <input type="password" class="form-control" id="registerPassword" placeholder="Password" required>
+              <label for="registerEmail" class="form-label">Email address <span class="text-danger">*</span></label>
+              <input type="email" class="form-control" id="registerEmail" aria-describedby="registerEmailHelp" required>
+              <div id="registerEmailHelp" class="form-text">We'll never share your email with anyone else.</div>
             </div>
             <div class="mb-3">
-              <label for="inputAddress" class="form-label">Address</label>
-              <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+              <label for="registerPassword" class="form-label">Password <span class="text-danger">*</span></label>
+              <input type="password" class="form-control" id="registerPassword" required>
             </div>
             <div class="mb-3">
-              <label for="inputAddress2" class="form-label">Address 2</label>
-              <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+              <label for="registerConfirmPassword" class="form-label">Confirm Password <span class="text-danger">*</span></label>
+              <input type="password" class="form-control" id="registerConfirmPassword" required>
             </div>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="inputCity" class="form-label">City</label>
-                <input type="text" class="form-control" id="inputCity">
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="inputState" class="form-label">State</label>
-                <select id="inputState" class="form-select">
-                  <option selected>Choose...</option>
-                  <option>...</option>
-                </select>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="inputZip" class="form-label">Zip</label>
-                <input type="text" class="form-control" id="inputZip">
+            <!-- CAPTCHA section -->
+            <div id="registerCaptchaForm">
+              <div class="d-flex align-items-center mb-3">
+                <canvas id="registerCaptchaCanvas" width="120" height="60" class="border"></canvas>
+                <div class="flex-grow-1 ms-2">
+                  <input type="text" class="form-control mb-2" id="registerCaptchaInput" required placeholder="Enter the text you see">
+                  <button type="button" class="btn btn-link p-0" id="refreshRegisterCaptcha" style="font-size: 11px;">Refresh CAPTCHA</button>
+                </div>
               </div>
             </div>
+            <button type="submit" class="btn btn-primary">Register</button>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Footer -->
+  <footer class="text-center mt-5">
+    <p>&copy; 2024 Dummy Page. All rights reserved.</p>
+  </footer>
 </body>
 
 </html>

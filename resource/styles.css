@@ -91,9 +91,6 @@ body.dark {
     transform: scale(1.1); /* Scale effect on hover */
 }
 
-/* Additional Custom Styles */
-
-/* Example: */
 .gap-button {
     margin-right: 20px; /* Example: Margin for button */
 }
