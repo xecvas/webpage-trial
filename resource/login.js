@@ -1,68 +1,38 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const captchaCanvas = document.getElementById("captchaCanvas");
-  const captchaContext = captchaCanvas.getContext("2d");
-  const captchaInput = document.getElementById("captchaInput");
-  const captchaError = document.getElementById("captchaError");
-  const refreshCaptchaButton = document.getElementById("refreshCaptcha");
-  const loginForm = document.getElementById("login-form");
+    const loginForm = document.getElementById("login-form");
+    const loginCaptchaInput = document.getElementById("loginCaptchaInput");
 
-  let captchaText = "";
+    loginForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
 
-  function generateCaptcha() {
-      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-      captchaText = "";
-      for (let i = 0; i < 6; i++) {
-          captchaText += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-      captchaContext.clearRect(0, 0, captchaCanvas.width, captchaCanvas.height);
-      captchaContext.font = "25px Arial";
-      captchaContext.textAlign = "center";
-      captchaContext.textBaseline = "middle";
-      const centerX = captchaCanvas.width / 2;
-      const centerY = captchaCanvas.height / 2;
-      captchaContext.strokeText(captchaText, centerX, centerY);
-  }
+        // Re-generate loginCaptchaText on each form submission
+        const loginCaptchaText = window.loginCaptchaText; // Access CAPTCHA text from captcha.js
 
-  refreshCaptchaButton.addEventListener("click", generateCaptcha);
-  generateCaptcha();
-
-  loginForm.addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      if (captchaInput.value !== captchaText) {
-          captchaError.style.display = "block";
-          captchaInput.value = "";
-          generateCaptcha();
-          return;
-      }
-
-      captchaError.style.display = "none";
-      const username = document.getElementById("username").value.trim();
-      const password = document.getElementById("password").value;
-
-      if (username === "user" && password === "123") {
-          console.log("Login successful");
-
-          const successModal = new bootstrap.Modal(
-              document.getElementById("login_success"),
-              {
-                  keyboard: true,
-              }
-          );
-
-          successModal.show();
-
-          successModal._element.addEventListener('hidden.bs.modal', function (event) {
-              window.location.href = "main.html";
-          });
-      } else {
-          const failedModal = new bootstrap.Modal(
-              document.getElementById("login_failed"),
-              {
-                  keyboard: false,
-              }
-          );
-          failedModal.show();
-      }
-  });
+        if (loginCaptchaInput.value !== loginCaptchaText) {
+            // Show CAPTCHA error modal
+            const loginCaptchaError = document.getElementById("loginCaptchaError");
+            loginCaptchaError.style.display = "block";
+            const captchaErrorModal = new bootstrap.Modal(document.getElementById("captchaError"));
+            captchaErrorModal.show();
+            captchaErrorModal.addEventListener('hidden.bs.modal', function () {
+                location.reload(); // Refresh page after CAPTCHA error modal is closed
+            });
+        } else {
+            // CAPTCHA is correct, check username and password
+            if (username === "user" && password === "123") {
+                // Show login success modal
+                const loginSuccessModal = new bootstrap.Modal(document.getElementById("loginSuccess"));
+                loginSuccessModal.show();
+                document.getElementById("loginSuccess").addEventListener('hidden.bs.modal', function () {
+                    window.location.href = "main.html";
+                });
+            } else {
+                // Show login failed modal
+                const loginFailedModal = new bootstrap.Modal(document.getElementById("loginFailed"));
+                loginFailedModal.show();
+            }
+        }
+    });
 });
