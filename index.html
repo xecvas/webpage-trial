@@ -1,35 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Character encoding -->
+  <meta charset="UTF-8">
+
+  <!-- Viewport settings for responsive design -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Page title -->
   <title>Dummy Page</title>
-  <link rel="icon" type="image/x-icon" href="resource/Icon.ico">
 
-  <!-- css link -->
+  <!-- Meta description for SEO -->
+  <meta name="description" content="Welcome to My Website.">
+
+  <!-- Keywords for SEO (less used now, but still sometimes useful) -->
+  <meta name="keywords" content="Dummy Page, Example">
+
+  <!-- Author of the page -->
+  <meta name="author" content="xecvas">
+
+  <!-- Open Graph meta tags for social media sharing -->
+  <meta property="og:title" content="Dummy Page">
+  <meta property="og:description" content="Welcome to My Website.">
+  <meta property="og:image" content="https://www.mywebsite.com/images/og-image.jpg">
+  <meta property="og:url" content="https://www.mywebsite.com">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter card meta tags for Twitter sharing -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dummy Page">
+  <meta name="twitter:description" content="Welcome to My Website.">
+  <meta name="twitter:image" content="https://www.mywebsite.com/images/twitter-image.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" href="resource/Icon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="resource/Icon.ico" type="image/x-icon">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
   <link rel="stylesheet" href="resource/styles.css">
+  
+  <!-- JS -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js" defer></script>
+  <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js" defer></script>
+  <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js" defer></script>
+  <script src="resource/datatable.js" defer></script>
+  <script src="resource/script.js" defer></script>
+  <script src="resource/login.js" defer></script>
+  <script src="resource/captcha.js" defer></script>
+</head>
 
-  <!-- js script link -->
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
-
-  <!-- local js script -->
-  <script src="resource/datatable.js"></script>
-  <script src="resource/script.js"></script>
-  <script src="resource/login.js"></script>
-
-  <!-- navigation bar -->
+<body>
+  <!-- Navigation bar -->
   <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">
-        <img src="resource/Icon.ico" width="40" height="40" class="d-inline-block align-text-top"> Dummy Page
+        <img src="resource/Icon.ico" width="40" height="40" class="d-inline-block align-text-top" alt="Dummy Page Logo"> Dummy Page
       </a>
     </div>
     <div class="support">
@@ -42,175 +72,160 @@
     </div>
   </nav>
 
-</head>
-
-<body>
-  <!-- login form -->
-  <div class="container">
+  <!-- Login form -->
+  <div class="container mt-5 pt-5">
     <div class="row justify-content-center">
       <div class="col-md-6">
         <form id="login-form">
           <div class="mb-3">
-            <label for="username" class="form-label">Username <i style="color: red">*</i></label>
-            <input type="text" name="username" id="username" class="form-control" aria-describedby="emailHelp"
-              style="width: 335px;">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
+            <input type="text" name="username" id="username" class="form-control" aria-describedby="usernameHelp" required>
+            <div id="usernameHelp" class="form-text">We'll never share your email with anyone else.</div>
           </div>
           <div class="mb-3">
-            <label for="password" class="form-label">Password <i style="color: red">*</i></label>
-            <input type="password" class="form-control" name="password" id="password" style="width: 335px;">
+            <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+            <input type="password" class="form-control" name="password" id="password" required>
           </div>
-          <!-- captcha section -->
-          <div id="captchaForm">
+          <!-- CAPTCHA section -->
+          <div id="loginCaptchaForm">
             <div class="d-flex align-items-center mb-3">
-              <canvas id="captchaCanvas" width="120" height="60" class="border"></canvas>
+              <canvas id="loginCaptchaCanvas" width="120" height="60" class="border"></canvas>
               <div class="flex-grow-1 ms-2">
-                <input type="text" class="form-control mb-2" id="captchaInput" required
-                  placeholder="Enter the text you see" style="width: 205px;">
-                <button type="button" class="btn btn-link p-0" id="refreshCaptcha" style="font-size: 11px;">Refresh
-                  CAPTCHA</button>
+                <input type="text" class="form-control mb-2" id="loginCaptchaInput" required placeholder="Enter the text you see">
+                <button type="button" class="btn btn-link p-0" id="refreshLoginCaptcha" style="font-size: 11px;">Refresh CAPTCHA</button>
               </div>
             </div>
-            <div class="mb-3 text-danger" id="captchaError" style="display: none;">
+            <div class="mb-3 text-danger" id="loginCaptchaError" style="display: none;">
               Incorrect CAPTCHA. Please try again.
             </div>
           </div>
           <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label gap-link" for="exampleCheck1">Remember me</label>
+            <input type="checkbox" class="form-check-input" id="rememberMe">
+            <label class="form-check-label" for="rememberMe">Remember me</label>
           </div>
-          <button type="submit" class="btn btn-primary" id="login-form-submit">Login</button>
-          <button type="button" class="btn btn-primary" id="register_button" data-bs-toggle="modal"
-            data-bs-target="#register">Register</button>
-          <button type="submit" class="btn btn-primary" id="forgot_pass_button" data-bs-toggle="modal"
-            data-bs-target="#forgot_pass">Forgot Password</button>
+          <button type="submit" class="btn btn-primary">Login</button>
+          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#register">Register</button>
+          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#forgotPass">Forgot Password</button>
         </form>
       </div>
     </div>
   </div>
 
-  <!-- login failed -->
-  <div class="modal fade" id="login_failed" tabindex="-1" role="dialog" aria-labelledby="loginFailedLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" style="color: red;"><b>Warning!</b></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <img class="img-responsive" style="margin:0 auto;" src="resource/Axolotl_Error.png" width="70" height="70">
-          Username atau Password salah!
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- login success -->
-  <div class="modal fade" id="login_success" tabindex="-1" role="dialog" aria-labelledby="loginSuccessLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" style="color: green;"><b>Info!</b></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <img class="img-responsive" style="margin:0 auto;" src="resource/Axolotl_Error.png" width="70"
-            height="70">Login berhasil!
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- forgot password -->
-  <div class="modal" tabindex="-1" id="forgot_pass">
+  <!-- Login failed modal -->
+  <div class="modal fade" id="loginFailed" tabindex="-1" aria-labelledby="loginFailedLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" style="color: blue;"><b>Forgot Password</b></h5>
+          <h5 class="modal-title text-danger"><b>Warning!</b></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3" id="Username">
-              <label for="forgotEmail" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="forgotEmail" aria-describedby="emailHelp">
-              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-            </div>
-            <!-- captcha section -->
-            <div id="captchaForm">
-              <div class="d-flex align-items-center mb-3">
-                <canvas id="captchaCanvas" width="120" height="60" class="border"></canvas>
-                <div class="flex-grow-1 ms-2">
-                  <input type="text" class="form-control mb-2" id="captchaInput" required
-                    placeholder="Enter the text you see" style="width: 205px;">
-                  <button type="button" class="btn btn-link p-0" id="refreshCaptcha" style="font-size: 11px;">Refresh
-                    CAPTCHA</button>
-                </div>
-              </div>
-              <div class="mb-3 text-danger" id="captchaError" style="display: none;">
-                Incorrect CAPTCHA. Please try again.
-              </div>
-            </div>
-          </form>
+        <div class="modal-body text-center">
+          <img src="resource/Axolotl_Error.png" width="70" height="70" alt="Error Icon">
+          Username or Password is incorrect!
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">submit</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- register form -->
-  <div class="modal" tabindex="-1" id="register">
+  <!-- Login success modal -->
+  <div class="modal fade" id="loginSuccess" tabindex="-1" aria-labelledby="loginSuccessLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-success"><b>Info!</b></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img src="resource/Axolotl_Error.png" width="70" height="70" alt="Success Icon"> Login successful!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Forgot password modal -->
+  <div class="modal fade" id="forgotPass" tabindex="-1" aria-labelledby="forgotPassLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-primary"><b>Forgot Password</b></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="forgot-form">
+            <div class="mb-3">
+              <label for="forgotEmail" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="forgotEmail" aria-describedby="forgotEmailHelp" required>
+              <div id="forgotEmailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <!-- CAPTCHA section -->
+            <div id="forgotCaptchaForm">
+              <div class="d-flex align-items-center mb-3">
+                <canvas id="forgotCaptchaCanvas" width="120" height="60" class="border"></canvas>
+                <div class="flex-grow-1 ms-2">
+                  <input type="text" class="form-control mb-2" id="forgotCaptchaInput" required placeholder="Enter the text you see">
+                  <button type="button" class="btn btn-link p-0" id="refreshForgotCaptcha" style="font-size: 11px;">Refresh CAPTCHA</button>
+                </div>
+              </div>
+              <div class="mb-3 text-danger" id="forgotCaptchaError" style="display: none;">
+                Incorrect CAPTCHA. Please try again.
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register modal -->
+  <div class="modal fade" id="register" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" style="color: blue;"><b>Register</b></h5>
+          <h5 class="modal-title text-primary"><b>Register</b></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form>
-            <div class="form-row align-items-center">
-              <div class="col-sm-12 my-1">
-                <label for="registerEmail">Email</label>
-                <input type="email" class="form-control" id="registerEmail" placeholder="Email">
-              </div>
-              <div class="col-sm-12 my-1">
-                <label for="registerPassword">Password</label>
-                <input type="password" class="form-control" id="registerPassword" placeholder="Password">
-              </div>
+            <div class="mb-3">
+              <label for="registerEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="registerEmail" placeholder="Email" required>
             </div>
-            <div class="form-group">
-              <label for="inputAddress">Address</label>
+            <div class="mb-3">
+              <label for="registerPassword" class="form-label">Password</label>
+              <input type="password" class="form-control" id="registerPassword" placeholder="Password" required>
+            </div>
+            <div class="mb-3">
+              <label for="inputAddress" class="form-label">Address</label>
               <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
             </div>
-            <div class="form-group">
-              <label for="inputAddress2">Address 2</label>
+            <div class="mb-3">
+              <label for="inputAddress2" class="form-label">Address 2</label>
               <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
             </div>
-            <div class="form-row">
-              <div class="col-sm-6 my-1">
-                <label for="inputCity">City</label>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="inputCity" class="form-label">City</label>
                 <input type="text" class="form-control" id="inputCity">
               </div>
-              <div class="col-sm-6 my-1">
-                <label for="inputState">State</label>
-                <select id="inputState" class="form-control">
+              <div class="col-md-6 mb-3">
+                <label for="inputState" class="form-label">State</label>
+                <select id="inputState" class="form-select">
                   <option selected>Choose...</option>
                   <option>...</option>
                 </select>
               </div>
-              <div class="col-sm-6 my-1">
-                <label for="inputZip">Zip</label>
+              <div class="col-md-6 mb-3">
+                <label for="inputZip" class="form-label">Zip</label>
                 <input type="text" class="form-control" id="inputZip">
               </div>
             </div>
@@ -218,7 +233,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">submit</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
         </div>
       </div>
     </div>
