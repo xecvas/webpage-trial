@@ -37,16 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Event listener for login form submission
   document.getElementById("login-form").addEventListener("submit", function (event) {
     event.preventDefault();
-    if (loginCaptchaInput.value === loginCaptchaText) {
-      alert("CAPTCHA verified successfully!");
-      loginCaptchaError.style.display = "none";
-      loginCaptchaInput.value = "";
-      loginCaptchaText = generateCaptcha(loginCaptchaCanvas, loginCaptchaContext);
-    } else {
-      loginCaptchaError.style.display = "block";
-      loginCaptchaInput.value = "";
-      loginCaptchaText = generateCaptcha(loginCaptchaCanvas, loginCaptchaContext);
-    }
+    window.loginCaptchaText = loginCaptchaText; // Make CAPTCHA text accessible to login.js
   });
 
   // Event listener for refresh CAPTCHA button in login form
@@ -57,16 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Event listener for forgot password form submission
   document.getElementById("forgot-form").addEventListener("submit", function (event) {
     event.preventDefault();
-    if (forgotCaptchaInput.value === forgotCaptchaText) {
-      alert("CAPTCHA verified successfully!");
-      forgotCaptchaError.style.display = "none";
-      forgotCaptchaInput.value = "";
-      forgotCaptchaText = generateCaptcha(forgotCaptchaCanvas, forgotCaptchaContext);
-    } else {
-      forgotCaptchaError.style.display = "block";
-      forgotCaptchaInput.value = "";
-      forgotCaptchaText = generateCaptcha(forgotCaptchaCanvas, forgotCaptchaContext);
-    }
+    window.forgotCaptchaText = forgotCaptchaText; // Make CAPTCHA text accessible to login.js
   });
 
   // Event listener for refresh CAPTCHA button in forgot password form
