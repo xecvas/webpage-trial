@@ -1,0 +1,41 @@
+{
+  "name": "webpage-trial",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "webpage",
+    "tutorial",
+    "example"
+  ],
+  "author": "Your Name",
+  "contributors": [
+    "Contributor 1",
+    "Contributor 2"
+  ],
+  "license": "MIT",
+  "description": "A simple webpage created as a tutorial example",
+  "private": false,
+  "dependencies": {
+    "jquery": "^3.6.4",
+    "popper.js": "^1.16.1"
+  },
+  "devDependencies": {
+    "bootstrap": "^5.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xecvas/webpage-trial.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xecvas/webpage-trial/issues"
+  },
+  "homepage": "https://github.com/xecvas/webpage-trial#readme",
+  "engines": {
+    "node": "14.x"
+  }
+}
+
