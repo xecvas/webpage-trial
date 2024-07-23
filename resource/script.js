@@ -1,5 +1,24 @@
-// script.js
+//datatable
+$(document).ready(function() {
+  $('#example').DataTable();
+});
 
+
+document.getElementById("showTableButton").addEventListener("click", function() {
+  var table = document.getElementById("tableDiv");
+  var parafsec = document.getElementById("paraf");
+  table.style.display = "block";
+  parafsec.style.display = "none";
+});
+
+document.getElementById("parafsButton").addEventListener("click", function() {
+  var table = document.getElementById("tableDiv");
+  var parafsec = document.getElementById("paraf");
+  table.style.display = "none";
+  parafsec.style.display = "block";
+});
+
+//toggle dark mode
 $(document).ready(function() {
     const checkbox = document.getElementById("checkbox");
 
@@ -58,3 +77,6 @@ window.addEventListener('DOMContentLoaded', function() {
     document.getElementById('rememberMe').checked = true;
   }
 });
+
+var MyDate = new Date();
+console.log(MyDate);
