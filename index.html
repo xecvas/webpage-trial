@@ -21,10 +21,10 @@
 
   <!-- JS dependencies -->
   <script src="https://code.jquery.com/jquery-3.6.4.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"
+    defer></script>
   <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js" defer></script>
   <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js" defer></script>
-  <script src="resource/datatable.js" defer></script>
   <script src="resource/captcha.js" defer></script>
   <script src="resource/script.js" defer></script>
   <script src="resource/login.js" defer></script>
@@ -35,7 +35,8 @@
   <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">
-        <img src="resource/Icon.ico" width="40" height="40" class="d-inline-block align-text-top" alt="Dummy Page Logo"> Dummy Page
+        <img src="resource/Icon.ico" width="40" height="40" class="d-inline-block align-text-top" alt="Dummy Page Logo">
+        Dummy Page
       </a>
     </div>
     <div class="support">
@@ -55,7 +56,8 @@
         <form id="login-form">
           <div class="mb-3">
             <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
-            <input type="text" name="username" id="username" class="form-control" aria-describedby="usernameHelp" required>
+            <input type="text" name="username" id="username" class="form-control" aria-describedby="usernameHelp"
+              required>
             <div id="usernameHelp" class="form-text">We'll never share your email with anyone else.</div>
           </div>
           <div class="mb-3">
@@ -67,8 +69,10 @@
             <div class="d-flex align-items-center mb-3">
               <canvas id="loginCaptchaCanvas" width="120" height="60" class="border"></canvas>
               <div class="flex-grow-1 ms-2">
-                <input type="text" class="form-control mb-2" id="loginCaptchaInput" required placeholder="Enter the text you see">
-                <button type="button" class="btn btn-link p-0" id="refreshLoginCaptcha" style="font-size: 11px;">Refresh CAPTCHA</button>
+                <input type="text" class="form-control mb-2" id="loginCaptchaInput" required
+                  placeholder="Enter the text you see">
+                <button type="button" class="btn btn-link p-0" id="refreshLoginCaptcha" style="font-size: 11px;">Refresh
+                  CAPTCHA</button>
               </div>
             </div>
           </div>
@@ -77,8 +81,10 @@
             <label class="form-check-label" for="rememberMe">Remember me</label>
           </div>
           <button type="submit" class="btn btn-success">Login</button>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#register">Register</button>
-          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#forgotPass">Forgot Password</button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#register">Register</button>
+          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#forgotPass">Forgot
+            Password</button>
         </form>
       </div>
     </div>
@@ -161,8 +167,10 @@
               <div class="d-flex align-items-center mb-3">
                 <canvas id="forgotCaptchaCanvas" width="120" height="60" class="border"></canvas>
                 <div class="flex-grow-1 ms-2">
-                  <input type="text" class="form-control mb-2" id="forgotCaptchaInput" required placeholder="Enter the text you see">
-                  <button type="button" class="btn btn-link p-0" id="refreshForgotCaptcha" style="font-size: 11px;">Refresh CAPTCHA</button>
+                  <input type="text" class="form-control mb-2" id="forgotCaptchaInput" required
+                    placeholder="Enter the text you see">
+                  <button type="button" class="btn btn-link p-0" id="refreshForgotCaptcha"
+                    style="font-size: 11px;">Refresh CAPTCHA</button>
                 </div>
               </div>
             </div>
@@ -200,7 +208,8 @@
               <input type="password" class="form-control" id="registerPassword" required>
             </div>
             <div class="mb-3">
-              <label for="registerConfirmPassword" class="form-label">Confirm Password <span class="text-danger">*</span></label>
+              <label for="registerConfirmPassword" class="form-label">Confirm Password <span
+                  class="text-danger">*</span></label>
               <input type="password" class="form-control" id="registerConfirmPassword" required>
             </div>
             <!-- CAPTCHA section -->
@@ -208,8 +217,10 @@
               <div class="d-flex align-items-center mb-3">
                 <canvas id="registerCaptchaCanvas" width="120" height="60" class="border"></canvas>
                 <div class="flex-grow-1 ms-2">
-                  <input type="text" class="form-control mb-2" id="registerCaptchaInput" required placeholder="Enter the text you see">
-                  <button type="button" class="btn btn-link p-0" id="refreshRegisterCaptcha" style="font-size: 11px;">Refresh CAPTCHA</button>
+                  <input type="text" class="form-control mb-2" id="registerCaptchaInput" required
+                    placeholder="Enter the text you see">
+                  <button type="button" class="btn btn-link p-0" id="refreshRegisterCaptcha"
+                    style="font-size: 11px;">Refresh CAPTCHA</button>
                 </div>
               </div>
             </div>
