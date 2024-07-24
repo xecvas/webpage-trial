@@ -155,13 +155,14 @@ body.light table {
 
 body.dark table tr:nth-child(odd),
 body.light table tr:nth-child(even) {
-    background-color: #2C2C2C; /* Dark mode odd rows background */
+    background-color: #424242; /* Dark mode odd rows background */
     color: #ffffff;
 }
 
 body.dark table tr:nth-child(even),
 body.light table tr:nth-child(odd) {
     background-color: #ffffff; /* Dark mode even rows background */
+    color: black;
 }
 
 body.dark table td,
