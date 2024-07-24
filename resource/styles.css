@@ -5,6 +5,11 @@
     box-sizing: border-box;
 }
 
+/* Always show scrollbar */
+html {
+    overflow-y: scroll;
+}
+
 /* Body Styles */
 body {
     font-family: "Montserrat", sans-serif;
@@ -13,9 +18,9 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 10px;
+    margin: 10px 25px; /* Combined margin shorthand */
     transition: background 0.2s linear;
-    padding-top: 80px; /* Set padding for navbar */
+    padding-top: 70px; /* Set padding for navbar */
 }
 
 body.dark {
@@ -23,7 +28,7 @@ body.dark {
     color: #fff; /* Dark mode text color */
 }
 
-/* Navbar */
+/* Navbar Styles */
 .navbar {
     position: fixed;
     top: 0;
@@ -49,14 +54,6 @@ body.dark {
     align-items: center;
 }
 
-.fa-moon {
-    color: #f1c40f; /* Moon icon color */
-}
-
-.fa-sun {
-    color: #f39c12; /* Sun icon color */
-}
-
 .checkbox-label .ball {
     background-color: #fff;
     width: 22px;
@@ -70,6 +67,15 @@ body.dark {
 
 .checkbox:checked + .checkbox-label .ball {
     transform: translateX(24px);
+}
+
+/* Icon Colors */
+.fa-moon {
+    color: #f1c40f; /* Moon icon color */
+}
+
+.fa-sun {
+    color: #f39c12; /* Sun icon color */
 }
 
 /* Support Section */
@@ -91,6 +97,7 @@ body.dark {
     transform: scale(1.1); /* Scale effect on hover */
 }
 
+/* Gap Styles */
 .gap-button {
     margin-right: 20px; /* Example: Margin for button */
 }
@@ -103,7 +110,7 @@ body.dark {
     margin-right: 10px; /* Example: Margin for toggle */
 }
 
-/* Specific Styles for Elements (if applicable) */
+/* Specific Styles for Elements */
 #captchaForm .d-flex {
     display: flex;
     align-items: flex-start;
@@ -118,10 +125,12 @@ body.dark {
     display: block;
 }
 
+/* Canvas Styles */
 canvas {
     background-color: #ffffff; /* Dark mode background color */
 }
 
+/* Form Text */
 .form-text {
     color: black;
 }
@@ -130,11 +139,13 @@ body.dark .form-text {
     color: white;
 }
 
+/* Modal Content */
 body.dark .modal-content {
     background-color: #292c35;
     color: white;
 }
 
+/* Table Styles */
 body.dark table,
 body.light table {
     background-color: transparent; /* Ensure table background is transparent */
@@ -144,7 +155,7 @@ body.light table {
 
 body.dark table tr:nth-child(odd),
 body.light table tr:nth-child(even) {
-    background-color: #6c6c6c; /* Dark mode odd rows background */
+    background-color: #2C2C2C; /* Dark mode odd rows background */
     color: #ffffff;
 }
 
@@ -160,3 +171,25 @@ body.light table td {
     color: inherit; /* Ensure table text color is inherited */
     border-color: inherit; /* Ensure borders are visible */
 }
+
+/* Navigation Tabs */
+.nav-tabs .nav-link {
+    border: none; /* Remove default border */
+    border-bottom: 3px solid transparent; /* Add transparent border for spacing */
+    border-top: 3px solid transparent; /* Add transparent border for spacing */
+}
+
+.nav-tabs .nav-link.active {
+    border-bottom: 3px solid #007BFF; /* Add a bolder bottom border to active tab */
+}
+
+.nav-tabs .nav-link:focus,
+.nav-tabs .nav-link:hover {
+    border-bottom: 3px solid #007BFF; /* Add bolder bottom border on hover and focus */
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
