@@ -1,21 +1,24 @@
+//show current date on console
+var MyDate = new Date();
+console.log(MyDate);
+
 //datatable
 $(document).ready(function() {
   $('#example').DataTable();
 });
 
+//tabs
+$(document).ready(function() {
+  $('#myTab a').on('click', function (e) {
+      e.preventDefault();
+      $(this).tab('show');
 
-document.getElementById("showTableButton").addEventListener("click", function() {
-  var table = document.getElementById("tableDiv");
-  var parafsec = document.getElementById("paraf");
-  table.style.display = "block";
-  parafsec.style.display = "none";
-});
+      // Remove active classes from all tabs
+      $('.nav-link').removeClass('active');
 
-document.getElementById("parafsButton").addEventListener("click", function() {
-  var table = document.getElementById("tableDiv");
-  var parafsec = document.getElementById("paraf");
-  table.style.display = "none";
-  parafsec.style.display = "block";
+      // Add active class to clicked tab
+      $(this).addClass('active');
+  });
 });
 
 //toggle dark mode
@@ -48,6 +51,7 @@ function loadToggleSetting() {
   }
 }
 
+// Load toggle setting from localStorage
 $(document).ready(function() {
   loadToggleSetting();
   saveToggleSetting();
@@ -77,6 +81,3 @@ window.addEventListener('DOMContentLoaded', function() {
     document.getElementById('rememberMe').checked = true;
   }
 });
-
-var MyDate = new Date();
-console.log(MyDate);
