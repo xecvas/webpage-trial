@@ -1,16 +1,15 @@
-/* Global Styles */
+/* Import Google Font */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
+/* Universal Styles */
 * {
     box-sizing: border-box;
 }
 
-/* Always show scrollbar */
 html {
-    overflow-y: scroll;
+    overflow-y: scroll; /* Always show scrollbar */
 }
 
-/* Body Styles */
 body {
     font-family: "Montserrat", sans-serif;
     background-color: #fff;
@@ -18,14 +17,14 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 10px 25px; /* Combined margin shorthand */
+    margin: 10px 25px; /* Margin shorthand */
     transition: background 0.2s linear;
-    padding-top: 70px; /* Set padding for navbar */
+    padding-top: 70px; /* Padding for navbar */
 }
 
 body.dark {
-    background-color: #292c35; /* Dark mode background color */
-    color: #fff; /* Dark mode text color */
+    background-color: #292c35; /* Dark mode background */
+    color: #fff; /* Dark mode text */
 }
 
 /* Navbar Styles */
@@ -35,7 +34,7 @@ body.dark {
     width: 100%;
 }
 
-/* Checkbox Toggle */
+/* Checkbox Toggle Styles */
 .checkbox {
     opacity: 0;
     position: absolute;
@@ -65,7 +64,7 @@ body.dark {
     transition: transform 0.2s linear;
 }
 
-.checkbox:checked + .checkbox-label .ball {
+.checkbox:checked+.checkbox-label .ball {
     transform: translateX(24px);
 }
 
@@ -78,7 +77,7 @@ body.dark {
     color: #f39c12; /* Sun icon color */
 }
 
-/* Support Section */
+/* Support Section Styles */
 .support {
     position: absolute;
     right: 20px;
@@ -94,23 +93,21 @@ body.dark {
 }
 
 .support a:hover {
-    transform: scale(1.1); /* Scale effect on hover */
+    transform: scale(1.1); /* Hover scale effect */
 }
 
 /* Gap Styles */
-.gap-button {
-    margin-right: 20px; /* Example: Margin for button */
+.gap-button,
+.gap-link,
+.gap-toggle {
+    margin-right: 10px; /* Default gap for all */
 }
 
 .gap-link {
-    margin-right: 85px; /* Example: Margin for link */
+    margin-right: 85px;
 }
 
-.gap-toggle {
-    margin-right: 10px; /* Example: Margin for toggle */
-}
-
-/* Specific Styles for Elements */
+/* Specific Element Styles */
 #captchaForm .d-flex {
     display: flex;
     align-items: flex-start;
@@ -118,7 +115,7 @@ body.dark {
 
 #captchaInput {
     width: 100%;
-    margin-bottom: 5px; /* Space between input and refresh button */
+    margin-bottom: 5px; /* Space between input and button */
 }
 
 #refreshCaptcha {
@@ -127,10 +124,10 @@ body.dark {
 
 /* Canvas Styles */
 canvas {
-    background-color: #ffffff; /* Dark mode background color */
+    background-color: #fff;
 }
 
-/* Form Text */
+/* Form Text Styles */
 .form-text {
     color: black;
 }
@@ -139,7 +136,7 @@ body.dark .form-text {
     color: white;
 }
 
-/* Modal Content */
+/* Modal Content Styles */
 body.dark .modal-content {
     background-color: #292c35;
     color: white;
@@ -148,49 +145,86 @@ body.dark .modal-content {
 /* Table Styles */
 body.dark table,
 body.light table {
-    background-color: transparent; /* Ensure table background is transparent */
-    color: inherit; /* Ensure table text color is inherited */
-    border-color: inherit; /* Ensure borders are visible */
+    background-color: transparent; /* Transparent background */
+    color: inherit; /* Inherit text color */
+    border-color: inherit; /* Inherit border color */
 }
 
 body.dark table tr:nth-child(odd),
 body.light table tr:nth-child(even) {
-    background-color: #424242; /* Dark mode odd rows background */
-    color: #ffffff;
+    background-color: #424242; /* Odd row background */
+    color: #fff; /* Text color */
 }
 
 body.dark table tr:nth-child(even),
 body.light table tr:nth-child(odd) {
-    background-color: #ffffff; /* Dark mode even rows background */
-    color: black;
+    background-color: #fff; /* Even row background */
+    color: black; /* Text color */
 }
 
 body.dark table td,
 body.light table th,
 body.light table td {
-    background-color: transparent; /* Ensure table cells have transparent background */
-    color: inherit; /* Ensure table text color is inherited */
-    border-color: inherit; /* Ensure borders are visible */
+    background-color: transparent; /* Transparent cells */
+    color: inherit; /* Inherit text color */
+    border-color: inherit; /* Inherit border color */
 }
 
 /* Navigation Tabs */
 .nav-tabs .nav-link {
     border: none; /* Remove default border */
-    border-bottom: 3px solid transparent; /* Add transparent border for spacing */
-    border-top: 3px solid transparent; /* Add transparent border for spacing */
+    border-bottom: 3px solid transparent; /* Transparent border */
+    border-top: 3px solid transparent; /* Transparent top border */
+}
+
+.nav-tabs .nav-link:not(.active) {
+    background-color: dodgerblue; /* Inactive tab background */
+    color: white; /* Inactive tab text */
 }
 
 .nav-tabs .nav-link.active {
-    border-bottom: 3px solid #007BFF; /* Add a bolder bottom border to active tab */
+    font-weight: bolder; /* Active tab font weight */
 }
 
 .nav-tabs .nav-link:focus,
 .nav-tabs .nav-link:hover {
-    border-bottom: 3px solid #007BFF; /* Add bolder bottom border on hover and focus */
+    border-bottom: 3px solid transparent; /* Hover and focus border */
 }
 
-.footer {
-    position: fixed;
+/* Child Navigation Tabs */
+.nav-tabs2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-tabs2 .nav-item {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.nav-tabs2 .nav-link {
+    width: 100%;
+    border-bottom: 3px solid lightgray; /* Default border */
+}
+
+.nav-tabs2 .nav-link.active {
+    border-bottom: 3px solid dodgerblue; /* Active tab border */
+}
+
+/* Page Container */
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 5rem; /* Footer height */
+}
+
+/* Footer Styles */
+footer {
+    position: absolute;
     bottom: 0;
     width: 100%;
-  }
+    height: 4rem;
+}

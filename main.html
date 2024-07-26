@@ -21,7 +21,8 @@
 
     <!-- JS dependencies -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"
+        defer></script>
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js" defer></script>
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js" defer></script>
     <script src="resource/captcha.js" defer></script>
@@ -98,138 +99,305 @@
         </div>
     </nav>
 
-    </head>
-
-    <section>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa quo vero tempore perferendis et enim? Nobis
-        architecto incidunt asperiores molestias nostrum id? Sit animi, perferendis maxime praesentium nostrum
-        aspernatur eveniet.
-        A dignissimos harum maiores, neque nam ipsam exercitationem veniam et! Repellendus, assumenda obcaecati,
-        voluptates praesentium aliquam quo tenetur molestiae labore itaque nihil dicta, sunt voluptatum iure velit. Qui,
-        voluptatibus asperiores.
-        Eaque cupiditate incidunt autem atque quis odit, aut fugiat dolor aspernatur totam enim labore impedit officia
-        repudiandae perspiciatis consequatur modi aliquam accusantium corrupti error cum deserunt! Eum quas vero modi?
-        Animi autem obcaecati aut provident fuga quidem! Consectetur dicta porro, voluptas doloribus nemo accusantium
-        nihil necessitatibus optio iure quos atque minima deserunt. Ex voluptate repudiandae perspiciatis, cum fugiat
-        quis porro?
-        Doloribus consectetur esse voluptate sed. Totam necessitatibus unde, rerum aut asperiores recusandae laudantium
-        animi quisquam aliquid nisi et! Ducimus fugiat eum exercitationem. Molestias eum culpa tempora. Iure dolorem
-        deleniti provident?
-    </section>
-
-    <!-- Tabs navigation -->
-    <div class="container mt-2" style="width: 100%">
-        <ul class="nav nav-tabs" id="myTab" role="tablist" style="width: 100%">
-            <li class="nav-item">
-                <a class="nav-link tab-header tab-header-home active" id="home-tab" data-toggle="tab" href="#home"
-                    role="tab" aria-controls="home" aria-selected="true">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link tab-header tab-header-profile" id="profile-tab" data-toggle="tab" href="#profile"
-                    role="tab" aria-controls="profile" aria-selected="false">Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link tab-header tab-header-contact" id="contact-tab" data-toggle="tab" href="#contact"
-                    role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link tab-header tab-header-contact" id="test-tab" data-toggle="tab" href="#test"
-                    role="tab" aria-controls="contact" aria-selected="false">test</a>
-            </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <br>
-                Home content goes here.
-            </div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <br>
-                Profile content goes here.
-            </div>
-            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                <div>
-                    <br>
-                    Contact content goes here.
-                    <br>
-                    </table>
-                    <table id="example" class="table table-striped" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011-04-25</td>
-                                <td>$320,800</td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>63</td>
-                                <td>2011-07-25</td>
-                                <td>$170,750</td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>San Francisco</td>
-                                <td>66</td>
-                                <td>2009-01-12</td>
-                                <td>$86,000</td>
-                            </tr>
-                            <tr>
-                                <td>Cedric Kelly</td>
-                                <td>Senior Javascript Developer</td>
-                                <td>Edinburgh</td>
-                                <td>22</td>
-                                <td>2012-03-29</td>
-                                <td>$433,060</td>
-                            </tr>
-                            <tr>
-                                <td>Airi Satou</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>33</td>
-                                <td>2008-11-28</td>
-                                <td>$162,700</td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
-                            </tr>
-                        </tfoot>
-                    </table>
+    <div id="page-container">
+        <div id="content-wrap">
+            <section>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius commodi eaque mollitia dicta optio,
+                reprehenderit reiciendis provident quas officiis sunt itaque dolorem. Esse nisi sit ad veniam asperiores
+                autem mollitia.
+                Harum quasi vero quae reiciendis id! Debitis ex, tempora qui dolorum temporibus laborum non?
+                Necessitatibus ad beatae debitis culpa, dignissimos voluptates perferendis corrupti ipsa, pariatur,
+                veritatis nihil sed. Mollitia, repudiandae.
+                Ea impedit ipsum ducimus consequatur consectetur architecto perferendis consequuntur tenetur
+                reprehenderit quisquam minima, totam beatae quo molestiae eos repellendus accusamus a inventore
+                explicabo suscipit aperiam iste. Neque fugiat delectus provident?
+                Commodi voluptas non architecto voluptatibus magnam mollitia optio deleniti exercitationem ex at! Eum
+                ratione eius optio corrupti veritatis sapiente, cumque nulla cum. Consectetur excepturi dolorem beatae?
+                Excepturi pariatur culpa placeat.
+                Expedita odit nisi repellat tempora soluta alias voluptatum facilis sit quos laborum minus impedit
+                beatae dolore iste voluptate maiores aut, asperiores dolor quia, velit, repudiandae earum. Vitae
+                architecto dolorem illum.
+                Quis nulla vero modi corporis obcaecati eos pariatur distinctio! Nesciunt ipsam porro quaerat nam quo?
+                Error commodi reprehenderit unde laboriosam. Porro quaerat dicta, repellendus non veritatis
+                reprehenderit ipsa consectetur harum!
+                Inventore, nostrum voluptatem neque corporis harum totam distinctio laboriosam id? Corporis officia
+                provident autem quas expedita sapiente nisi maxime earum, reiciendis exercitationem quibusdam beatae?
+                Voluptatibus accusamus explicabo beatae labore maiores!
+                Voluptas itaque qui distinctio, dignissimos libero officia odit, eaque ad quibusdam quis, aperiam hic
+                quidem aut sapiente nesciunt minus? Illum impedit quam neque ullam similique ratione nostrum fuga omnis
+                inventore.
+                Natus, maiores exercitationem voluptatibus non illum culpa dolores esse est, quos quasi voluptatum
+                laudantium praesentium nostrum in ullam nulla voluptates sunt nemo nihil aspernatur. Repellendus
+                asperiores natus consectetur sequi atque.
+                Cupiditate ex blanditiis nobis eum, nesciunt illum, nulla repellendus ea tempora nihil omnis! Atque
+                illum ullam et tempora nemo ex aperiam accusantium, accusamus libero ab! Sapiente similique iure dolore
+                reprehenderit.
+            </section>
+            <!-- Tabs navigation -->
+            <div class="container mt-4" style="width: 100%">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link tab-header tab-header-home active" id="home-tab" data-toggle="tab"
+                            href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link tab-header tab-header-profile" id="profile-tab" data-toggle="tab"
+                            href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link tab-header tab-header-contact" id="contact-tab" data-toggle="tab"
+                            href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link tab-header tab-header-contact" id="test-tab" data-toggle="tab" href="#test"
+                            role="tab" aria-controls="contact" aria-selected="false">test</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <br>
+                        Home content goes here.
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <br>
+                        Profile content goes here.
+                    </div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <div>
+                            <br>
+                            Contact content goes here.
+                            <br>
+                            <table id="example" class="table table-striped" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Position</th>
+                                        <th>Office</th>
+                                        <th>Age</th>
+                                        <th>Start date</th>
+                                        <th>Salary</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Tiger Nixon</td>
+                                        <td>System Architect</td>
+                                        <td>Edinburgh</td>
+                                        <td>61</td>
+                                        <td>2011-04-25</td>
+                                        <td>$320,800</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Garrett Winters</td>
+                                        <td>Accountant</td>
+                                        <td>Tokyo</td>
+                                        <td>63</td>
+                                        <td>2011-07-25</td>
+                                        <td>$170,750</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ashton Cox</td>
+                                        <td>Junior Technical Author</td>
+                                        <td>San Francisco</td>
+                                        <td>66</td>
+                                        <td>2009-01-12</td>
+                                        <td>$86,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cedric Kelly</td>
+                                        <td>Senior Javascript Developer</td>
+                                        <td>Edinburgh</td>
+                                        <td>22</td>
+                                        <td>2012-03-29</td>
+                                        <td>$433,060</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Airi Satou</td>
+                                        <td>Accountant</td>
+                                        <td>Tokyo</td>
+                                        <td>33</td>
+                                        <td>2008-11-28</td>
+                                        <td>$162,700</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Position</th>
+                                        <th>Office</th>
+                                        <th>Age</th>
+                                        <th>Start date</th>
+                                        <th>Salary</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="test" role="tabpanel" aria-labelledby="test-tab">
+                        <br>
+                        <ul class="nav nav-tabs2" id="myTab2" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link tab-header tab-header-home active" id="child1-tab" data-toggle="tab"
+                                    href="#child1" role="tab" aria-controls="child1" aria-selected="true">child 1</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link tab-header tab-header-profile" id="child2-tab" data-toggle="tab"
+                                    href="#child2" role="tab" aria-controls="child2" aria-selected="false">child 2</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link tab-header tab-header-contact" id="child3-tab" data-toggle="tab"
+                                    href="#child3" role="tab" aria-controls="child3" aria-selected="false">child 3</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link tab-header tab-header-contact" id="child4-tab" data-toggle="tab"
+                                    href="#child4" role="tab" aria-controls="child4" aria-selected="false">child 4</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTab2Content">
+                            <div class="tab-pane fade show active" id="child1" role="tabpanel"
+                                aria-labelledby="child1-tab">
+                                <br>
+                                child 1
+                            </div>
+                            <div class="tab-pane fade" id="child2" role="tabpanel" aria-labelledby="child2-tab">
+                                <br>
+                                child 2
+                            </div>
+                            <div class="tab-pane fade" id="child3" role="tabpanel" aria-labelledby="child3-tab">
+                                <br>
+                                child 3
+                            </div>
+                            <div class="tab-pane fade" id="child4" role="tabpanel" aria-labelledby="child4-tab">
+                                <br>
+                                child 4
+                                <br>
+                                <table id="example2" class="table table-striped" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Position</th>
+                                            <th>Office</th>
+                                            <th>Age</th>
+                                            <th>Start date</th>
+                                            <th>Salary</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Tiger Nixon</td>
+                                            <td>System Architect</td>
+                                            <td>Edinburgh</td>
+                                            <td>61</td>
+                                            <td>2011-04-25</td>
+                                            <td>$320,800</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Garrett Winters</td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>63</td>
+                                            <td>2011-07-25</td>
+                                            <td>$170,750</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ashton Cox</td>
+                                            <td>Junior Technical Author</td>
+                                            <td>San Francisco</td>
+                                            <td>66</td>
+                                            <td>2009-01-12</td>
+                                            <td>$86,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Garrett Winters</td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>63</td>
+                                            <td>2011-07-25</td>
+                                            <td>$170,750</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ashton Cox</td>
+                                            <td>Junior Technical Author</td>
+                                            <td>San Francisco</td>
+                                            <td>66</td>
+                                            <td>2009-01-12</td>
+                                            <td>$86,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Garrett Winters</td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>63</td>
+                                            <td>2011-07-25</td>
+                                            <td>$170,750</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ashton Cox</td>
+                                            <td>Junior Technical Author</td>
+                                            <td>San Francisco</td>
+                                            <td>66</td>
+                                            <td>2009-01-12</td>
+                                            <td>$86,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Garrett Winters</td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>63</td>
+                                            <td>2011-07-25</td>
+                                            <td>$170,750</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ashton Cox</td>
+                                            <td>Junior Technical Author</td>
+                                            <td>San Francisco</td>
+                                            <td>66</td>
+                                            <td>2009-01-12</td>
+                                            <td>$86,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cedric Kelly</td>
+                                            <td>Senior Javascript Developer</td>
+                                            <td>Edinburgh</td>
+                                            <td>22</td>
+                                            <td>2012-03-29</td>
+                                            <td>$433,060</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Airi Satou</td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>33</td>
+                                            <td>2008-11-28</td>
+                                            <td>$162,700</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Position</th>
+                                            <th>Office</th>
+                                            <th>Age</th>
+                                            <th>Start date</th>
+                                            <th>Salary</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- Footer -->
+        <footer class="footer text-center mt-5">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
+            <p>
+                <img src="resource/Icon.ico" alt="Web Icon" style="width: 20px; height: 20px; vertical-align: middle;">
+                © 2024 Company, Inc
+            </p>
+        </footer>
     </div>
-    </div>
-
-
-
-
-
-    <!-- Footer -->
-    <footer class="footer text-center mt-5">
-        <p>&copy; 2024 Dummy Page. All rights reserved.</p>
-    </footer>
 </body>
 
 </html>

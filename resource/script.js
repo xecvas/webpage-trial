@@ -1,83 +1,82 @@
-//show current date on console
-var MyDate = new Date();
-console.log(MyDate);
+// Show current date on console
+console.log(new Date());
 
-//datatable
+// Initialize DataTables for both tables on page load
 $(document).ready(function() {
   $('#example').DataTable();
+  $('#example2').DataTable();
 });
 
-//tabs
+// Initialize tabs functionality on page load
 $(document).ready(function() {
-  $('#myTab a').on('click', function (e) {
-      e.preventDefault();
-      $(this).tab('show');
+  // Main tabs
+  $('#myTab a').on('click', function(e) {
+    e.preventDefault();
+    $(this).tab('show');
+    $('#myTab a').removeClass('active');
+    $(this).addClass('active');
+  });
 
-      // Remove active classes from all tabs
-      $('.nav-link').removeClass('active');
+  // Child tabs
+  $('#myTab2 a').on('click', function(e) {
+    e.preventDefault();
+    $(this).tab('show');
+    $('#myTab2 a').removeClass('active');
+    $(this).addClass('active');
+    $('#test-tab').addClass('active');
+  });
 
-      // Add active class to clicked tab
-      $(this).addClass('active');
+  // Ensure the "test" tab remains active when any child tab is clicked
+  $('#myTab2 a').on('shown.bs.tab', function() {
+    $('#test-tab').addClass('active');
   });
 });
 
-//toggle dark mode
+// Toggle dark mode functionality
 $(document).ready(function() {
-    const checkbox = document.getElementById("checkbox");
-
-    checkbox.addEventListener("change", function() {
-        $('body').toggleClass('dark');
-        $('canvas').toggleClass('dark');
-        $('form-text').toggleClass('dark');
-    });
-});
-
-// Save toggle setting to localStorage
-function saveToggleSetting() {
   const checkbox = document.getElementById("checkbox");
-  const isChecked = checkbox.checked;
-  localStorage.setItem("isChecked", JSON.stringify(isChecked));
-}
 
-// Load toggle setting from localStorage
-function loadToggleSetting() {
-  const checkbox = document.getElementById("checkbox");
-  const isChecked = JSON.parse(localStorage.getItem("isChecked"));
-  if (isChecked) {
-    checkbox.checked = isChecked;
-    $('body').addClass('dark');
-    $('canvas').addClass('dark');
-    $('form-text').addClass('dark');
-  }
-}
+  checkbox.addEventListener("change", function() {
+    $('body, canvas, form-text').toggleClass('dark');
+  });
 
-// Load toggle setting from localStorage
-$(document).ready(function() {
+  // Load and apply the saved toggle setting from localStorage
+  const loadToggleSetting = () => {
+    const isChecked = JSON.parse(localStorage.getItem("isChecked"));
+    if (isChecked) {
+      checkbox.checked = isChecked;
+      $('body, canvas, form-text').addClass('dark');
+    }
+  };
+
+  // Save the toggle setting to localStorage
+  const saveToggleSetting = () => {
+    localStorage.setItem("isChecked", JSON.stringify(checkbox.checked));
+  };
+
+  // Apply saved setting and set up event listener to save changes
   loadToggleSetting();
-  saveToggleSetting();
   $("#checkbox").change(saveToggleSetting);
 });
 
-//remember me function
-function toggleRememberMe(checkbox) {
-  if (checkbox.checked) {
-    // Remember the user
-    localStorage.setItem('username', document.getElementById('username').value);
-    localStorage.setItem('password', document.getElementById('password').value);
-  } else {
-    // Forget the user
-    localStorage.removeItem('username');
-    localStorage.removeItem('password');
-  }
-}
-
-// Check if the user is remembered
+// Remember me functionality for login form
 window.addEventListener('DOMContentLoaded', function() {
-  var username = localStorage.getItem('username');
-  var password = localStorage.getItem('password');
+  const username = localStorage.getItem('username');
+  const password = localStorage.getItem('password');
   if (username && password) {
     document.getElementById('username').value = username;
     document.getElementById('password').value = password;
     document.getElementById('rememberMe').checked = true;
   }
+
+  // Save or clear login details based on 'Remember me' checkbox state
+  document.getElementById('rememberMe').addEventListener('change', function() {
+    if (this.checked) {
+      localStorage.setItem('username', document.getElementById('username').value);
+      localStorage.setItem('password', document.getElementById('password').value);
+    } else {
+      localStorage.removeItem('username');
+      localStorage.removeItem('password');
+    }
+  });
 });
