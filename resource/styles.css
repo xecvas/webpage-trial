@@ -214,7 +214,7 @@ body.light table td {
 /* Page Container */
 #page-container {
     position: relative;
-    min-height: 100vh;
+    min-height: 90vh;
 }
 
 #content-wrap {
