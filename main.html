@@ -53,7 +53,7 @@
                             Account
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">deliver</a></li>
                             <li><a class="dropdown-item" href="#">Change Password</a></li>
                             <li><a class="dropdown-item" href="#">Change PIN</a></li>
                         </ul>
@@ -108,289 +108,255 @@
                 Harum quasi vero quae reiciendis id! Debitis ex, tempora qui dolorum temporibus laborum non?
                 Necessitatibus ad beatae debitis culpa, dignissimos voluptates perferendis corrupti ipsa, pariatur,
                 veritatis nihil sed. Mollitia, repudiandae.
-                Ea impedit ipsum ducimus consequatur consectetur architecto perferendis consequuntur tenetur
-                reprehenderit quisquam minima, totam beatae quo molestiae eos repellendus accusamus a inventore
-                explicabo suscipit aperiam iste. Neque fugiat delectus provident?
-                Commodi voluptas non architecto voluptatibus magnam mollitia optio deleniti exercitationem ex at! Eum
-                ratione eius optio corrupti veritatis sapiente, cumque nulla cum. Consectetur excepturi dolorem beatae?
-                Excepturi pariatur culpa placeat.
-                Expedita odit nisi repellat tempora soluta alias voluptatum facilis sit quos laborum minus impedit
-                beatae dolore iste voluptate maiores aut, asperiores dolor quia, velit, repudiandae earum. Vitae
-                architecto dolorem illum.
-                Quis nulla vero modi corporis obcaecati eos pariatur distinctio! Nesciunt ipsam porro quaerat nam quo?
-                Error commodi reprehenderit unde laboriosam. Porro quaerat dicta, repellendus non veritatis
-                reprehenderit ipsa consectetur harum!
-                Inventore, nostrum voluptatem neque corporis harum totam distinctio laboriosam id? Corporis officia
-                provident autem quas expedita sapiente nisi maxime earum, reiciendis exercitationem quibusdam beatae?
-                Voluptatibus accusamus explicabo beatae labore maiores!
-                Voluptas itaque qui distinctio, dignissimos libero officia odit, eaque ad quibusdam quis, aperiam hic
-                quidem aut sapiente nesciunt minus? Illum impedit quam neque ullam similique ratione nostrum fuga omnis
-                inventore.
-                Natus, maiores exercitationem voluptatibus non illum culpa dolores esse est, quos quasi voluptatum
-                laudantium praesentium nostrum in ullam nulla voluptates sunt nemo nihil aspernatur. Repellendus
-                asperiores natus consectetur sequi atque.
-                Cupiditate ex blanditiis nobis eum, nesciunt illum, nulla repellendus ea tempora nihil omnis! Atque
-                illum ullam et tempora nemo ex aperiam accusantium, accusamus libero ab! Sapiente similique iure dolore
-                reprehenderit.
             </section>
-            <!-- Tabs navigation -->
+            <!-- Parents Tabs navigation -->
             <div class="container mt-4" style="width: 100%">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
+                    <!-- home tab -->
+                    <li class="nav-item" id="home-tab">
                         <a class="nav-link tab-header tab-header-home active" id="home-tab" data-toggle="tab"
                             href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link tab-header tab-header-profile" id="profile-tab" data-toggle="tab"
-                            href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+                    <!-- deliver tab -->
+                    <li class="nav-item" id="deliver-tab">
+                        <a class="nav-link tab-header tab-header-deliver" id="deliver-tab" data-toggle="tab"
+                            href="#deliver" role="tab" aria-controls="deliver" aria-selected="false">Deliver</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link tab-header tab-header-contact" id="contact-tab" data-toggle="tab"
-                            href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link tab-header tab-header-contact" id="test-tab" data-toggle="tab" href="#test"
-                            role="tab" aria-controls="contact" aria-selected="false">test</a>
+                    <!-- payment tab -->
+                    <li class="nav-item" id="payment-tab">
+                        <a class="nav-link tab-header tab-header-payment" id="payment-tab" data-toggle="tab"
+                            href="#payment" role="tab" aria-controls="payment" aria-selected="false">Payment</a>
                     </li>
                 </ul>
+                <!-- Parents Tab content -->
                 <div class="tab-content" id="myTabContent">
+                    <!-- home content -->
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <br>
                         Home content goes here.
+                        <table id="HomeTable" class="table table-striped" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Status</th>
+                                <th>Payment</th>
+                            </thead>
+                            <tbody>
+                            </tr>
+                            <tr><td>Alice Johnson</td><td>34</td><td>delivered</td><td>completed</td></tr>
+                            <tr><td>Bob Smith</td><td>22</td><td>pending</td><td>requested</td></tr>
+                            <tr><td>Charlie Brown</td><td>45</td><td>canceled</td><td>refused</td></tr>
+                            <tr><td>David Wilson</td><td>29</td><td>on process</td><td>canceled</td></tr>
+                            <tr><td>Eve Davis</td><td>67</td><td>delivered</td><td>invalid</td></tr>
+                            <tr><td>Frank Miller</td><td>19</td><td>pending</td><td>completed</td></tr>
+                            <tr><td>Grace Lee</td><td>54</td><td>canceled</td><td>requested</td></tr>
+                            <tr><td>Hannah Taylor</td><td>31</td><td>on process</td><td>refused</td></tr>
+                            <tr><td>Isaac Anderson</td><td>76</td><td>delivered</td><td>completed</td></tr>
+                            <tr><td>Jack Thomas</td><td>40</td><td>pending</td><td>invalid</td></tr>
+                            <tr><td>Kate Jackson</td><td>25</td><td>canceled</td><td>canceled</td></tr>
+                            <tr><td>Liam White</td><td>38</td><td>on process</td><td>requested</td></tr>
+                            <tr><td>Mia Harris</td><td>50</td><td>delivered</td><td>refused</td></tr>
+                            <tr><td>Noah Martin</td><td>16</td><td>pending</td><td>completed</td></tr>
+                            <tr><td>Olivia Thompson</td><td>82</td><td>canceled</td><td>invalid</td></tr>
+                            <tr><td>Parker Garcia</td><td>27</td><td>on process</td><td>requested</td></tr>
+                            <tr><td>Quinn Martinez</td><td>36</td><td>delivered</td><td>canceled</td></tr>
+                            <tr><td>Riley Robinson</td><td>48</td><td>pending</td><td>refused</td></tr>
+                            <tr><td>Sophia Clark</td><td>60</td><td>canceled</td><td>completed</td></tr>
+                            <tr><td>Toby Rodriguez</td><td>72</td><td>on process</td><td>invalid</td></tr>
+                            <tr><td>Uma Lewis</td><td>33</td><td>delivered</td><td>requested</td></tr>
+                            <tr><td>Violet Walker</td><td>44</td><td>pending</td><td>refused</td></tr>
+                            <tr><td>Will Hall</td><td>57</td><td>canceled</td><td>completed</td></tr>
+                            <tr><td>Xander Young</td><td>26</td><td>on process</td><td>invalid</td></tr>
+                            <tr><td>Yara King</td><td>39</td><td>delivered</td><td>requested</td></tr>
+                            <tr><td>Zoe Scott</td><td>88</td><td>pending</td><td>canceled</td></tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <!-- deliver content -->
+                    <div class="tab-pane fade" id="deliver" role="tabpanel" aria-labelledby="deliver-tab">
                         <br>
-                        Profile content goes here.
-                    </div>
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                        <div>
-                            <br>
-                            Contact content goes here.
-                            <br>
-                            <table id="example" class="table table-striped" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>System Architect</td>
-                                        <td>Edinburgh</td>
-                                        <td>61</td>
-                                        <td>2011-04-25</td>
-                                        <td>$320,800</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Garrett Winters</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>63</td>
-                                        <td>2011-07-25</td>
-                                        <td>$170,750</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ashton Cox</td>
-                                        <td>Junior Technical Author</td>
-                                        <td>San Francisco</td>
-                                        <td>66</td>
-                                        <td>2009-01-12</td>
-                                        <td>$86,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cedric Kelly</td>
-                                        <td>Senior Javascript Developer</td>
-                                        <td>Edinburgh</td>
-                                        <td>22</td>
-                                        <td>2012-03-29</td>
-                                        <td>$433,060</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Airi Satou</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>33</td>
-                                        <td>2008-11-28</td>
-                                        <td>$162,700</td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="test" role="tabpanel" aria-labelledby="test-tab">
+                        deliver content goes here.
                         <br>
                         <ul class="nav nav-tabs2" id="myTab2" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link tab-header tab-header-home active" id="child1-tab" data-toggle="tab"
-                                    href="#child1" role="tab" aria-controls="child1" aria-selected="true">child 1</a>
+                                <a class="nav-link tab-header tab-header-deliver active" id="child1-tab" data-toggle="tab"
+                                    href="#deliverchild1" role="tab" aria-controls="deliverchild1" aria-selected="true">All</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link tab-header tab-header-profile" id="child2-tab" data-toggle="tab"
-                                    href="#child2" role="tab" aria-controls="child2" aria-selected="false">child 2</a>
+                                <a class="nav-link tab-header tab-header-deliver" id="child2-tab" data-toggle="tab"
+                                    href="#deliverchild2" role="tab" aria-controls="deliverchild2" aria-selected="false">Delivered</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link tab-header tab-header-contact" id="child3-tab" data-toggle="tab"
-                                    href="#child3" role="tab" aria-controls="child3" aria-selected="false">child 3</a>
+                                <a class="nav-link tab-header tab-header-deliver" id="child3-tab" data-toggle="tab"
+                                    href="#deliverchild3" role="tab" aria-controls="deliverchild3" aria-selected="false">Pending</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link tab-header tab-header-contact" id="child4-tab" data-toggle="tab"
-                                    href="#child4" role="tab" aria-controls="child4" aria-selected="false">child 4</a>
+                                <a class="nav-link tab-header tab-header-deliver" id="child4-tab" data-toggle="tab"
+                                    href="#deliverchild4" role="tab" aria-controls="deliverchild4" aria-selected="false">Canceled</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link tab-header tab-header-deliver" id="child5-tab" data-toggle="tab"
+                                    href="#deliverchild5" role="tab" aria-controls="deliverchild5" aria-selected="false">On Process</a>
                             </li>
                         </ul>
                         <div class="tab-content" id="myTab2Content">
-                            <div class="tab-pane fade show active" id="child1" role="tabpanel"
-                                aria-labelledby="child1-tab">
+                            <div class="tab-pane fade show active" id="deliverchild1" role="tabpanel" aria-labelledby="deliverchild1-tab">
                                 <br>
-                                child 1
-                            </div>
-                            <div class="tab-pane fade" id="child2" role="tabpanel" aria-labelledby="child2-tab">
+                                deliver child 1
                                 <br>
-                                child 2
-                            </div>
-                            <div class="tab-pane fade" id="child3" role="tabpanel" aria-labelledby="child3-tab">
-                                <br>
-                                child 3
-                            </div>
-                            <div class="tab-pane fade" id="child4" role="tabpanel" aria-labelledby="child4-tab">
-                                <br>
-                                child 4
-                                <br>
-                                <table id="example2" class="table table-striped" style="width:100%">
+                                <table id="DeliverTable" class="table table-striped" style="width:100%">
                                     <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Age</th>
+                                        <th>Status</th>
+                                        <th>Payment</th>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011-04-25</td>
-                                            <td>$320,800</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011-07-25</td>
-                                            <td>$170,750</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009-01-12</td>
-                                            <td>$86,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011-07-25</td>
-                                            <td>$170,750</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009-01-12</td>
-                                            <td>$86,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011-07-25</td>
-                                            <td>$170,750</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009-01-12</td>
-                                            <td>$86,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011-07-25</td>
-                                            <td>$170,750</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009-01-12</td>
-                                            <td>$86,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>22</td>
-                                            <td>2012-03-29</td>
-                                            <td>$433,060</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>33</td>
-                                            <td>2008-11-28</td>
-                                            <td>$162,700</td>
-                                        </tr>
+                                    </tr>
+                                    <tr><td>Alice Johnson</td><td>34</td><td>delivered</td><td>completed</td></tr>
+                                    <tr><td>Bob Smith</td><td>22</td><td>pending</td><td>requested</td></tr>
+                                    <tr><td>Charlie Brown</td><td>45</td><td>canceled</td><td>refused</td></tr>
+                                    <tr><td>David Wilson</td><td>29</td><td>on process</td><td>canceled</td></tr>
+                                    <tr><td>Eve Davis</td><td>67</td><td>delivered</td><td>invalid</td></tr>
+                                    <tr><td>Frank Miller</td><td>19</td><td>pending</td><td>completed</td></tr>
+                                    <tr><td>Grace Lee</td><td>54</td><td>canceled</td><td>requested</td></tr>
+                                    <tr><td>Hannah Taylor</td><td>31</td><td>on process</td><td>refused</td></tr>
+                                    <tr><td>Isaac Anderson</td><td>76</td><td>delivered</td><td>completed</td></tr>
+                                    <tr><td>Jack Thomas</td><td>40</td><td>pending</td><td>invalid</td></tr>
+                                    <tr><td>Kate Jackson</td><td>25</td><td>canceled</td><td>canceled</td></tr>
+                                    <tr><td>Liam White</td><td>38</td><td>on process</td><td>requested</td></tr>
+                                    <tr><td>Mia Harris</td><td>50</td><td>delivered</td><td>refused</td></tr>
+                                    <tr><td>Noah Martin</td><td>16</td><td>pending</td><td>completed</td></tr>
+                                    <tr><td>Olivia Thompson</td><td>82</td><td>canceled</td><td>invalid</td></tr>
+                                    <tr><td>Parker Garcia</td><td>27</td><td>on process</td><td>requested</td></tr>
+                                    <tr><td>Quinn Martinez</td><td>36</td><td>delivered</td><td>canceled</td></tr>
+                                    <tr><td>Riley Robinson</td><td>48</td><td>pending</td><td>refused</td></tr>
+                                    <tr><td>Sophia Clark</td><td>60</td><td>canceled</td><td>completed</td></tr>
+                                    <tr><td>Toby Rodriguez</td><td>72</td><td>on process</td><td>invalid</td></tr>
+                                    <tr><td>Uma Lewis</td><td>33</td><td>delivered</td><td>requested</td></tr>
+                                    <tr><td>Violet Walker</td><td>44</td><td>pending</td><td>refused</td></tr>
+                                    <tr><td>Will Hall</td><td>57</td><td>canceled</td><td>completed</td></tr>
+                                    <tr><td>Xander Young</td><td>26</td><td>on process</td><td>invalid</td></tr>
+                                    <tr><td>Yara King</td><td>39</td><td>delivered</td><td>requested</td></tr>
+                                    <tr><td>Zoe Scott</td><td>88</td><td>pending</td><td>canceled</td></tr>
                                     </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot>
                                 </table>
+                            </div>
+                            <div class="tab-pane fade" id="deliverchild2" role="tabpanel" aria-labelledby="deliverchild2-tab">
+                                <br>
+                                deliver child 2
+                            </div>
+                            <div class="tab-pane fade" id="deliverchild3" role="tabpanel" aria-labelledby="deliverchild3-tab">
+                                <br>
+                                deliver child 3
+                            </div>
+                            <div class="tab-pane fade" id="deliverchild4" role="tabpanel" aria-labelledby="deliverchild4-tab">
+                                <br>
+                                deliver child 4
+                            </div>
+                            <div class="tab-pane fade" id="deliverchild5" role="tabpanel" aria-labelledby="deliverchild5-tab">
+                                <br>
+                                deliver child 5
+                            </div>
+                        </div>
+                    </div>
+                    <!-- payment content -->
+                    <div class="tab-pane fade" id="payment" role="tabpanel" aria-labelledby="payment-tab">
+                        <br>
+                        payment content goes here.
+                        <br>
+                        <ul class="nav nav-tabs2" id="myTab3" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link tab-header tab-header-payment active" id="paymentchild1-tab" data-toggle="tab"
+                                    href="#paymentchild1" role="tab" aria-controls="paymentchild1" aria-selected="true">All</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link tab-header tab-header-payment" id="paymentchild2-tab" data-toggle="tab"
+                                    href="#paymentchild2" role="tab" aria-controls="paymentchild2" aria-selected="false">paymented</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link tab-header tab-header-payment" id="paymentchild3-tab" data-toggle="tab"
+                                    href="#paymentchild3" role="tab" aria-controls="paymentchild3" aria-selected="false">Pending</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link tab-header tab-header-payment" id="paymentchild4-tab" data-toggle="tab"
+                                    href="#paymentchild4" role="tab" aria-controls="paymentchild4" aria-selected="false">Canceled</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link tab-header tab-header-payment" id="paymentchild5-tab" data-toggle="tab"
+                                    href="#paymentchild5" role="tab" aria-controls="paymentchild5" aria-selected="false">On Process</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTab3Content">
+                            <div class="tab-pane fade show active" id="paymentchild1" role="tabpanel" aria-labelledby="paymentchild1-tab">
+                                <br>
+                                payment child 1
+                                <br>
+                                <table id="PaymentTable" class="table table-striped" style="width:100%">
+                                    <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Age</th>
+                                        <th>Status</th>
+                                        <th>Payment</th>
+                                    </thead>
+                                    <tbody>
+                                    </tr>
+                                    <tr><td>Alice Johnson</td><td>34</td><td>delivered</td><td>completed</td></tr>
+                                    <tr><td>Bob Smith</td><td>22</td><td>pending</td><td>requested</td></tr>
+                                    <tr><td>Charlie Brown</td><td>45</td><td>canceled</td><td>refused</td></tr>
+                                    <tr><td>David Wilson</td><td>29</td><td>on process</td><td>canceled</td></tr>
+                                    <tr><td>Eve Davis</td><td>67</td><td>delivered</td><td>invalid</td></tr>
+                                    <tr><td>Frank Miller</td><td>19</td><td>pending</td><td>completed</td></tr>
+                                    <tr><td>Grace Lee</td><td>54</td><td>canceled</td><td>requested</td></tr>
+                                    <tr><td>Hannah Taylor</td><td>31</td><td>on process</td><td>refused</td></tr>
+                                    <tr><td>Isaac Anderson</td><td>76</td><td>delivered</td><td>completed</td></tr>
+                                    <tr><td>Jack Thomas</td><td>40</td><td>pending</td><td>invalid</td></tr>
+                                    <tr><td>Kate Jackson</td><td>25</td><td>canceled</td><td>canceled</td></tr>
+                                    <tr><td>Liam White</td><td>38</td><td>on process</td><td>requested</td></tr>
+                                    <tr><td>Mia Harris</td><td>50</td><td>delivered</td><td>refused</td></tr>
+                                    <tr><td>Noah Martin</td><td>16</td><td>pending</td><td>completed</td></tr>
+                                    <tr><td>Olivia Thompson</td><td>82</td><td>canceled</td><td>invalid</td></tr>
+                                    <tr><td>Parker Garcia</td><td>27</td><td>on process</td><td>requested</td></tr>
+                                    <tr><td>Quinn Martinez</td><td>36</td><td>delivered</td><td>canceled</td></tr>
+                                    <tr><td>Riley Robinson</td><td>48</td><td>pending</td><td>refused</td></tr>
+                                    <tr><td>Sophia Clark</td><td>60</td><td>canceled</td><td>completed</td></tr>
+                                    <tr><td>Toby Rodriguez</td><td>72</td><td>on process</td><td>invalid</td></tr>
+                                    <tr><td>Uma Lewis</td><td>33</td><td>delivered</td><td>requested</td></tr>
+                                    <tr><td>Violet Walker</td><td>44</td><td>pending</td><td>refused</td></tr>
+                                    <tr><td>Will Hall</td><td>57</td><td>canceled</td><td>completed</td></tr>
+                                    <tr><td>Xander Young</td><td>26</td><td>on process</td><td>invalid</td></tr>
+                                    <tr><td>Yara King</td><td>39</td><td>delivered</td><td>requested</td></tr>
+                                    <tr><td>Zoe Scott</td><td>88</td><td>pending</td><td>canceled</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade" id="paymentchild2" role="tabpanel" aria-labelledby="paymentchild2-tab">
+                                <br>
+                                payment child 2
+                            </div>
+                            <div class="tab-pane fade" id="paymentchild3" role="tabpanel" aria-labelledby="paymentchild3-tab">
+                                <br>
+                                payment child 3
+                            </div>
+                            <div class="tab-pane fade" id="paymentchild4" role="tabpanel" aria-labelledby="paymentchild4-tab">
+                                <br>
+                                payment child 4
+                            </div>
+                            <div class="tab-pane fade" id="paymentchild5" role="tabpanel" aria-labelledby="paymentchild5-tab">
+                                <br>
+                                payment child 5
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- Footer -->
-        <footer class="footer text-center mt-5">
+        <footer class="footer text-center mt-5" id="footer">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
             <p>
                 <img src="resource/Icon.ico" alt="Web Icon" style="width: 20px; height: 20px; vertical-align: middle;">
