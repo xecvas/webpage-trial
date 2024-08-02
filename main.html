@@ -31,6 +31,8 @@
 </head>
 
 <body>
+    
+
     <!-- navigation bar -->
     <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary">
         <div class="container-fluid">
@@ -134,50 +136,15 @@
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <br>
                         Home content goes here.
-                        <table id="HomeTable" class="table table-striped" style="width:100%">
-                            <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Age</th>
-                                <th>Status</th>
-                                <th>Payment</th>
-                            </thead>
-                            <tbody>
-                            </tr>
-                            <tr><td>Alice Johnson</td><td>34</td><td>delivered</td><td>completed</td></tr>
-                            <tr><td>Bob Smith</td><td>22</td><td>pending</td><td>requested</td></tr>
-                            <tr><td>Charlie Brown</td><td>45</td><td>canceled</td><td>refused</td></tr>
-                            <tr><td>David Wilson</td><td>29</td><td>on process</td><td>canceled</td></tr>
-                            <tr><td>Eve Davis</td><td>67</td><td>delivered</td><td>invalid</td></tr>
-                            <tr><td>Frank Miller</td><td>19</td><td>pending</td><td>completed</td></tr>
-                            <tr><td>Grace Lee</td><td>54</td><td>canceled</td><td>requested</td></tr>
-                            <tr><td>Hannah Taylor</td><td>31</td><td>on process</td><td>refused</td></tr>
-                            <tr><td>Isaac Anderson</td><td>76</td><td>delivered</td><td>completed</td></tr>
-                            <tr><td>Jack Thomas</td><td>40</td><td>pending</td><td>invalid</td></tr>
-                            <tr><td>Kate Jackson</td><td>25</td><td>canceled</td><td>canceled</td></tr>
-                            <tr><td>Liam White</td><td>38</td><td>on process</td><td>requested</td></tr>
-                            <tr><td>Mia Harris</td><td>50</td><td>delivered</td><td>refused</td></tr>
-                            <tr><td>Noah Martin</td><td>16</td><td>pending</td><td>completed</td></tr>
-                            <tr><td>Olivia Thompson</td><td>82</td><td>canceled</td><td>invalid</td></tr>
-                            <tr><td>Parker Garcia</td><td>27</td><td>on process</td><td>requested</td></tr>
-                            <tr><td>Quinn Martinez</td><td>36</td><td>delivered</td><td>canceled</td></tr>
-                            <tr><td>Riley Robinson</td><td>48</td><td>pending</td><td>refused</td></tr>
-                            <tr><td>Sophia Clark</td><td>60</td><td>canceled</td><td>completed</td></tr>
-                            <tr><td>Toby Rodriguez</td><td>72</td><td>on process</td><td>invalid</td></tr>
-                            <tr><td>Uma Lewis</td><td>33</td><td>delivered</td><td>requested</td></tr>
-                            <tr><td>Violet Walker</td><td>44</td><td>pending</td><td>refused</td></tr>
-                            <tr><td>Will Hall</td><td>57</td><td>canceled</td><td>completed</td></tr>
-                            <tr><td>Xander Young</td><td>26</td><td>on process</td><td>invalid</td></tr>
-                            <tr><td>Yara King</td><td>39</td><td>delivered</td><td>requested</td></tr>
-                            <tr><td>Zoe Scott</td><td>88</td><td>pending</td><td>canceled</td></tr>
-                            </tbody>
-                        </table>
+                        <br>
+                        <div id="dataTableContainer"></div>
                     </div>
                     <!-- deliver content -->
                     <div class="tab-pane fade" id="deliver" role="tabpanel" aria-labelledby="deliver-tab">
                         <br>
                         deliver content goes here.
                         <br>
+                        <div id="dataTableContainer"></div>
                         <ul class="nav nav-tabs2" id="myTab2" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link tab-header tab-header-deliver active" id="child1-tab" data-toggle="tab"
@@ -205,48 +172,13 @@
                                 <br>
                                 deliver child 1
                                 <br>
-                                <table id="DeliverTable" class="table table-striped" style="width:100%">
-                                    <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Age</th>
-                                        <th>Status</th>
-                                        <th>Payment</th>
-                                    </thead>
-                                    <tbody>
-                                    </tr>
-                                    <tr><td>Alice Johnson</td><td>34</td><td>delivered</td><td>completed</td></tr>
-                                    <tr><td>Bob Smith</td><td>22</td><td>pending</td><td>requested</td></tr>
-                                    <tr><td>Charlie Brown</td><td>45</td><td>canceled</td><td>refused</td></tr>
-                                    <tr><td>David Wilson</td><td>29</td><td>on process</td><td>canceled</td></tr>
-                                    <tr><td>Eve Davis</td><td>67</td><td>delivered</td><td>invalid</td></tr>
-                                    <tr><td>Frank Miller</td><td>19</td><td>pending</td><td>completed</td></tr>
-                                    <tr><td>Grace Lee</td><td>54</td><td>canceled</td><td>requested</td></tr>
-                                    <tr><td>Hannah Taylor</td><td>31</td><td>on process</td><td>refused</td></tr>
-                                    <tr><td>Isaac Anderson</td><td>76</td><td>delivered</td><td>completed</td></tr>
-                                    <tr><td>Jack Thomas</td><td>40</td><td>pending</td><td>invalid</td></tr>
-                                    <tr><td>Kate Jackson</td><td>25</td><td>canceled</td><td>canceled</td></tr>
-                                    <tr><td>Liam White</td><td>38</td><td>on process</td><td>requested</td></tr>
-                                    <tr><td>Mia Harris</td><td>50</td><td>delivered</td><td>refused</td></tr>
-                                    <tr><td>Noah Martin</td><td>16</td><td>pending</td><td>completed</td></tr>
-                                    <tr><td>Olivia Thompson</td><td>82</td><td>canceled</td><td>invalid</td></tr>
-                                    <tr><td>Parker Garcia</td><td>27</td><td>on process</td><td>requested</td></tr>
-                                    <tr><td>Quinn Martinez</td><td>36</td><td>delivered</td><td>canceled</td></tr>
-                                    <tr><td>Riley Robinson</td><td>48</td><td>pending</td><td>refused</td></tr>
-                                    <tr><td>Sophia Clark</td><td>60</td><td>canceled</td><td>completed</td></tr>
-                                    <tr><td>Toby Rodriguez</td><td>72</td><td>on process</td><td>invalid</td></tr>
-                                    <tr><td>Uma Lewis</td><td>33</td><td>delivered</td><td>requested</td></tr>
-                                    <tr><td>Violet Walker</td><td>44</td><td>pending</td><td>refused</td></tr>
-                                    <tr><td>Will Hall</td><td>57</td><td>canceled</td><td>completed</td></tr>
-                                    <tr><td>Xander Young</td><td>26</td><td>on process</td><td>invalid</td></tr>
-                                    <tr><td>Yara King</td><td>39</td><td>delivered</td><td>requested</td></tr>
-                                    <tr><td>Zoe Scott</td><td>88</td><td>pending</td><td>canceled</td></tr>
-                                    </tbody>
-                                </table>
+                        <div id="dataTableContainer"></div>
                             </div>
                             <div class="tab-pane fade" id="deliverchild2" role="tabpanel" aria-labelledby="deliverchild2-tab">
                                 <br>
                                 deliver child 2
+                                <br>
+                        <div id="dataTableContainer"></div>
                             </div>
                             <div class="tab-pane fade" id="deliverchild3" role="tabpanel" aria-labelledby="deliverchild3-tab">
                                 <br>
@@ -267,6 +199,7 @@
                         <br>
                         payment content goes here.
                         <br>
+                        <div id="dataTableContainer"></div>
                         <ul class="nav nav-tabs2" id="myTab3" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link tab-header tab-header-payment active" id="paymentchild1-tab" data-toggle="tab"
@@ -293,45 +226,6 @@
                             <div class="tab-pane fade show active" id="paymentchild1" role="tabpanel" aria-labelledby="paymentchild1-tab">
                                 <br>
                                 payment child 1
-                                <br>
-                                <table id="PaymentTable" class="table table-striped" style="width:100%">
-                                    <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Age</th>
-                                        <th>Status</th>
-                                        <th>Payment</th>
-                                    </thead>
-                                    <tbody>
-                                    </tr>
-                                    <tr><td>Alice Johnson</td><td>34</td><td>delivered</td><td>completed</td></tr>
-                                    <tr><td>Bob Smith</td><td>22</td><td>pending</td><td>requested</td></tr>
-                                    <tr><td>Charlie Brown</td><td>45</td><td>canceled</td><td>refused</td></tr>
-                                    <tr><td>David Wilson</td><td>29</td><td>on process</td><td>canceled</td></tr>
-                                    <tr><td>Eve Davis</td><td>67</td><td>delivered</td><td>invalid</td></tr>
-                                    <tr><td>Frank Miller</td><td>19</td><td>pending</td><td>completed</td></tr>
-                                    <tr><td>Grace Lee</td><td>54</td><td>canceled</td><td>requested</td></tr>
-                                    <tr><td>Hannah Taylor</td><td>31</td><td>on process</td><td>refused</td></tr>
-                                    <tr><td>Isaac Anderson</td><td>76</td><td>delivered</td><td>completed</td></tr>
-                                    <tr><td>Jack Thomas</td><td>40</td><td>pending</td><td>invalid</td></tr>
-                                    <tr><td>Kate Jackson</td><td>25</td><td>canceled</td><td>canceled</td></tr>
-                                    <tr><td>Liam White</td><td>38</td><td>on process</td><td>requested</td></tr>
-                                    <tr><td>Mia Harris</td><td>50</td><td>delivered</td><td>refused</td></tr>
-                                    <tr><td>Noah Martin</td><td>16</td><td>pending</td><td>completed</td></tr>
-                                    <tr><td>Olivia Thompson</td><td>82</td><td>canceled</td><td>invalid</td></tr>
-                                    <tr><td>Parker Garcia</td><td>27</td><td>on process</td><td>requested</td></tr>
-                                    <tr><td>Quinn Martinez</td><td>36</td><td>delivered</td><td>canceled</td></tr>
-                                    <tr><td>Riley Robinson</td><td>48</td><td>pending</td><td>refused</td></tr>
-                                    <tr><td>Sophia Clark</td><td>60</td><td>canceled</td><td>completed</td></tr>
-                                    <tr><td>Toby Rodriguez</td><td>72</td><td>on process</td><td>invalid</td></tr>
-                                    <tr><td>Uma Lewis</td><td>33</td><td>delivered</td><td>requested</td></tr>
-                                    <tr><td>Violet Walker</td><td>44</td><td>pending</td><td>refused</td></tr>
-                                    <tr><td>Will Hall</td><td>57</td><td>canceled</td><td>completed</td></tr>
-                                    <tr><td>Xander Young</td><td>26</td><td>on process</td><td>invalid</td></tr>
-                                    <tr><td>Yara King</td><td>39</td><td>delivered</td><td>requested</td></tr>
-                                    <tr><td>Zoe Scott</td><td>88</td><td>pending</td><td>canceled</td></tr>
-                                    </tbody>
-                                </table>
                             </div>
                             <div class="tab-pane fade" id="paymentchild2" role="tabpanel" aria-labelledby="paymentchild2-tab">
                                 <br>
@@ -351,9 +245,50 @@
                             </div>
                         </div>
                     </div>
+
+                    <table id="myDataTable" class="table table-striped" style="width:100%">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Status</th>
+                            <th>Payment</th>
+                        </thead>
+                        <tbody>
+                        </tr>
+                        <tr><td>Alice Johnson</td><td>34</td><td>delivered</td><td>completed</td></tr>
+                        <tr><td>Bob Smith</td><td>22</td><td>pending</td><td>requested</td></tr>
+                        <tr><td>Charlie Brown</td><td>45</td><td>canceled</td><td>refused</td></tr>
+                        <tr><td>David Wilson</td><td>29</td><td>on process</td><td>canceled</td></tr>
+                        <tr><td>Eve Davis</td><td>67</td><td>delivered</td><td>invalid</td></tr>
+                        <tr><td>Frank Miller</td><td>19</td><td>pending</td><td>completed</td></tr>
+                        <tr><td>Grace Lee</td><td>54</td><td>canceled</td><td>requested</td></tr>
+                        <tr><td>Hannah Taylor</td><td>31</td><td>on process</td><td>refused</td></tr>
+                        <tr><td>Isaac Anderson</td><td>76</td><td>delivered</td><td>completed</td></tr>
+                        <tr><td>Jack Thomas</td><td>40</td><td>pending</td><td>invalid</td></tr>
+                        <tr><td>Kate Jackson</td><td>25</td><td>canceled</td><td>canceled</td></tr>
+                        <tr><td>Liam White</td><td>38</td><td>on process</td><td>requested</td></tr>
+                        <tr><td>Mia Harris</td><td>50</td><td>delivered</td><td>refused</td></tr>
+                        <tr><td>Noah Martin</td><td>16</td><td>pending</td><td>completed</td></tr>
+                        <tr><td>Olivia Thompson</td><td>82</td><td>canceled</td><td>invalid</td></tr>
+                        <tr><td>Parker Garcia</td><td>27</td><td>on process</td><td>requested</td></tr>
+                        <tr><td>Quinn Martinez</td><td>36</td><td>delivered</td><td>canceled</td></tr>
+                        <tr><td>Riley Robinson</td><td>48</td><td>pending</td><td>refused</td></tr>
+                        <tr><td>Sophia Clark</td><td>60</td><td>canceled</td><td>completed</td></tr>
+                        <tr><td>Toby Rodriguez</td><td>72</td><td>on process</td><td>invalid</td></tr>
+                        <tr><td>Uma Lewis</td><td>33</td><td>delivered</td><td>requested</td></tr>
+                        <tr><td>Violet Walker</td><td>44</td><td>pending</td><td>refused</td></tr>
+                        <tr><td>Will Hall</td><td>57</td><td>canceled</td><td>completed</td></tr>
+                        <tr><td>Xander Young</td><td>26</td><td>on process</td><td>invalid</td></tr>
+                        <tr><td>Yara King</td><td>39</td><td>delivered</td><td>requested</td></tr>
+                        <tr><td>Zoe Scott</td><td>88</td><td>pending</td><td>canceled</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 </div>
             </div>
-        </div>
+            
 
         <!-- Footer -->
         <footer class="footer text-center mt-5" id="footer">
