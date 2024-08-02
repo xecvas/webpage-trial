@@ -1,21 +1,6 @@
 $(document).ready(function () {
   // Initialize DataTables on specified tables
-  $("#myDataTable").DataTable();
-
-  $("#child2-tab").click(function () {
-    var table = $("#myDataTable").DataTable();
-    table.search("delivered").draw();
-  });
-
-// Click event for all other tabs to reset the table search
-$('a[data-toggle="tab"]').not('#child2-tab').click(function() {
-  var table = $('#myDataTable').DataTable();
-  table.search('').draw();  // Reset the search filter
-});
-
-//BIKIN TAB ACTIVE RESET GITU PARENT TAB GANTI KE CHILD TAB LAIN ATAU KE PARENT TAB LAIN
-//BIKIN SORT BUAT MODE YG LAIN
-//FIX CODE LAIN BIAR LEBIH EFISIEN DAN GAMPANG DI BACA
+  var table = $("#myDataTable").DataTable();
 
   // Function to initialize tab functionality
   function initTabs(tabSelector) {
@@ -24,13 +9,30 @@ $('a[data-toggle="tab"]').not('#child2-tab').click(function() {
       $(this).tab("show");
       $(tabSelector + " a").removeClass("active");
       $(this).addClass("active");
+
+      // When parent tab changes, activate the child tab with 'active' class
+      if ($(this).closest(".parent-tab").length) {
+        var parentTabId = $(this).attr("href");
+        $(parentTabId).find(".child-tab a.active").tab("show");
+      }
+
+      // Explicitly reset the status column filter when switching tabs
+      if ($(this).closest(".parent-tab").length || this.id !== "child2-tab") {
+        table.column(2).search("").draw();
+      }
     });
   }
 
-  // Initialize tabs
-  initTabs("#myTab");
-  initTabs("#myTab2");
-  initTabs("#myTab3");
+  // Initialize parent tabs and child tabs
+  initTabs("#myTab");  // Parent tab 1
+  initTabs("#myTab2"); // Parent tab 2
+  initTabs("#myTab3"); // Parent tab 3
+  initTabs(".child-tab"); // Child tabs
+
+  // Click event for child2-tab to filter DataTable by delivered status
+  $("#child2-tab").click(function () {
+    table.column(2).search("delivered").draw();
+  });
 
   // Toggle dark mode functionality
   const checkbox = document.getElementById("checkbox");
@@ -70,14 +72,8 @@ $('a[data-toggle="tab"]').not('#child2-tab').click(function() {
   // Save or remove credentials based on the checkbox state
   document.getElementById("rememberMe").addEventListener("change", function () {
     if (this.checked) {
-      localStorage.setItem(
-        "username",
-        document.getElementById("username").value
-      );
-      localStorage.setItem(
-        "password",
-        document.getElementById("password").value
-      );
+      localStorage.setItem("username", document.getElementById("username").value);
+      localStorage.setItem("password", document.getElementById("password").value);
     } else {
       localStorage.removeItem("username");
       localStorage.removeItem("password");
@@ -86,17 +82,4 @@ $('a[data-toggle="tab"]').not('#child2-tab').click(function() {
 
   // Show current date on console
   console.log(new Date());
-});
-
-$(document).ready(function () {
-  // Initialize DataTable (you can customize options)
-  $("#myDataTable").DataTable();
-
-  // Tab click handler
-  $('a[data-bs-toggle="tab"]').on("shown.bs.tab", function (e) {
-    // Hide DataTable in all containers
-    $(".dataTableContainer").hide();
-    // Show DataTable in the clicked tab
-    $("#myDataTable").appendTo($(e.target).attr("href")).show();
-  });
 });
