@@ -3,14 +3,14 @@ $(document).ready(function () {
   var table = $("#myDataTable").DataTable();
 
   // Initialize tabs and their functionalities
-  initTabs("#myTab", table);  // Parent tab 1
+  initTabs("#myTab", table); // Parent tab 1
   initTabs("#myTab2", table); // Parent tab 2
   initTabs("#myTab3", table); // Parent tab 3
   initTabs(".child-tab", table); // Child tabs
 
   // Define common event handlers
   function clearSearch() {
-    table.search('').columns().search('').draw();
+    table.search("").columns().search("").draw();
   }
 
   function columnSearch(columnIndex, searchTerm) {
@@ -18,17 +18,37 @@ $(document).ready(function () {
   }
 
   // Set up tab click events
-  setTabClickEvents('#home-tab, #deliver-tab, #payment-tab', clearSearch);
-  setTabClickEvents('#child1-tab', function() { columnSearch(2, ''); });
-  setTabClickEvents('#child2-tab', function() { columnSearch(2, 'delivered'); });
-  setTabClickEvents('#child3-tab', function() { columnSearch(2, 'pending'); });
-  setTabClickEvents('#child4-tab', function() { columnSearch(2, 'canceled'); });
-  setTabClickEvents('#child5-tab', function() { columnSearch(2, 'on process'); });
-  setTabClickEvents('#paymentchild1-tab', function() { columnSearch(3, ''); });
-  setTabClickEvents('#paymentchild2-tab', function() { columnSearch(3, 'paymented'); });
-  setTabClickEvents('#paymentchild3-tab', function() { columnSearch(3, 'pending'); });
-  setTabClickEvents('#paymentchild4-tab', function() { columnSearch(3, 'canceled'); });
-  setTabClickEvents('#paymentchild5-tab', function() { columnSearch(3, 'on process'); });
+  setTabClickEvents("#home-tab, #deliver-tab, #payment-tab", clearSearch);
+  setTabClickEvents("#child1-tab", function () {
+    columnSearch(2, "");
+  });
+  setTabClickEvents("#child2-tab", function () {
+    columnSearch(2, "delivered");
+  });
+  setTabClickEvents("#child3-tab", function () {
+    columnSearch(2, "pending");
+  });
+  setTabClickEvents("#child4-tab", function () {
+    columnSearch(2, "canceled");
+  });
+  setTabClickEvents("#child5-tab", function () {
+    columnSearch(2, "on process");
+  });
+  setTabClickEvents("#paymentchild1-tab", function () {
+    columnSearch(3, "");
+  });
+  setTabClickEvents("#paymentchild2-tab", function () {
+    columnSearch(3, "paymented");
+  });
+  setTabClickEvents("#paymentchild3-tab", function () {
+    columnSearch(3, "pending");
+  });
+  setTabClickEvents("#paymentchild4-tab", function () {
+    columnSearch(3, "canceled");
+  });
+  setTabClickEvents("#paymentchild5-tab", function () {
+    columnSearch(3, "on process");
+  });
 
   // Toggle dark mode functionality
   const checkbox = document.getElementById("checkbox");
@@ -40,17 +60,12 @@ $(document).ready(function () {
 
   // Remember me functionality for login form
   loadCredentials();
-  document.getElementById("rememberMe").addEventListener("change", saveOrRemoveCredentials);
+  document
+    .getElementById("rememberMe")
+    .addEventListener("change", saveOrRemoveCredentials);
 
   // Show current date on console
   console.log(new Date());
-
-  // Logout button functionality
-  $('#logoutBtn').click(function() {
-      // Add your logout logic here
-      // For example, redirect to login page
-      window.location.href = 'index.html';
-  });
 });
 
 // Function to initialize tab functionality
@@ -114,3 +129,23 @@ function saveOrRemoveCredentials() {
     localStorage.removeItem("password");
   }
 }
+
+$('#logoutBtn').click(function() {
+    // Clear session-related data
+    localStorage.removeItem("isChecked");
+    sessionStorage.clear();
+
+    // Replace the current history state
+    history.replaceState(null, '', 'index.html');
+
+    // Redirect to login page
+    window.location.href = 'index.html';
+});
+
+// Add this to your login.js or directly in index.html
+window.addEventListener('pageshow', function(event) {
+    if (event.persisted) {
+        // Page is loaded from cache (user pressed back)
+        window.location.reload();
+    }
+});
