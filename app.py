@@ -1,16 +1,14 @@
-import os
+from flask import Flask, redirect, url_for
 
-from flask import Flask, send_file
+app = Flask(__name__, static_folder='src', static_url_path='')
 
-app = Flask(__name__)
+@app.route('/about')
+def about():
+  return redirect(url_for('index'))
 
-@app.route("/test")
+@app.route('/')
 def index():
-  print(path)
-  return send_file('test.html')
+  return redirect(url_for('static', filename='index.html'))
 
-def main():
-    app.run(port=int(os.environ.get('PORT', 800)))
-
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+  app.run(debug=True)
