@@ -4,11 +4,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def default_page():
-    return send_from_directory('./', 'src/index.html')
-
-@app.route("/about")
-def about_page():
-    return send_from_directory('./', 'src/index.html')
+    return send_from_directory('index.html')
 
 @app.route("/help")
 def hhelp_page():
