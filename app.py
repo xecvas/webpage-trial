@@ -1,14 +1,26 @@
-from flask import Flask, redirect, url_for
+from flask import Flask, send_from_directory
 
-app = Flask(__name__, static_folder='src', static_url_path='')
+app = Flask(__name__)
 
-@app.route('/about')
-def about():
-  return redirect(url_for('index'))
+@app.route("/")
+def default_page():
+    return send_from_directory('./', 'src/index.html')
 
-@app.route('/')
-def index():
-  return redirect(url_for('static', filename='index.html'))
+@app.route("/about")
+def about_page():
+    return send_from_directory('./', 'src/index.html')
 
-if __name__ == '__main__':
-  app.run(debug=True)
+@app.route("/help")
+def hhelp_page():
+    return send_from_directory('./', 'src/main.html')
+
+@app.route("/test")
+def test_page():
+    return send_from_directory('./', 'src/test.html')
+
+@app.route('/resource/<path:path>')
+def send_resource(path):
+    return send_from_directory('resource', path)
+
+if __name__ == "__main__":
+    app.run()
