@@ -23,12 +23,4 @@ Welcome to the Webpage Trial Project! This project is a simple demonstration of 
 - HTML5
 - CSS3
 - JavaScript
-- [Any other technologies you used]
-
-## Installation
-
-To get a local copy up and running, follow these steps:
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/xecvas/webpage-trial.git
+- Flask
