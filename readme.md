@@ -1,4 +1,3 @@
-# Webpage Trial Project
 
 Welcome to the Webpage Trial Project! This project is a simple demonstration of web development skills, showcasing HTML, CSS, and JavaScript.
 
