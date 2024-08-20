@@ -1,7 +1,7 @@
 from flask import Flask, request, send_from_directory, render_template, abort
 
 # Create the web server
-app = Flask(__name__, template_folder='src')
+app = Flask(__name__, template_folder='docs')
 
 # Send resource files (e.g. images, CSS, JS)
 @app.route('/resource/<path:path>')
