@@ -14,7 +14,7 @@ def send_resource(path):
 @app.route("/login")
 def default_page():
     """Send the default page."""
-    return send_from_directory(".", "index.html")
+    return render_template("index.html")
 
 # Send the help page
 @app.route("/help")
