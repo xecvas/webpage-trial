@@ -136,10 +136,10 @@ $('#logoutBtn').click(function() {
     sessionStorage.clear();
 
     // Replace the current history state
-    history.replaceState(null, '', 'index.html');
+    history.replaceState(null, '', "/");
 
     // Redirect to login page
-    window.location.href = 'index.html';
+    window.location.href = "/";
 });
 
 // Add this to your login.js or directly in index.html
