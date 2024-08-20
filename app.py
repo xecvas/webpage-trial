@@ -17,9 +17,9 @@ def default_page():
     return render_template("index.html")
 
 # Send the help page
-@app.route("/help")
-def help_page():
-    """Send the help page."""
+@app.route("/main")
+def main_page():
+    """Send the main page."""
     return render_template('main.html')
 
 # Send the test page
@@ -35,20 +35,11 @@ def about_page():
     return render_template('main.html')
 
 # Catch all other URLs and return a 404 error
-@app.errorhandler(404)
-def page_not_found(error):
-    """Handle 404 errors."""
-    return 'Page Not Found', 404
-
-# # Catch all other URLs and return a 404 error
-# @app.route('/<path:subpath>')
-# def catch_all(subpath):
-#     """Catch all other URLs and return a 404 error."""
-#     if not any(char in subpath for char in '?#'):
-#         abort(404)
-#     return abort(404)
+@app.route('/<path:subpath>')
+def catch_all(subpath):
+    """Catch all other URLs and return a 404 error."""
+    abort(404)
 
 # Run the web server
 if __name__ == "__main__":
     app.run(debug=True)
-
