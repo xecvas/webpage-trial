@@ -3,7 +3,7 @@ from flask import Flask, request, send_from_directory, render_template, abort
 # Create the web server
 app = Flask(__name__, template_folder='docs')
 
-# Send resource files (e.g. images, CSS, JS)
+# Send resource files (e.g., images, CSS, JS)
 @app.route('/resource/<path:path>')
 def send_resource(path):
     """Send a resource file from the 'resource' directory."""
@@ -40,7 +40,6 @@ def page_not_found(error):
     """Handle 404 errors."""
     return 'Page Not Found', 404
 
-
 # # Catch all other URLs and return a 404 error
 # @app.route('/<path:subpath>')
 # def catch_all(subpath):
@@ -52,3 +51,4 @@ def page_not_found(error):
 # Run the web server
 if __name__ == "__main__":
     app.run(debug=True)
+
