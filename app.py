@@ -1,7 +1,7 @@
-from flask import Flask, request, send_from_directory, render_template, abort
+from flask import Flask, request, render_template, jsonify, send_from_directory, session, redirect, url_for
 
-# Create the web server
 app = Flask(__name__, template_folder='docs')
+app.secret_key = 'your_secret_key'  # Replace with your actual secret key
 
 # Send resource files (e.g., images, CSS, JS)
 @app.route('/resource/<path:path>')
@@ -9,37 +9,36 @@ def send_resource(path):
     """Send a resource file from the 'resource' directory."""
     return send_from_directory('resource', path)
 
-# Send the default page
-@app.route("/")
-@app.route("/login")
-def default_page():
-    """Send the default page."""
-    return render_template("index.html")
+@app.route('/')
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        captcha_input = request.form.get('loginCaptchaInput')
+        captcha_hidden = request.form.get('loginCaptchaHidden')
 
-# Send the help page
-@app.route("/main")
+        if captcha_input != captcha_hidden:
+            return jsonify({'success': False, 'error': 'captcha'})
+        
+        if username == "user" and password == "123":
+            session['logged_in'] = True
+            return jsonify({'success': True})
+        else:
+            return jsonify({'success': False})
+
+    return render_template('index.html')
+
+@app.route('/main')
 def main_page():
-    """Send the main page."""
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
     return render_template('main.html')
 
-# Send the test page
-@app.route("/test")
-def test_page():
-    """Send the test page."""
-    return render_template('test.html')
+@app.route('/logout')
+def logout():
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
 
-# Send the about page
-@app.route("/about")
-def about_page():
-    """Send the about page."""
-    return render_template('main.html')
-
-# Catch all other URLs and return a 404 error
-@app.route('/<path:subpath>')
-def catch_all(subpath):
-    """Catch all other URLs and return a 404 error."""
-    abort(404)
-
-# Run the web server
 if __name__ == "__main__":
     app.run(debug=True)
