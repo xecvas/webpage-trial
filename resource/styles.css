@@ -7,7 +7,8 @@
 }
 
 html {
-    overflow-y: scroll; /* Always show scrollbar */
+    overflow-y: scroll;
+    /* Always show scrollbar */
 }
 
 body {
@@ -17,14 +18,18 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 10px 25px; /* Margin shorthand */
+    margin: 10px 25px;
+    /* Margin shorthand */
     transition: background 0.2s linear;
-    padding-top: 70px; /* Padding for navbar */
+    padding-top: 70px;
+    /* Padding for navbar */
 }
 
 body.dark {
-    background-color: #292c35; /* Dark mode background */
-    color: #fff; /* Dark mode text */
+    background-color: #292c35;
+    /* Dark mode background */
+    color: #fff;
+    /* Dark mode text */
 }
 
 /* Navbar Styles */
@@ -70,11 +75,13 @@ body.dark {
 
 /* Icon Colors */
 .fa-moon {
-    color: #f1c40f; /* Moon icon color */
+    color: #f1c40f;
+    /* Moon icon color */
 }
 
 .fa-sun {
-    color: #f39c12; /* Sun icon color */
+    color: #f39c12;
+    /* Sun icon color */
 }
 
 /* Support Section Styles */
@@ -85,7 +92,8 @@ body.dark {
 }
 
 .support a {
-    color: #292c35; /* Support link color */
+    color: #292c35;
+    /* Support link color */
     font-size: 32px;
     backface-visibility: hidden;
     display: inline-block;
@@ -93,14 +101,16 @@ body.dark {
 }
 
 .support a:hover {
-    transform: scale(1.1); /* Hover scale effect */
+    transform: scale(1.1);
+    /* Hover scale effect */
 }
 
 /* Gap Styles */
 .gap-button,
 .gap-link,
 .gap-toggle {
-    margin-right: 10px; /* Default gap for all */
+    margin-right: 10px;
+    /* Default gap for all */
 }
 
 .gap-link {
@@ -115,7 +125,8 @@ body.dark {
 
 #captchaInput {
     width: 100%;
-    margin-bottom: 5px; /* Space between input and button */
+    margin-bottom: 5px;
+    /* Space between input and button */
 }
 
 #refreshCaptcha {
@@ -145,50 +156,67 @@ body.dark .modal-content {
 /* Table Styles */
 body.dark table,
 body.light table {
-    background-color: transparent; /* Transparent background */
-    color: inherit; /* Inherit text color */
-    border-color: inherit; /* Inherit border color */
+    background-color: transparent;
+    /* Transparent background */
+    color: inherit;
+    /* Inherit text color */
+    border-color: inherit;
+    /* Inherit border color */
 }
 
 body.dark table tr:nth-child(odd),
 body.light table tr:nth-child(even) {
-    background-color: #424242; /* Odd row background */
-    color: #fff; /* Text color */
+    background-color: #424242;
+    /* Odd row background */
+    color: #fff;
+    /* Text color */
 }
 
 body.dark table tr:nth-child(even),
 body.light table tr:nth-child(odd) {
-    background-color: #fff; /* Even row background */
-    color: black; /* Text color */
+    background-color: #fff;
+    /* Even row background */
+    color: black;
+    /* Text color */
 }
 
 body.dark table td,
 body.light table th,
 body.light table td {
-    background-color: transparent; /* Transparent cells */
-    color: inherit; /* Inherit text color */
-    border-color: inherit; /* Inherit border color */
+    background-color: transparent;
+    /* Transparent cells */
+    color: inherit;
+    /* Inherit text color */
+    border-color: inherit;
+    /* Inherit border color */
 }
 
 /* Navigation Tabs */
 .nav-tabs .nav-link {
-    border: none; /* Remove default border */
-    border-bottom: 3px solid transparent; /* Transparent border */
-    border-top: 3px solid transparent; /* Transparent top border */
+    border: none;
+    /* Remove default border */
+    border-bottom: 3px solid transparent;
+    /* Transparent border */
+    border-top: 3px solid transparent;
+    /* Transparent top border */
 }
 
 .nav-tabs .nav-link:not(.active) {
-    background-color: dodgerblue; /* Inactive tab background */
-    color: white; /* Inactive tab text */
+    background-color: dodgerblue;
+    /* Inactive tab background */
+    color: white;
+    /* Inactive tab text */
 }
 
 .nav-tabs .nav-link.active {
-    font-weight: bolder; /* Active tab font weight */
+    font-weight: bolder;
+    /* Active tab font weight */
 }
 
 .nav-tabs .nav-link:focus,
 .nav-tabs .nav-link:hover {
-    border-bottom: 3px solid transparent; /* Hover and focus border */
+    border-bottom: 3px solid transparent;
+    /* Hover and focus border */
 }
 
 /* Child Navigation Tabs */
@@ -204,11 +232,13 @@ body.light table td {
 
 .nav-tabs2 .nav-link {
     width: 100%;
-    border-bottom: 3px solid lightgray; /* Default border */
+    border-bottom: 3px solid lightgray;
+    /* Default border */
 }
 
 .nav-tabs2 .nav-link.active {
-    border-bottom: 3px solid dodgerblue; /* Active tab border */
+    border-bottom: 3px solid dodgerblue;
+    /* Active tab border */
 }
 
 /* Page Container */
@@ -218,7 +248,8 @@ body.light table td {
 }
 
 #content-wrap {
-    padding-bottom: 5rem; /* Footer height */
+    padding-bottom: 5rem;
+    /* Footer height */
 }
 
 /* Footer Styles */
