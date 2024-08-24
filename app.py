@@ -1,14 +1,14 @@
 import os
 from flask import Flask, request, render_template, jsonify, send_from_directory, session, redirect, url_for
 
-app = Flask(__name__, template_folder='docs')
+app = Flask(__name__, template_folder='docs', static_folder='resource')
 app.secret_key = os.urandom(24)
 
 # Serve static resource files (e.g., images, CSS, JS) from the 'docs/resource' directory
 @app.route('/resource/<path:path>')
 def send_resource(path):
-    """Send a resource file from the 'docs/resource' directory."""
-    return send_from_directory('docs/resource', path)
+    """Send a resource file from the 'resource' directory."""
+    return send_from_directory('resource', path)
 
 # Handle login functionality
 @app.route('/')
