@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, jsonify, send_from_directory, session, redirect, url_for
 
-app = Flask(__name__, template_folder='docs')
+app = Flask(__name__, template_folder='docs', static_folder='resource')
 app.secret_key = 'your_secret_key'  # Replace with your actual secret key
 
 # Send resource files (e.g., images, CSS, JS)
@@ -12,6 +12,9 @@ def send_resource(path):
 @app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if session.get('logged_in'):
+        return redirect(url_for('main_page'))
+
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
