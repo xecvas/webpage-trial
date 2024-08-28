@@ -1,14 +1,14 @@
 import os
 from flask import Flask, request, render_template, jsonify, send_from_directory, session, redirect, url_for
 
-app = Flask(__name__, template_folder='docs', static_folder='resource', static_url_path='/resource')
+app = Flask(__name__, template_folder='docs', static_folder='docs/resource')
 app.secret_key = os.urandom(24)
 
 # Serve static resource files from the 'resource' directory
 @app.route('/resource/<path:path>')
 def send_resource(path):
     """Send a resource file from the 'resource' directory."""
-    return send_from_directory('resource', path)
+    return send_from_directory('docs/resource', path)
 
 # Handle login functionality
 @app.route('/')
@@ -28,7 +28,7 @@ def login():
         # Check if captcha is correct
         if captcha_input != captcha_hidden:
             return jsonify({'success': False, 'error': 'captcha'})
-        
+
         # Check if username and password are correct
         if username == "user" and password == "123":
             session['logged_in'] = True
