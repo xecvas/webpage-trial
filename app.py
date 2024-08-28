@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request, render_template, jsonify, send_from_directory, session, redirect, url_for
 
-app = Flask(__name__, template_folder='docs', static_folder='resource')
+app = Flask(__name__, template_folder='docs', static_folder='resource', static_url_path='/resource')
 app.secret_key = os.urandom(24)
 
 # Serve static resource files (e.g., images, CSS, JS) from the 'docs/resource' directory
