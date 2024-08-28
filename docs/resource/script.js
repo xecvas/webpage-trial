@@ -52,7 +52,9 @@ $(document).ready(function () {
 
   // Remember me functionality for login form
   loadCredentials();
-  document.getElementById("rememberMe").addEventListener("change", saveOrRemoveCredentials);
+  document
+    .getElementById("rememberMe")
+    .addEventListener("change", saveOrRemoveCredentials);
 
   // Handle page load from cache
   window.addEventListener("pageshow", function (event) {
@@ -65,9 +67,14 @@ $(document).ready(function () {
   // Initialize CAPTCHA for login form
   const loginCaptchaCanvas = document.getElementById("loginCaptchaCanvas");
   const loginCaptchaContext = loginCaptchaCanvas.getContext("2d");
-  const refreshLoginCaptchaButton = document.getElementById("refreshLoginCaptcha");
+  const refreshLoginCaptchaButton = document.getElementById(
+    "refreshLoginCaptcha"
+  );
 
-  let loginCaptchaText = generateCaptcha(loginCaptchaCanvas, loginCaptchaContext);
+  let loginCaptchaText = generateCaptcha(
+    loginCaptchaCanvas,
+    loginCaptchaContext
+  );
 
   // Event listener for CAPTCHA refresh button in login form
   refreshLoginCaptchaButton.addEventListener("click", function () {
@@ -75,30 +82,43 @@ $(document).ready(function () {
   });
 
   // Event listener for login form submission
-  document.getElementById("login-form").addEventListener("submit", function (event) {
-    event.preventDefault();
-    const formData = new FormData(this);
-    formData.append("loginCaptchaHidden", loginCaptchaText); // Add captcha_hidden value to form data
-    handleLoginFormSubmit(formData);
-  });
+  document
+    .getElementById("login-form")
+    .addEventListener("submit", function (event) {
+      event.preventDefault();
+      window.loginCaptchaText = loginCaptchaText; // Make CAPTCHA text accessible
+      const formData = new FormData(this);
+      formData.append("loginCaptchaHidden", loginCaptchaText); // Add captcha_hidden value to form data
+      handleLoginFormSubmit(formData);
+    });
 
   // Initialize CAPTCHA for forgot password form
   const forgotCaptchaCanvas = document.getElementById("forgotCaptchaCanvas");
   const forgotCaptchaContext = forgotCaptchaCanvas.getContext("2d");
-  const refreshForgotCaptchaButton = document.getElementById("refreshForgotCaptcha");
+  const refreshForgotCaptchaButton = document.getElementById(
+    "refreshForgotCaptcha"
+  );
 
-  let forgotCaptchaText = generateCaptcha(forgotCaptchaCanvas, forgotCaptchaContext);
+  let forgotCaptchaText = generateCaptcha(
+    forgotCaptchaCanvas,
+    forgotCaptchaContext
+  );
 
   // Event listener for CAPTCHA refresh button in forgot password form
   refreshForgotCaptchaButton.addEventListener("click", function () {
-    forgotCaptchaText = generateCaptcha(forgotCaptchaCanvas, forgotCaptchaContext);
+    forgotCaptchaText = generateCaptcha(
+      forgotCaptchaCanvas,
+      forgotCaptchaContext
+    );
   });
 
   // Event listener for forgot password form submission
-  document.getElementById("forgot-form").addEventListener("submit", function (event) {
-    event.preventDefault();
-    window.forgotCaptchaText = forgotCaptchaText; // Make CAPTCHA text accessible
-  });
+  document
+    .getElementById("forgot-form")
+    .addEventListener("submit", function (event) {
+      event.preventDefault();
+      window.forgotCaptchaText = forgotCaptchaText; // Make CAPTCHA text accessible
+    });
 
   // Event listener for logout button
   $("#logoutBtn").click(function () {
@@ -217,10 +237,8 @@ function handleLogout() {
   });
 }
 
-// Function to generate CAPTCHA
 function generateCaptcha(canvas, context) {
-  const chars =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   let captchaText = "";
   for (let i = 0; i < 6; i++) {
     captchaText += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -235,6 +253,15 @@ function generateCaptcha(canvas, context) {
   return captchaText;
 }
 
+// Update the CAPTCHA text variable when generating a new CAPTCHA
+refreshLoginCaptchaButton.addEventListener("click", function () {
+  loginCaptchaText = generateCaptcha(loginCaptchaCanvas, loginCaptchaContext);
+});
+
+// Update the CAPTCHA text variable when generating a new CAPTCHA
+refreshForgotCaptchaButton.addEventListener("click", function () {
+  forgotCaptchaText = generateCaptcha(forgotCaptchaCanvas, forgotCaptchaContext);
+});
 // Function to show a Bootstrap modal and redirect after it is hidden
 function showModalAndRedirect(modalId, redirectUrl) {
   const modal = new bootstrap.Modal(document.getElementById(modalId));

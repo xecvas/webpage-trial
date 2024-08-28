@@ -14,16 +14,14 @@ def send_resource(path):
 @app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    # If user is already logged in, redirect to the main page
-    if session.get('logged_in'):
-        return redirect(url_for('main_page'))
-
-    # Process login form submission
+    # ...
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
         captcha_input = request.form.get('loginCaptchaInput')
-        captcha_hidden = request.form.get('loginCaptchaHidden')
+
+        # Get the stored CAPTCHA text from the session
+        captcha_hidden = session.get('loginCaptchaText')
 
         # Check if captcha is correct
         if captcha_input != captcha_hidden:
@@ -48,11 +46,15 @@ def main_page():
     return render_template('main.html')
 
 # Log out the current user
-@app.route('/logout')
+@app.route('/logout', methods=['POST'])
 def logout():
-    # Remove login session data and redirect to the login page
-    session.pop('logged_in', None)
-    return redirect(url_for('login'))
+    try:
+        session.clear()
+        return redirect(url_for('login'))
+    except Exception as e:
+        # Log the error and return an error message
+        print(f"Error during logout: {e}")
+        return "Error during logout", 500
 
 if __name__ == "__main__":
     app.run(debug=True)
