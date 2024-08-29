@@ -50,11 +50,11 @@ def main_page():
 def logout():
     try:
         session.clear()
-        return redirect(url_for('login'))
+        return jsonify({"message": "Logout successful"}), 200
     except Exception as e:
         # Log the error and return an error message
         print(f"Error during logout: {e}")
-        return "Error during logout", 500
+        return jsonify({"message": "Error during logout"}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
