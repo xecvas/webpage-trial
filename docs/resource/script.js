@@ -19,7 +19,8 @@ $(document).ready(function () {
   setTabClickEvents("#child3-tab", function () {
     columnSearch(2, "pending");
   });
-  setTabClickEvents("#child4-tab", function () {
+  // Updated selector to match new ID
+  setTabClickEvents("#deliverchild4-tab", function () {
     columnSearch(2, "canceled");
   });
   setTabClickEvents("#child5-tab", function () {
@@ -254,7 +255,7 @@ function handleLogout() {
     error: function (xhr, status, error) {
       console.error("Logout failed:", xhr); // Log the entire XHR object for debugging
       alert("Logout failed. Please try again.");
-    }
+    },
   });
 }
 
