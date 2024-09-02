@@ -1,72 +1,41 @@
 $(document).ready(function () {
-  // Initialize DataTables on the specified table
+  // Cache DataTable instance
   var table = $("#myDataTable").DataTable();
 
-  // Initialize tabs and their functionalities
-  initTabs("#myTab", table); // Parent tab 1
-  initTabs("#myTab2", table); // Parent tab 2
-  initTabs("#myTab3", table); // Parent tab 3
-  initTabs(".child-tab", table); // Child tabs
+  // Initialize tabs
+  initTabs("#myTab", table);
+  initTabs("#myTab2", table);
+  initTabs("#myTab3", table);
+  initTabs(".child-tab", table);
 
-  // Setup click events for different tabs
+  // Set up tab click events
   setTabClickEvents("#home-tab, #deliver-tab, #payment-tab", clearSearch);
-  setTabClickEvents("#child1-tab", function () {
-    columnSearch(2, "");
-  });
-  setTabClickEvents("#child2-tab", function () {
-    columnSearch(2, "delivered");
-  });
-  setTabClickEvents("#child3-tab", function () {
-    columnSearch(2, "pending");
-  });
-  // Updated selector to match new ID
-  setTabClickEvents("#deliverchild4-tab", function () {
-    columnSearch(2, "canceled");
-  });
-  setTabClickEvents("#child5-tab", function () {
-    columnSearch(2, "on process");
-  });
-  setTabClickEvents("#paymentchild1-tab", function () {
-    columnSearch(3, "");
-  });
-  setTabClickEvents("#paymentchild2-tab", function () {
-    columnSearch(3, "paymented");
-  });
-  setTabClickEvents("#paymentchild3-tab", function () {
-    columnSearch(3, "pending");
-  });
-  setTabClickEvents("#paymentchild4-tab", function () {
-    columnSearch(3, "canceled");
-  });
-  setTabClickEvents("#paymentchild5-tab", function () {
-    columnSearch(3, "on process");
-  });
+  setTabClickEvents("#child1-tab", () => columnSearch(2, ""));
+  setTabClickEvents("#child2-tab", () => columnSearch(2, "delivered"));
+  setTabClickEvents("#child3-tab", () => columnSearch(2, "pending"));
+  setTabClickEvents("#deliverchild4-tab", () => columnSearch(2, "canceled"));
+  setTabClickEvents("#child5-tab", () => columnSearch(2, "on process"));
+  setTabClickEvents("#paymentchild1-tab", () => columnSearch(3, ""));
+  setTabClickEvents("#paymentchild2-tab", () => columnSearch(3, "paymented"));
+  setTabClickEvents("#paymentchild3-tab", () => columnSearch(3, "pending"));
+  setTabClickEvents("#paymentchild4-tab", () => columnSearch(3, "canceled"));
+  setTabClickEvents("#paymentchild5-tab", () => columnSearch(3, "on process"));
 
-  // Toggle dark mode functionality
+  // Dark mode toggle
   const checkbox = document.getElementById("checkbox");
-  loadToggleSetting();
-  checkbox.addEventListener("change", function () {
-    $("body, canvas, form-text").toggleClass("dark");
-    saveToggleSetting();
-  });
-
-  // Remember me functionality for login form
-  const rememberMeCheckbox = document.getElementById("rememberMe");
-  if (rememberMeCheckbox) {
-    // Load credentials and attach event listener only if the checkbox is present
-    loadCredentials();
-    rememberMeCheckbox.addEventListener("change", saveOrRemoveCredentials);
+  if (checkbox) {
+    loadToggleSetting();
+    checkbox.addEventListener("change", function () {
+      $("body, canvas, form-text").toggleClass("dark");
+      saveToggleSetting();
+    });
   }
 
-  // Define the toggleRememberMe function
-  function toggleRememberMe(checkbox) {
-    if (checkbox.checked) {
-      // Save credentials when checked
-      saveOrRemoveCredentials.call(checkbox);
-    } else {
-      // Remove credentials when unchecked
-      saveOrRemoveCredentials.call(checkbox);
-    }
+  // Remember me functionality
+  const rememberMeCheckbox = document.getElementById("rememberMe");
+  if (rememberMeCheckbox) {
+    loadCredentials();
+    rememberMeCheckbox.addEventListener("change", saveOrRemoveCredentials);
   }
 
   // Handle page load from cache
@@ -74,81 +43,42 @@ $(document).ready(function () {
     if (event.persisted) window.location.reload();
   });
 
-  // Show current date in the console
-  console.log(new Date());
-
   // Initialize CAPTCHA for login form
-  const loginCaptchaCanvas = document.getElementById("loginCaptchaCanvas");
-  if (loginCaptchaCanvas) {
-    const loginCaptchaContext = loginCaptchaCanvas.getContext("2d");
-    const refreshLoginCaptchaButton = document.getElementById(
-      "refreshLoginCaptcha"
-    );
-
-    let loginCaptchaText = generateCaptcha(
-      loginCaptchaCanvas,
-      loginCaptchaContext
-    );
-
-    // Event listener for CAPTCHA refresh button in login form
-    if (refreshLoginCaptchaButton) {
-      refreshLoginCaptchaButton.addEventListener("click", function () {
-        loginCaptchaText = generateCaptcha(
-          loginCaptchaCanvas,
-          loginCaptchaContext
-        );
-      });
-    }
-
-    // Event listener for login form submission
-    document
-      .getElementById("login-form")
-      .addEventListener("submit", function (event) {
-        event.preventDefault();
-        window.loginCaptchaText = loginCaptchaText; // Make CAPTCHA text accessible
-        handleLoginFormSubmit(new FormData(this));
-      });
-  }
+  initializeCaptcha("loginCaptchaCanvas", "refreshLoginCaptcha", "login-form");
 
   // Initialize CAPTCHA for forgot password form
-  const forgotCaptchaCanvas = document.getElementById("forgotCaptchaCanvas");
-  if (forgotCaptchaCanvas) {
-    const forgotCaptchaContext = forgotCaptchaCanvas.getContext("2d");
-    const refreshForgotCaptchaButton = document.getElementById(
-      "refreshForgotCaptcha"
-    );
-
-    let forgotCaptchaText = generateCaptcha(
-      forgotCaptchaCanvas,
-      forgotCaptchaContext
-    );
-
-    // Event listener for CAPTCHA refresh button in forgot password form
-    if (refreshForgotCaptchaButton) {
-      refreshForgotCaptchaButton.addEventListener("click", function () {
-        forgotCaptchaText = generateCaptcha(
-          forgotCaptchaCanvas,
-          forgotCaptchaContext
-        );
-      });
-    }
-
-    // Event listener for forgot password form submission
-    document
-      .getElementById("forgot-form")
-      .addEventListener("submit", function (event) {
-        event.preventDefault();
-        window.forgotCaptchaText = forgotCaptchaText; // Make CAPTCHA text accessible
-      });
-  }
+  initializeCaptcha("forgotCaptchaCanvas", "refreshForgotCaptcha", "forgot-form");
 
   // Event listener for logout button
-  $("#logoutBtn").click(function () {
-    handleLogout();
-  });
+  $("#logoutBtn").click(handleLogout);
 });
 
-// Function to handle login form submission and process response
+// Function to initialize CAPTCHA
+function initializeCaptcha(canvasId, refreshButtonId, formId) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+
+  const context = canvas.getContext("2d");
+  let captchaText = generateCaptcha(canvas, context);
+
+  const refreshButton = document.getElementById(refreshButtonId);
+  if (refreshButton) {
+    refreshButton.addEventListener("click", () => {
+      captchaText = generateCaptcha(canvas, context);
+    });
+  }
+
+  const form = document.getElementById(formId);
+  if (form) {
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      window[`${canvasId}Text`] = captchaText; // Expose CAPTCHA text globally
+      handleLoginFormSubmit(new FormData(this));
+    });
+  }
+}
+
+// Function to handle login form submission
 function handleLoginFormSubmit(formData) {
   fetch("/login", {
     method: "POST",
@@ -167,13 +97,11 @@ function handleLoginFormSubmit(formData) {
     .catch((error) => console.error("Login failed:", error));
 }
 
-// Function to initialize tab functionality
+// Function to initialize tabs
 function initTabs(tabSelector, table) {
   $(tabSelector + " a").on("click", function (e) {
     e.preventDefault();
-    $(this).tab("show");
-    $(tabSelector + " a").removeClass("active");
-    $(this).addClass("active");
+    $(this).tab("show").siblings().removeClass("active").end().addClass("active");
 
     // Activate the child tab with 'active' class when parent tab changes
     if ($(this).closest(".parent-tab").length) {
@@ -249,10 +177,9 @@ function handleLogout() {
     type: "POST",
     success: function (response) {
       console.log("Logout successful:", response);
-      // Redirect to the login page after successful logout
-      window.location.href = "/login";
+      window.location.href = "/login"; // Redirect to the login page
     },
-    error: function (xhr, status, error) {
+    error: function (xhr) {
       console.error("Logout failed:", xhr); // Log the entire XHR object for debugging
       alert("Logout failed. Please try again.");
     },
@@ -261,8 +188,7 @@ function handleLogout() {
 
 // Function to generate CAPTCHA
 function generateCaptcha(canvas, context) {
-  const chars =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   let captchaText = "";
   for (let i = 0; i < 6; i++) {
     captchaText += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -281,11 +207,9 @@ function generateCaptcha(canvas, context) {
 function showModalAndRedirect(modalId, redirectUrl) {
   const modal = new bootstrap.Modal(document.getElementById(modalId));
   modal.show();
-  document
-    .getElementById(modalId)
-    .addEventListener("hidden.bs.modal", function () {
-      window.location.href = redirectUrl;
-    });
+  document.getElementById(modalId).addEventListener("hidden.bs.modal", function () {
+    window.location.href = redirectUrl;
+  });
 }
 
 // Function to show a Bootstrap modal
