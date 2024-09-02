@@ -1,7 +1,13 @@
 import os
 from flask import Flask, request, render_template, jsonify, send_from_directory, session, redirect, url_for
+from datetime import timedelta
 
 app = Flask(__name__, template_folder='docs', static_folder='docs/resource')
+
+# Configuration for session management
+app.config['SESSION_PERMANENT'] = False
+app.config['SESSION_TYPE'] = 'filesystem'  # Use filesystem-based sessions
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=30)
 app.secret_key = os.urandom(24)
 
 # Serve static resource files from the 'resource' directory
@@ -14,7 +20,11 @@ def send_resource(path):
 @app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    # ...
+    # Check if user is already logged in
+    if session.get('logged_in'):
+        # Redirect to the main page if already logged in
+        return redirect(url_for('main_page'))
+
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
@@ -49,6 +59,7 @@ def main_page():
 @app.route('/logout', methods=['POST'])
 def logout():
     try:
+        # Clear the session to log the user out
         session.clear()
         return jsonify({"message": "Logout successful"}), 200
     except Exception as e:
