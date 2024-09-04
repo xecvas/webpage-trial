@@ -1,6 +1,7 @@
 $(document).ready(function () {
   // Cache DataTable instance
-  var table = $("#myDataTable").DataTable();
+  var table = $("#myDataTable",).DataTable();
+  var table = $("#myDatabase",).DataTable();
 
   // Initialize tabs
   initTabs("#myTab", table);
@@ -10,11 +11,11 @@ $(document).ready(function () {
 
   // Set up tab click events
   setTabClickEvents("#home-tab, #deliver-tab, #payment-tab", clearSearch);
-  setTabClickEvents("#child1-tab", () => columnSearch(2, ""));
-  setTabClickEvents("#child2-tab", () => columnSearch(2, "delivered"));
-  setTabClickEvents("#child3-tab", () => columnSearch(2, "pending"));
+  setTabClickEvents("#deliverchild1-tab", () => columnSearch(2, ""));
+  setTabClickEvents("#deliverchild2-tab", () => columnSearch(2, "delivered"));
+  setTabClickEvents("#deliverchild3-tab", () => columnSearch(2, "pending"));
   setTabClickEvents("#deliverchild4-tab", () => columnSearch(2, "canceled"));
-  setTabClickEvents("#child5-tab", () => columnSearch(2, "on process"));
+  setTabClickEvents("#deliverchild5-tab", () => columnSearch(2, "on process"));
   setTabClickEvents("#paymentchild1-tab", () => columnSearch(3, ""));
   setTabClickEvents("#paymentchild2-tab", () => columnSearch(3, "paymented"));
   setTabClickEvents("#paymentchild3-tab", () => columnSearch(3, "pending"));

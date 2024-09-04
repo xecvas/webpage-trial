@@ -2,13 +2,211 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello test</title>
+    <!-- Meta tags for SEO and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welcome to My Website.">
+    <meta name="keywords" content="Dummy Page, Example">
+    <meta name="author" content="xecvas">
+    <title>Dummy Page</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="resource/Icon.ico" type="image/x-icon">
+
+    <!-- CSS dependencies -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="resource/styles.css">
+
+    <!-- JS dependencies -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/js/bootstrap.bundle.min.js"
+        defer></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js" defer></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js" defer></script>
+    <script src="resource/script.js" defer></script>
 </head>
 
 <body>
-  <h1>Hello test</h1>
+    <!-- navigation bar -->
+    <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('main_page') }}">
+                <img src="resource/Icon.ico" width="40" height="40" class="d-inline-block align-text-top"> Dummy Page
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('main_page') }}">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Account
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">deliver</a></li>
+                            <li><a class="dropdown-item" href="#">Change Password</a></li>
+                            <li><a class="dropdown-item" href="#">Change PIN</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Character
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">My Character</a></li>
+                            <li><a class="dropdown-item" href="#">Item History Logs</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Server
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#top_play">Top Player</a></li>
+                            <li><a class="dropdown-item" href="#">Banned Users</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Panel</a>
+                    </li>
+                </ul>
+                <div class="gap-toggle">
+                    <input type="checkbox" class="checkbox" id="checkbox">
+                    <label for="checkbox" class="checkbox-label">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                        <span class="ball"></span>
+                    </label>
+                </div>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div id="page-container">
+        <div id="content-wrap">
+            <section>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius commodi eaque mollitia dicta optio,
+                reprehenderit reiciendis provident quas officiis sunt itaque dolorem. Esse nisi sit ad veniam asperiores
+                autem mollitia.
+                Harum quasi vero quae reiciendis id! Debitis ex, tempora qui dolorum temporibus laborum non?
+                Necessitatibus ad beatae debitis culpa, dignissimos voluptates perferendis corrupti ipsa, pariatur,
+                veritatis nihil sed. Mollitia, repudiandae.
+            </section>
+
+            <h2>Products</h2>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#testinput">Register</button>
+
+            <!-- input -->
+            <div class="modal fade" id="testinput" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="formModalLabel">Product Form</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="productForm" method="POST" action="/add_product">
+                                <!-- Nama Pengguna -->
+                                <div class="mb-3">
+                                    <label for="namaPengguna" class="form-label">Nama Pengguna</label>
+                                    <input type="text" class="form-control" id="namaPengguna" name="namaPengguna"
+                                        placeholder="Masukkan Nama Pengguna">
+                                </div>
+
+                                <!-- Kode -->
+                                <div class="mb-3">
+                                    <label for="kode" class="form-label">Kode</label>
+                                    <input type="text" class="form-control" id="kode" name="kode"
+                                        placeholder="Masukkan Kode">
+                                </div>
+
+                                <!-- Nama Barang -->
+                                <div class="mb-3">
+                                    <label for="namaBarang" class="form-label">Nama Barang</label>
+                                    <input type="text" class="form-control" id="namaBarang" name="namaBarang"
+                                        placeholder="Masukkan Nama Barang">
+                                </div>
+
+                                <!-- Quantity -->
+                                <div class="mb-3">
+                                    <label for="quantity" class="form-label">Quantity</label>
+                                    <input type="number" class="form-control" id="quantity" name="quantity"
+                                        placeholder="Masukkan Quantity">
+                                </div>
+
+                                <!-- Berat -->
+                                <div class="mb-3">
+                                    <label for="berat" class="form-label">Berat</label>
+                                    <input type="number" step="0.01" class="form-control" id="berat" name="berat"
+                                        placeholder="Masukkan Berat (kg)">
+                                </div>
+
+                                <!-- Harga -->
+                                <div class="mb-3">
+                                    <label for="harga" class="form-label">Harga</label>
+                                    <input type="number" class="form-control" id="harga" name="harga"
+                                        placeholder="Masukkan Harga">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" form="productForm" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table id="myDatabase" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Nama Pengguna</th>
+                        <th>Nama Barang</th>
+                        <th>Kode</th>
+                        <th>Quantity</th>
+                        <th>Berat</th>
+                        <th>Harga</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td>{{ product.nama_pengguna }}</td>
+                        <td>{{ product.nama_barang }}</td>
+                        <td>{{ product.kode }}</td>
+                        <td>{{ product.quantity }}</td>
+                        <td>{{ product.berat }}</td>
+                        <td>{{ product.harga }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer text-center mt-5" id="footer">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
+        <p>
+            <img src="resource/Icon.ico" alt="Web Icon" style="width: 20px; height: 20px; vertical-align: middle;">
+            © 2024 Company, Inc
+        </p>
+    </footer>
+    </div>
 </body>
 
 </html>

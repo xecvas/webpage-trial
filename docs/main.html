@@ -11,25 +11,24 @@
     <title>Dummy Page</title>
 
     <!-- Favicon -->
-  <link rel="icon" href="resource/Icon.ico" type="image/x-icon">
+    <link rel="icon" href="resource/Icon.ico" type="image/x-icon">
 
-  <!-- CSS dependencies -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
-  <link rel="stylesheet" href="resource/styles.css">
-  
-  <!-- JS dependencies -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/js/bootstrap.bundle.min.js" defer></script>
-  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js" defer></script>
-  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js" defer></script>
-  <script src="resource/script.js" defer></script>
+    <!-- CSS dependencies -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="resource/styles.css">
+
+    <!-- JS dependencies -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/js/bootstrap.bundle.min.js"
+        defer></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js" defer></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js" defer></script>
+    <script src="resource/script.js" defer></script>
 </head>
 
 <body>
-
-
     <!-- navigation bar -->
     <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary">
         <div class="container-fluid">
@@ -109,6 +108,54 @@
                 veritatis nihil sed. Mollitia, repudiandae.
             </section>
             <button id="logoutBtn" type="button" class="btn btn-danger">Logout</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#testinput">Register</button>
+
+            <!-- input -->
+            <div class="modal fade" id="testinput" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="formModalLabel">Product Form</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="productForm" method="POST" action="/add_product">
+                                <div class="mb-3">
+                                    <label for="namaBarang" class="form-label">Nama Barang</label>
+                                    <input type="text" class="form-control" id="namaBarang" name="namaBarang"
+                                        placeholder="Enter Nama Barang">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="kode" class="form-label">Kode</label>
+                                    <input type="text" class="form-control" id="kode" name="kode"
+                                        placeholder="Enter Kode">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="quantity" class="form-label">Quantity</label>
+                                    <input type="number" class="form-control" id="quantity" name="quantity"
+                                        placeholder="Enter Quantity">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="berat" class="form-label">Berat (kg)</label>
+                                    <input type="number" class="form-control" id="berat" name="berat"
+                                        placeholder="Enter Berat">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="harga" class="form-label">Harga</label>
+                                    <input type="number" class="form-control" id="harga" name="harga"
+                                        placeholder="Enter Harga">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" form="productForm" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <!-- Parents Tabs navigation -->
             <div class="container mt-4" style="width: 100%">
@@ -146,28 +193,28 @@
                         <div id="dataTableContainer"></div>
                         <ul class="nav nav-tabs2" id="myTab2" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link tab-header tab-header-deliver active" id="child1-tab"
+                                <a class="nav-link tab-header tab-header-deliver active" id="deliverchild1-tab"
                                     data-toggle="tab" href="#deliverchild1" role="tab" aria-controls="deliverchild1"
                                     aria-selected="true">All</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link tab-header tab-header-deliver" id="child2-tab" data-toggle="tab"
+                                <a class="nav-link tab-header tab-header-deliver" id="deliverchild2-tab" data-toggle="tab"
                                     href="#deliverchild2" role="tab" aria-controls="deliverchild2"
                                     aria-selected="false">Delivered</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link tab-header tab-header-deliver" id="child3-tab" data-toggle="tab"
+                                <a class="nav-link tab-header tab-header-deliver" id="deliverchild3-tab" data-toggle="tab"
                                     href="#deliverchild3" role="tab" aria-controls="deliverchild3"
                                     aria-selected="false">Pending</a>
                             </li>
                             <!-- Updated child tab ID and href -->
                             <li class="nav-item">
-                                <a class="nav-link tab-header tab-header-deliver" id="deliverchild4-tab" data-toggle="tab"
-                                    href="#deliverchild4" role="tab" aria-controls="deliverchild4"
+                                <a class="nav-link tab-header tab-header-deliver" id="deliverchild4-tab"
+                                    data-toggle="tab" href="#deliverchild4" role="tab" aria-controls="deliverchild4"
                                     aria-selected="false">Canceled</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link tab-header tab-header-deliver" id="child5-tab" data-toggle="tab"
+                                <a class="nav-link tab-header tab-header-deliver" id="deliverchild5-tab" data-toggle="tab"
                                     href="#deliverchild5" role="tab" aria-controls="deliverchild5"
                                     aria-selected="false">On Process</a>
                             </li>
@@ -668,7 +715,6 @@
                 </div>
             </div>
         </div>
-
 
         <!-- Footer -->
         <footer class="footer text-center mt-5" id="footer">

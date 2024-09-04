@@ -6,11 +6,6 @@
     box-sizing: border-box;
 }
 
-html {
-    overflow-y: scroll;
-    /* Always show scrollbar */
-}
-
 body {
     font-family: "Montserrat", sans-serif;
     background-color: #fff;
