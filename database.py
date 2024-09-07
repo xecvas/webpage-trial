@@ -16,7 +16,7 @@ class Product(Base):
     id = Column(Integer, primary_key=True)
     nama_pengguna = Column(String, nullable=False)
     nama_barang = Column(String, nullable=False)
-    kode = Column(String, nullable=False)
+    kode = Column(String, nullable=False, unique=True)
     quantity = Column(Integer, nullable=False)
     berat = Column(Float, nullable=False)
     harga = Column(Integer, nullable=False)

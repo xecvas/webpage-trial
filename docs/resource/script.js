@@ -1,13 +1,18 @@
 $(document).ready(function () {
   // Cache DataTable instance
-  var table = $("#myDataTable",).DataTable();
-  var table = $("#myDatabase",).DataTable();
+  var table1 = $("#myDataTable").DataTable();
+  var table2 = $("#myDatabase").DataTable({
+    //disable sorting for the last column (table2)
+    columnDefs: [
+      { orderable: false, targets: -1 },
+    ],
+  });
 
   // Initialize tabs
-  initTabs("#myTab", table);
-  initTabs("#myTab2", table);
-  initTabs("#myTab3", table);
-  initTabs(".child-tab", table);
+  initTabs("#myTab", table1);
+  initTabs("#myTab2", table1);
+  initTabs("#myTab3", table1);
+  initTabs(".child-tab", table1);
 
   // Set up tab click events
   setTabClickEvents("#home-tab, #deliver-tab, #payment-tab", clearSearch);
@@ -48,7 +53,11 @@ $(document).ready(function () {
   initializeCaptcha("loginCaptchaCanvas", "refreshLoginCaptcha", "login-form");
 
   // Initialize CAPTCHA for forgot password form
-  initializeCaptcha("forgotCaptchaCanvas", "refreshForgotCaptcha", "forgot-form");
+  initializeCaptcha(
+    "forgotCaptchaCanvas",
+    "refreshForgotCaptcha",
+    "forgot-form"
+  );
 
   // Event listener for logout button
   $("#logoutBtn").click(handleLogout);
@@ -102,7 +111,12 @@ function handleLoginFormSubmit(formData) {
 function initTabs(tabSelector, table) {
   $(tabSelector + " a").on("click", function (e) {
     e.preventDefault();
-    $(this).tab("show").siblings().removeClass("active").end().addClass("active");
+    $(this)
+      .tab("show")
+      .siblings()
+      .removeClass("active")
+      .end()
+      .addClass("active");
 
     // Activate the child tab with 'active' class when parent tab changes
     if ($(this).closest(".parent-tab").length) {
@@ -189,7 +203,8 @@ function handleLogout() {
 
 // Function to generate CAPTCHA
 function generateCaptcha(canvas, context) {
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const chars =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   let captchaText = "";
   for (let i = 0; i < 6; i++) {
     captchaText += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -208,9 +223,11 @@ function generateCaptcha(canvas, context) {
 function showModalAndRedirect(modalId, redirectUrl) {
   const modal = new bootstrap.Modal(document.getElementById(modalId));
   modal.show();
-  document.getElementById(modalId).addEventListener("hidden.bs.modal", function () {
-    window.location.href = redirectUrl;
-  });
+  document
+    .getElementById(modalId)
+    .addEventListener("hidden.bs.modal", function () {
+      window.location.href = redirectUrl;
+    });
 }
 
 // Function to show a Bootstrap modal
