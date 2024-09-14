@@ -1,61 +1,18 @@
-# Import necessary modules
-from itertools import product
-import math
 import os
-from flask import Flask, request, jsonify, redirect, send_from_directory, url_for, render_template, session
-from datetime import timedelta
-from sqlalchemy import Engine, create_engine, Column, Integer, String, Float
-from sqlalchemy.orm import sessionmaker, declarative_base
-from database import Product, SessionLocal, Base
+from flask import Flask, request, jsonify, send_from_directory, render_template, redirect, url_for
+from sqlalchemy.orm import sessionmaker
+from database import Product, SessionLocal
 
 # Initialize Flask app
 app = Flask(__name__, template_folder="docs", static_folder="docs/resource")
-
-# Set secret key for session management
-app.secret_key = os.urandom(24)
+app.secret_key = os.urandom(24)  # Secure secret key for session management
 
 # Serve static resource files from the 'resource' directory
 @app.route("/resource/<path:path>")
 def send_resource(path):
-    """Send a resource file from the 'resource' directory."""
     return send_from_directory("docs/resource", path)
 
-# Set up database connection
-DATABASE_URL = "postgresql+psycopg://postgres:mashiro@localhost/mydatabase"
-engine = create_engine(DATABASE_URL)
-Session = sessionmaker(bind=engine)
-
-# Get data from database with pagination
-@app.route('/data', methods=['GET'])
-def get_data():
-    """Get data from database with pagination."""
-    session = Session()
-    try:
-        # Get pagination parameters
-        page = int(request.args.get('page', 1))
-        per_page = int(request.args.get('per_page', 10))
-        offset = (page - 1) * per_page
-
-        # Query the database
-        query = session.query(Product).limit(per_page).offset(offset)
-        total_rows = session.query(Product).count()  # Get the total count of rows
-
-        # Serialize the data using the to_dict method
-        data = [row.to_dict() for row in query]  # Convert each row to a dictionary
-
-        # Prepare the response to fit DataTable's expected format
-        response = {
-            'data': data,
-            'recordsTotal': total_rows,
-            'recordsFiltered': total_rows,  # Adjust if you have filters
-            'page': page,
-            'pages': math.ceil(total_rows / per_page)
-        }
-        return jsonify(response)
-    finally:
-        session.close()  # Ensure the session is closed after the request
-
-# Add data to database
+# Add data to the database
 @app.route('/add_product', methods=['POST'])
 def add_product():
     """Add a new product to the database."""
@@ -81,33 +38,86 @@ def add_product():
         harga=harga
     )
 
-    # Save to the database
-    db_session = SessionLocal()
+    session = SessionLocal()
     try:
-        db_session.add(new_product)
-        db_session.commit()
-        return redirect(url_for('testing'))  # Redirect or render a success template
+        session.add(new_product)
+        session.commit()
+        return redirect(url_for('test'))  # Redirect or render a success template
     except Exception as e:
-        db_session.rollback()
+        session.rollback()
         return f"An error occurred: {e}", 500
     finally:
-        db_session.close()
+        session.close()
 
-# Display the main page for logged-in users
+# Delete a product from the database
+@app.route('/delete_product/<int:id>', methods=['POST'])
+def delete_product(id):
+    """Delete a product by ID."""
+    session = SessionLocal()
+    try:
+        product = session.query(Product).get(id)
+        if product is None:
+            return "Product not found", 404
+        session.delete(product)
+        session.commit()
+        return redirect(url_for('test'))  # Redirect or render a success template
+    except Exception as e:
+        session.rollback()
+        return f"An error occurred: {e}", 500
+    finally:
+        session.close()
+
+# Get data from the database with pagination
+@app.route('/data', methods=['GET'])
+def get_data():
+    session = SessionLocal()
+    try:
+        page = int(request.args.get('page', 1))
+        per_page = int(request.args.get('per_page', 10))
+        offset = (page - 1) * per_page
+        search_value = request.args.get('search[value]', '')  # Get the search value
+
+        # Base query
+        query = session.query(Product)
+
+        # If there's a search value, filter the query
+        if search_value:
+            search_value = f"%{search_value}%"
+            query = query.filter(
+                Product.nama_pengguna.ilike(search_value) |  # Search in 'nama_pengguna'
+                Product.nama_barang.ilike(search_value) |   # Search in 'nama_barang'
+                Product.kode.ilike(search_value)            # Search in 'kode'
+            )
+
+        # Paginate and count rows
+        total_rows = query.count()
+        products_query = query.limit(per_page).offset(offset)
+
+        data = [product.to_dict() for product in products_query]
+
+        response = {
+            'data': data,
+            'recordsTotal': total_rows,
+            'recordsFiltered': total_rows,  # Adjust if using filters
+            'page': page
+        }
+        return jsonify(response)
+    finally:
+        session.close()
+
+
+# Display the main page
 @app.route("/")
 @app.route("/main")
 def main_page():
     return render_template("main.html")
 
+# Test route rendering products in HTML template
 @app.route("/test")
-def testing():
-    """Test page."""
-    # Retrieve all products from the database
-    db_session = SessionLocal()
-    products = db_session.query(Product).all()
-    db_session.close()
-
-    # Pass the products to the HTML template
+def test():
+    session = SessionLocal()
+    products = session.query(Product).all()
+    session.close()
     return render_template("test.html", products=products)
 
 if __name__ == "__main__":

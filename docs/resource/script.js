@@ -1,50 +1,85 @@
 $(document).ready(function () {
+  // Show current date on console
+  console.log(new Date());
+
   // Initialize DataTables
   var table1 = $("#myDataTable").DataTable();
   var table2 = $("#myDatabase").DataTable({
-    // Define columns for table2 and setup server-side processing
-    columnDefs: [{ orderable: false, targets: -1 }],  // Disable sorting for the last column
-    processing: true,  // Show processing indicator
-    serverSide: true,  // Enable server-side processing
+    columnDefs: [
+      { visible: false, targets: 0 }  // Hide the `id` column (index 0)
+    ],
+    processing: true,
+    serverSide: true,
     ajax: {
-      url: "/data",  // URL to fetch data from server
-      type: "GET",  // HTTP method
-      data: function(d) {
-        d.page = Math.ceil(d.start / d.length) + 1;  // Calculate page number
-        d.per_page = d.length;  // Set number of rows per page
-      }
+      url: "/data",
+      type: "GET",
+      data: function (d) {
+        d.page = Math.ceil(d.start / d.length) + 1;
+        d.per_page = d.length;
+      },
     },
     columns: [
-      { data: "nama_pengguna", title: "Nama Pengguna" },  // Define column for 'nama_pengguna'
-      { data: "nama_barang", title: "Nama Barang" },      // Define column for 'nama_barang'
-      { data: "kode", title: "Kode" },                    // Define column for 'kode'
-      { data: "quantity", title: "Quantity" },            // Define column for 'quantity'
-      { data: "berat", title: "Berat" },                  // Define column for 'berat'
-      { data: "harga", title: "Harga" },                  // Define column for 'harga'
-      { data: null, title: "Action",  // No specific data field for the action column
-        orderable: false,  // Disable sorting for the action column
-        render: function(data, type, row) {
-          // Render edit and delete buttons with data-id attribute
+      { data: "id", title: "id" },  // Hidden column
+      { data: "nama_pengguna", title: "Nama Pengguna" },
+      { data: "nama_barang", title: "Nama Barang" },
+      { data: "kode", title: "Kode" },
+      { data: "quantity", title: "Quantity" },
+      { data: "berat", title: "Berat" },
+      { data: "harga", title: "Harga" },
+      {
+        data: null,
+        title: "Action",
+        orderable: false,
+        render: function (data, type, row) {
           return `
             <button class="btn btn-primary btn-sm edit-btn" data-id="${row.id}">Edit</button>
             <button class="btn btn-danger btn-sm delete-btn" data-id="${row.id}">Delete</button>
           `;
-        }
-      }
-    ]
+        },
+      },
+    ],
   });
-
+  
   // Handle and Show the Edit modal when the edit button is clicked
-  $(document).on('click', '.edit-btn', function () {
-    var id = $(this).data('id');
-        $('#datatable-edit').modal('show');  // Show the edit modal
+  $(document).on("click", ".edit-btn", function () {
+    var id = $(this).data("id");
+    $("#datatable-edit").modal("show"); // Show the edit modal
   });
 
-  // Handle and Show the Delete modal when the delete button is clicked
-  $(document).on('click', '.delete-btn', function () {
-    var id = $(this).data('id');
-    $('#datatable-delete').modal('show');  // Show the delete modal
+// Show the delete modal when the delete button is clicked
+$(document).on("click", ".delete-btn", function () {
+  var id = $(this).data("id"); // Get the ID from the clicked button
+  rowToDelete = table2.row($(this).closest("tr")); // Get the corresponding row
+  $("#row-delete-yes").data("id", id); // Set the ID for the confirmation button
+  $("#datatable-delete-modal").modal("show"); // Show the delete modal
+});
+
+// Handle delete confirmation
+$("#row-delete-yes").on("click", function () {
+  var id = $(this).data("id"); // Get the ID from the confirmation button
+
+  // Make an AJAX request to delete the product
+  $.ajax({
+      type: "POST",
+      url: "/delete_product/" + id,
+      success: function () {
+          // Remove the row from DataTable and redraw
+          rowToDelete.remove().draw();
+
+          // Hide the delete modal and show success modal
+          $("#datatable-delete-modal").modal("hide");
+          $("#success-delete-modal").modal("show");
+      },
+      error: function (xhr, status, error) {
+          console.error("Error deleting product:", error);
+      }
   });
+});
+
+// Hide delete success modal on "OK" button click
+$("#success-ok").on("click", function () {
+  $("#success-delete-modal").modal("hide"); // Hide the success modal
+});
 
   // Initialize tabs and set up click events for tab actions
   initTabs("#myTab", table1);
@@ -79,7 +114,12 @@ $(document).ready(function () {
 function initTabs(tabSelector, table) {
   $(tabSelector + " a").on("click", function (e) {
     e.preventDefault();
-    $(this).tab("show").siblings().removeClass("active").end().addClass("active");
+    $(this)
+      .tab("show")
+      .siblings()
+      .removeClass("active")
+      .end()
+      .addClass("active");
 
     // Activate child tabs when parent tab changes
     if ($(this).closest(".parent-tab").length) {

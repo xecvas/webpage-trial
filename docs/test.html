@@ -120,6 +120,7 @@
             <table id="myDatabase" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Nama Pengguna</th>
                         <th>Nama Barang</th>
                         <th>Kode</th>
@@ -132,18 +133,14 @@
                 <tbody>
                     {% for product in products %}
                     <tr>
+                        <td>{{ product.id }}</td>
                         <td>{{ product.nama_pengguna }}</td>
                         <td>{{ product.nama_barang }}</td>
                         <td>{{ product.kode }}</td>
                         <td>{{ product.quantity }}</td>
                         <td>{{ product.berat }}</td>
                         <td>{{ product.harga }}</td>
-                        <td>
-                            <button class="gap-button btn btn-info edit btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#datatable-edit" id="EditDataButton">Edit</button>
-                            <button class="btn btn-danger delete btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#datatable-delete" id="DeleteDataButton">Delete</button>
-                        </td>
+                        <td></td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -263,8 +260,8 @@
             </div>
         </div>
 
-        <!-- delete form -->
-        <div class="modal fade" id="datatable-delete" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+        <!-- delete modal -->
+        <div class="modal fade" id="datatable-delete-modal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -274,8 +271,20 @@
                         Are you sure to delete this record?
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-danger delete">delete</button>
+                        <button type="button" id="row-delete-no" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" id="row-delete-yes" class="btn btn-danger delete">delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- delete success modal -->
+        <div class="modal fade" id="success-delete-modal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <p class="fs-4">Delete Success</p>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
                     </div>
                 </div>
             </div>

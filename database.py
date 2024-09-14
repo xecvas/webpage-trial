@@ -1,38 +1,29 @@
-from sqlalchemy import Float, create_engine, Column, Integer, String
+from sqlalchemy import create_engine, Column, Integer, String, Float
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-# Define database URL with credentials
+# Database URL
 DATABASE_URL = "postgresql+psycopg://postgres:mashiro@localhost/mydatabase"
 
-# Create a SQLAlchemy engine instance
+# Create a SQLAlchemy engine and session
 engine = create_engine(DATABASE_URL)
-
-# Define the base class for declarative class definitions
 Base = declarative_base()
 
 # Define the Product model
 class Product(Base):
-    """
-    Represents a product in the database
-    """
     __tablename__ = 'products'
+    
+    id = Column(Integer, primary_key=True)
+    nama_pengguna = Column(String, nullable=False)
+    nama_barang = Column(String, nullable=False)
+    kode = Column(String, nullable=False, unique=True)
+    quantity = Column(Integer, nullable=False)
+    berat = Column(Float, nullable=False)
+    harga = Column(Integer, nullable=False)
 
-    # Define columns for the Product model
-    id = Column(Integer, primary_key=True)  # Unique identifier for each product
-    nama_pengguna = Column(String, nullable=False)  # User name
-    nama_barang = Column(String, nullable=False)  # Product name
-    kode = Column(String, nullable=False, unique=True)  # Unique product code
-    quantity = Column(Integer, nullable=False)  # Product quantity
-    berat = Column(Float, nullable=False)  # Product weight
-    harga = Column(Integer, nullable=False)  # Product price
-
-    # Define a method to convert the Product instance to a dictionary
     def to_dict(self):
-        """
-        Returns a dictionary representation of the Product instance
-        """
         return {
+            'id': self.id,
             'nama_pengguna': self.nama_pengguna,
             'nama_barang': self.nama_barang,
             'kode': self.kode,
@@ -41,8 +32,8 @@ class Product(Base):
             'harga': self.harga
         }
 
-# Create tables in the database if they do not already exist
+# Create all tables if they don't exist
 Base.metadata.create_all(bind=engine)
 
-# Create a session maker instance
+# Session factory
 SessionLocal = sessionmaker(bind=engine)
