@@ -17,12 +17,14 @@ def send_resource(path):
 def add_product():
     """Add a new product to the database."""
     # Extract form data
-    nama_pengguna = request.form.get('namaPengguna') 
-    nama_barang = request.form.get('namaBarang')
+    nama_pengguna = request.form.get('namapengguna') 
+    nama_barang = request.form.get('namabarang')
     kode = request.form.get('kode')
     quantity = request.form.get('quantity', type=int)
     berat = request.form.get('berat', type=float)
     harga = request.form.get('harga', type=int)
+    shipping_status = request.form.get('shippingstatus')
+    payment_status = request.form.get('paymentstatus')
 
     # Validate form data
     if not all([nama_pengguna, nama_barang, kode]) or quantity is None or berat is None or harga is None:
@@ -35,7 +37,9 @@ def add_product():
         kode=kode,
         quantity=quantity,
         berat=berat,
-        harga=harga
+        harga=harga,
+        shipping_status=shipping_status,
+        payment_status=payment_status
     )
 
     session = SessionLocal()

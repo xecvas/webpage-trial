@@ -110,41 +110,203 @@
             <br>
 
             <!-- add data button -->
-             <div class="mb-3">
+            <div class="mb-3">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-data-form">Add
                     Data</button>
-             </div>
-            
+            </div>
 
-            <!-- show data from myDatabase -->
-            <table id="myDatabase" class="table table-striped" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nama Pengguna</th>
-                        <th>Nama Barang</th>
-                        <th>Kode</th>
-                        <th>Quantity</th>
-                        <th>Berat</th>
-                        <th>Harga</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for product in products %}
-                    <tr>
-                        <td>{{ product.id }}</td>
-                        <td>{{ product.nama_pengguna }}</td>
-                        <td>{{ product.nama_barang }}</td>
-                        <td>{{ product.kode }}</td>
-                        <td>{{ product.quantity }}</td>
-                        <td>{{ product.berat }}</td>
-                        <td>{{ product.harga }}</td>
-                        <td></td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <!-- Parents Tabs navigation -->
+            <div class="container mt-4" style="width: 100%">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <!-- home tab -->
+                    <li class="nav-item" id="home-tab">
+                        <a class="nav-link tab-header tab-header-home active" id="home-tab" data-toggle="tab"
+                            href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+                    </li>
+                    <!-- deliver tab -->
+                    <li class="nav-item" id="deliver-tab">
+                        <a class="nav-link tab-header tab-header-deliver" id="deliver-tab" data-toggle="tab"
+                            href="#deliver" role="tab" aria-controls="deliver" aria-selected="false">Deliver</a>
+                    </li>
+                    <!-- payment tab -->
+                    <li class="nav-item" id="payment-tab">
+                        <a class="nav-link tab-header tab-header-payment" id="payment-tab" data-toggle="tab"
+                            href="#payment" role="tab" aria-controls="payment" aria-selected="false">Payment</a>
+                    </li>
+                </ul>
+                <!-- Parents Tab content -->
+                <div class="tab-content" id="myTabContent">
+                    <!-- home content -->
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <br>
+                        Home content goes here.
+                        <br>
+                        <div id="databableContainer"></div>
+                    </div>
+                    <!-- deliver content -->
+                    <div class="tab-pane fade" id="deliver" role="tabpanel" aria-labelledby="deliver-tab">
+                        <br>
+                        deliver content goes here.
+                        <br>
+                        <div id="dataTableContainer"></div>
+                        <ul class="nav nav-tabs2" id="myTab2" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link tab-header tab-header-deliver active" id="deliverchild1-tab"
+                                    data-toggle="tab" href="#deliverchild1" role="tab" aria-controls="deliverchild1"
+                                    aria-selected="true">All</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link tab-header tab-header-deliver" id="deliverchild2-tab"
+                                    data-toggle="tab" href="#deliverchild2" role="tab" aria-controls="deliverchild2"
+                                    aria-selected="false">Delivered</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link tab-header tab-header-deliver" id="deliverchild3-tab"
+                                    data-toggle="tab" href="#deliverchild3" role="tab" aria-controls="deliverchild3"
+                                    aria-selected="false">Pending</a>
+                            </li>
+                            <!-- Updated child tab ID and href -->
+                            <li class="nav-item">
+                                <a class="nav-link tab-header tab-header-deliver" id="deliverchild4-tab"
+                                    data-toggle="tab" href="#deliverchild4" role="tab" aria-controls="deliverchild4"
+                                    aria-selected="false">Canceled</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link tab-header tab-header-deliver" id="deliverchild5-tab"
+                                    data-toggle="tab" href="#deliverchild5" role="tab" aria-controls="deliverchild5"
+                                    aria-selected="false">On Process</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTab2Content">
+                            <div class="tab-pane fade show active" id="deliverchild1" role="tabpanel"
+                                aria-labelledby="deliverchild1-tab">
+                                <br>
+                                deliver child 1
+                                <br>
+                                <div id="dataTableContainer"></div>
+                            </div>
+                            <div class="tab-pane fade" id="deliverchild2" role="tabpanel"
+                                aria-labelledby="deliverchild2-tab">
+                                <br>
+                                deliver child 2
+                                <br>
+                                <div id="dataTableContainer"></div>
+                            </div>
+                            <div class="tab-pane fade" id="deliverchild3" role="tabpanel"
+                                aria-labelledby="deliverchild3-tab">
+                                <br>
+                                deliver child 3
+                            </div>
+                            <!-- Updated tab pane ID and aria-labelledby -->
+                            <div class="tab-pane fade" id="deliverchild4" role="tabpanel"
+                                aria-labelledby="deliverchild4-tab">
+                                <br>
+                                deliver child 4
+                            </div>
+                            <div class="tab-pane fade" id="deliverchild5" role="tabpanel"
+                                aria-labelledby="deliverchild5-tab">
+                                <br>
+                                deliver child 5
+                            </div>
+                        </div>
+                    </div>
+                    <!-- payment content -->
+                    <div class="tab-pane fade" id="payment" role="tabpanel" aria-labelledby="payment-tab">
+                        <br>
+                        payment content goes here.
+                        <br>
+                        <div id="dataTableContainer"></div>
+                        <ul class="nav nav-tabs2" id="myTab3" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link tab-header tab-header-payment active" id="paymentchild1-tab"
+                                    data-toggle="tab" href="#paymentchild1" role="tab" aria-controls="paymentchild1"
+                                    aria-selected="true">All</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link tab-header tab-header-payment" id="paymentchild2-tab"
+                                    data-toggle="tab" href="#paymentchild2" role="tab" aria-controls="paymentchild2"
+                                    aria-selected="false">paymented</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link tab-header tab-header-payment" id="paymentchild3-tab"
+                                    data-toggle="tab" href="#paymentchild3" role="tab" aria-controls="paymentchild3"
+                                    aria-selected="false">Pending</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link tab-header tab-header-payment" id="paymentchild4-tab"
+                                    data-toggle="tab" href="#paymentchild4" role="tab" aria-controls="paymentchild4"
+                                    aria-selected="false">Canceled</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link tab-header tab-header-payment" id="paymentchild5-tab"
+                                    data-toggle="tab" href="#paymentchild5" role="tab" aria-controls="paymentchild5"
+                                    aria-selected="false">On Process</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTab3Content">
+                            <div class="tab-pane fade show active" id="paymentchild1" role="tabpanel"
+                                aria-labelledby="paymentchild1-tab">
+                                <br>
+                                payment child 1
+                            </div>
+                            <div class="tab-pane fade" id="paymentchild2" role="tabpanel"
+                                aria-labelledby="paymentchild2-tab">
+                                <br>
+                                payment child 2
+                            </div>
+                            <div class="tab-pane fade" id="paymentchild3" role="tabpanel"
+                                aria-labelledby="paymentchild3-tab">
+                                <br>
+                                payment child 3
+                            </div>
+                            <div class="tab-pane fade" id="paymentchild4" role="tabpanel"
+                                aria-labelledby="paymentchild4-tab">
+                                <br>
+                                payment child 4
+                            </div>
+                            <div class="tab-pane fade" id="paymentchild5" role="tabpanel"
+                                aria-labelledby="paymentchild5-tab">
+                                <br>
+                                payment child 5
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- show data from myDatabase -->
+                    <table id="myDatabase" class="table table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nama Pengguna</th>
+                                <th>Nama Barang</th>
+                                <th>Kode</th>
+                                <th>Quantity</th>
+                                <th>Berat</th>
+                                <th>Harga</th>
+                                <th>Shipping Status</th>
+                                <th>Payment Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in products %}
+                            <tr>
+                                <td>{{ product.id }}</td>
+                                <td>{{ product.nama_pengguna }}</td>
+                                <td>{{ product.nama_barang }}</td>
+                                <td>{{ product.kode }}</td>
+                                <td>{{ product.quantity }}</td>
+                                <td>{{ product.berat }}</td>
+                                <td>{{ product.harga }}</td>
+                                <td>{{ product.shipping_status }}</td>
+                                <td>{{ product.payment_status }}</td>
+                                <td></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <!-- input data form -->
@@ -261,7 +423,8 @@
         </div>
 
         <!-- delete modal -->
-        <div class="modal fade" id="datatable-delete-modal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+        <div class="modal fade" id="datatable-delete-modal" tabindex="-1" aria-labelledby="formModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -271,7 +434,8 @@
                         Are you sure to delete this record?
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="row-delete-no" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" id="row-delete-no" class="btn btn-secondary"
+                            data-bs-dismiss="modal">Cancel</button>
                         <button type="submit" id="row-delete-yes" class="btn btn-danger delete">delete</button>
                     </div>
                 </div>
@@ -279,7 +443,8 @@
         </div>
 
         <!-- delete success modal -->
-        <div class="modal fade" id="success-delete-modal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+        <div class="modal fade" id="success-delete-modal" tabindex="-1" aria-labelledby="formModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body text-center">

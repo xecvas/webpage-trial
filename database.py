@@ -20,6 +20,8 @@ class Product(Base):
     quantity = Column(Integer, nullable=False)
     berat = Column(Float, nullable=False)
     harga = Column(Integer, nullable=False)
+    shipping_status = Column(String, nullable=False)
+    payment_status =  Column(String, nullable=False)
 
     def to_dict(self):
         return {
@@ -29,7 +31,9 @@ class Product(Base):
             'kode': self.kode,
             'quantity': self.quantity,
             'berat': self.berat,
-            'harga': self.harga
+            'harga': self.harga,
+            'shipping_status':  self.shipping_status,
+            'payment_status': self.payment_status
         }
 
 # Create all tables if they don't exist
