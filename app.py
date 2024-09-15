@@ -27,7 +27,7 @@ def add_product():
     payment_status = request.form.get('paymentstatus')
 
     # Validate form data
-    if not all([nama_pengguna, nama_barang, kode]) or quantity is None or berat is None or harga is None:
+    if not all([nama_pengguna, nama_barang, kode]) or quantity is None or berat is None or harga is None or  shipping_status is None or payment_status is None:
         return "All fields are required", 400
     
     # Create a new product record
