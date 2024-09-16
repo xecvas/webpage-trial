@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, jsonify, send_from_directory, render_template, redirect, url_for
+from flask import Flask, request, jsonify, send_from_directory, render_template, redirect, session, url_for
 from sqlalchemy.orm import sessionmaker
 from database import Product, SessionLocal
 
@@ -71,6 +71,48 @@ def delete_product(id):
     finally:
         session.close()
 
+@app.route('/update_product', methods=['POST'])
+def update_product():
+    """Update an existing product in the database."""
+
+    # Extract form data
+    product_id = request.form.get('id')
+    nama_pengguna = request.form.get('namapengguna', default=None)
+    nama_barang = request.form.get('namabarang', default=None)
+    kode = request.form.get('kode', default=None)
+    quantity = request.form.get('quantity', type=int, default=None)
+    berat = request.form.get('berat', type=float, default=None)
+    harga = request.form.get('harga', type=int, default=None)
+    shipping_status = request.form.get('shippingstatus', default=None)
+    payment_status = request.form.get('paymentstatus', default=None)
+
+    # Validate form data
+    if any([x is None for x in [nama_pengguna, nama_barang, kode, quantity, berat, harga, shipping_status, payment_status]]):
+        return "All fields are required", 400
+
+    # Update the existing product record
+    session = SessionLocal()
+    try:
+        product = session.query(Product).filter(Product.id == product_id).first()
+        if product:
+            product.nama_pengguna = nama_pengguna
+            product.nama_barang = nama_barang
+            product.kode = kode
+            product.quantity = quantity
+            product.berat = berat
+            product.harga = harga
+            product.shipping_status = shipping_status
+            product.payment_status = payment_status
+            session.commit()
+            return redirect(url_for('test'))  # Redirect or render a success template
+        else:
+            return "Product not found", 404
+    except Exception as e:
+        session.rollback()
+        return f"An error occurred: {e}", 500
+    finally:
+        session.close()
+        
 # Get data from the database with pagination
 @app.route('/data', methods=['GET'])
 def get_data():
@@ -108,7 +150,6 @@ def get_data():
         return jsonify(response)
     finally:
         session.close()
-
 
 # Display the main page
 @app.route("/")

@@ -361,18 +361,26 @@
                             </div>
                             
                             <!-- Shipping Status -->
-                            <div class="mb-3">
-                                <label for="shippingstatus" class="form-label">Shipping Status</label>
-                                <input type="text" class="form-control" id="shippingstatus" name="shippingstatus"
-                                    placeholder="Masukkan Shipping Status">
-                            </div>
+                            <div class="input-group mb-3">
+                                <select class="form-select" id="shippingstatus" name="shippingstatus">
+                                  <option selected>Shipping Status...</option>
+                                  <option value="delivered">delivered</option>
+                                  <option value="pending">pending</option>
+                                  <option value="canceled">canceled</option>
+                                  <option value="on process">on process</option>
+                                </select>
+                              </div>
 
                             <!-- Payment Status -->
-                            <div class="mb-3">
-                                <label for="paymentstatus" class="form-label">Payment Status</label>
-                                <input type="text" class="form-control" id="paymentstatus" name="paymentstatus"
-                                    placeholder="Masukkan Payment Status">
-                            </div>
+                            <div class="input-group mb-3">
+                                <select class="form-select" id="paymentstatus" name="paymentstatus">
+                                  <option selected>Payment Status...</option>
+                                  <option value="paymented">paymented</option>
+                                  <option value="pending">pending</option>
+                                  <option value="canceled">canceled</option>
+                                  <option value="on process">on process</option>
+                                </select>
+                              </div>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -384,48 +392,78 @@
         </div>
 
         <!-- Edit Form -->
-        <div class="modal fade" id="datatable-edit" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+        <div class="modal fade" id="datatable-edit-form" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="formModalLabel">Edit Data</h5>
                     </div>
                     <div class="modal-body">
-                        <form id="datatable-editForm">
+                        <form id="productForm" method="POST" action="{{ url_for('update_product') }}">
+                            <input type="hidden" name="id" value="{{ id }}">
                             <!-- Nama Pengguna -->
                             <div class="mb-3">
-                                <label for="namaPengguna" class="form-label">Nama Pengguna</label>
-                                <input type="text" class="form-control" id="edit-namaPengguna" name="edit-namaPengguna"
+                                <label for="namapengguna-edit" class="form-label">Nama Pengguna</label>
+                                <input type="text" class="form-control" id="namapengguna-edit" name="namapengguna-edit"
                                     placeholder="Masukkan Nama Pengguna">
+                            </div>
+
+                            <!-- Kode -->
+                            <div class="mb-3">
+                                <label for="kode-edit" class="form-label">Kode</label>
+                                <input type="text" class="form-control" id="kode-edit" name="kode-edit"
+                                    placeholder="Masukkan Kode">
                             </div>
 
                             <!-- Nama Barang -->
                             <div class="mb-3">
-                                <label for="namaBarang" class="form-label">Nama Barang</label>
-                                <input type="text" class="form-control" id="edit-namaBarang" name="edit-namaBarang"
+                                <label for="namabarang-edit" class="form-label">Nama Barang</label>
+                                <input type="text" class="form-control" id="namabarang-edit" name="namabarang-edit"
                                     placeholder="Masukkan Nama Barang">
                             </div>
 
                             <!-- Quantity -->
                             <div class="mb-3">
-                                <label for="quantity" class="form-label">Quantity</label>
-                                <input type="number" class="form-control" id="edit-quantity" name="edit-quantity"
+                                <label for="quantity-edit" class="form-label">Quantity</label>
+                                <input type="number" class="form-control" id="quantity-edit" name="quantity-edit"
                                     placeholder="Masukkan Quantity">
                             </div>
 
                             <!-- Berat -->
                             <div class="mb-3">
-                                <label for="berat" class="form-label">Berat</label>
-                                <input type="number" step="0.01" class="form-control" id="edit-berat" name="edit-berat"
+                                <label for="berat-edit" class="form-label">Berat</label>
+                                <input type="number" step="0.01" class="form-control" id="berat-edit" name="berat-edit"
                                     placeholder="Masukkan Berat (kg)">
                             </div>
 
                             <!-- Harga -->
                             <div class="mb-3">
-                                <label for="harga" class="form-label">Harga</label>
-                                <input type="number" class="form-control" id="edit-harga" name="edit-harga"
+                                <label for="harga-edit" class="form-label">Harga</label>
+                                <input type="number" class="form-control" id="harga-edit" name="harga-edit"
                                     placeholder="Masukkan Harga">
                             </div>
+                            
+                            <!-- Shipping Status -->
+                            <div label for="shippingstatus-edit" class="input-group mb-3">
+                                <select class="form-select" id="shippingstatus-edit" name="shippingstatus">
+                                  <option selected>Shipping Status...</option>
+                                  <option value="delivered">delivered</option>
+                                  <option value="pending">pending</option>
+                                  <option value="canceled">canceled</option>
+                                  <option value="on process">on process</option>
+                                </select>
+                              </div>
+
+                            <!-- Payment Status -->
+                            <div label for="paymentstatus-edit" class="input-group mb-3">
+                                <select class="form-select" id="paymentstatus-edit" name="paymentstatus">
+                                  <option selected>Payment Status...</option>
+                                  <option value="paymented">paymented</option>
+                                  <option value="pending">pending</option>
+                                  <option value="canceled">canceled</option>
+                                  <option value="on process">on process</option>
+                                </select>
+                              </div>
                         </form>
                     </div>
                     <div class="modal-footer">

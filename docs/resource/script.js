@@ -51,12 +51,6 @@ $(document).ready(function () {
     ],
   });
 
-  // Handle and Show the Edit modal when the edit button is clicked
-  $(document).on("click", ".edit-btn", function () {
-    var id = $(this).data("id");
-    $("#datatable-edit").modal("show"); // Show the edit modal
-  });
-
   // Show the delete modal when the delete button is clicked
   $(document).on("click", ".delete-btn", function () {
     var id = $(this).data("id"); // Get the ID from the clicked button
@@ -90,6 +84,12 @@ $(document).ready(function () {
   // Hide delete success modal on "OK" button click
   $("#success-ok").on("click", function () {
     $("#success-delete-modal").modal("hide"); // Hide the success modal
+  });
+
+  // Handle edit button click to show edit form modal
+
+  $(document).on("click", ".edit-btn", function () {
+        $("#datatable-edit-form").modal("show");
   });
 
   // Initialize tabs and set up click events for tab actions
