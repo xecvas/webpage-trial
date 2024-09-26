@@ -13,7 +13,7 @@ def get_db():
         yield db
     finally:
         db.close()
-        
+
 # Serve static resource files from the 'resource' directory
 @app.route("/resource/<path:path>")
 def send_resource(path):
@@ -87,7 +87,6 @@ def get_product(id):
         return jsonify(product.to_dict())  # Use the model's `to_dict` method to return JSON
     else:
         return jsonify({'error': 'Product not found'}), 404
-
 
 # Get data from the database with pagination
 @app.route('/data', methods=['GET'])
