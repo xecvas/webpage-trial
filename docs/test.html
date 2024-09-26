@@ -399,8 +399,9 @@
                         <h5 class="modal-title" id="formModalLabel">Edit Data</h5>
                     </div>
                     <div class="modal-body">
-                        <form id="productForm" method="POST" action="{{ url_for('update_product') }}">
-                            <input type="hidden" name="id" value="{{ id }}">
+                        <form id="productForm" method="POST" action="/update_product">
+                            <!-- Hidden input for product ID -->
+                            <input type="hidden" id="product-id" name="id" value="">
                             <!-- Nama Pengguna -->
                             <div class="mb-3">
                                 <label for="namapengguna-edit" class="form-label">Nama Pengguna</label>

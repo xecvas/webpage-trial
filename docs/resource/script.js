@@ -89,8 +89,32 @@ $(document).ready(function () {
   // Handle edit button click to show edit form modal
 
   $(document).on("click", ".edit-btn", function () {
-        $("#datatable-edit-form").modal("show");
-  });
+    var id = $(this).data("id");  // Capture the ID
+    
+    // Fetch the product data using AJAX
+    $.ajax({
+        url: "/get_product/" + id,
+        type: "GET",
+        success: function (data) {
+            // Pre-fill the form fields with the fetched data
+            $('#namapengguna-edit').val(data.nama_pengguna);
+            $('#namabarang-edit').val(data.nama_barang);
+            $('#kode-edit').val(data.kode);
+            $('#quantity-edit').val(data.quantity);
+            $('#berat-edit').val(data.berat);
+            $('#harga-edit').val(data.harga);
+            $('#shippingstatus-edit').val(data.shipping_status);
+            $('#paymentstatus-edit').val(data.payment_status);
+            
+            // Pre-fill the hidden ID field
+            $('#product-id').val(id);  // Ensure the hidden field gets the correct product ID
+
+            // Show the edit modal
+            $("#datatable-edit-form").modal("show");
+        }
+    });
+});
+
 
   // Initialize tabs and set up click events for tab actions
   initTabs("#myTab", table);
