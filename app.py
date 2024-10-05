@@ -88,6 +88,8 @@ def get_product(id):
     else:
         return jsonify({'error': 'Product not found'}), 404
 
+
+
 # Get data from the database with pagination
 @app.route('/data', methods=['GET'])
 def get_data():
@@ -136,8 +138,44 @@ def main_page():
 @app.route('/test', methods=['GET', 'POST'])
 def test():
     session = SessionLocal()
+
+    # Handle form submission (POST request)
+    if request.method == 'POST':
+        # Capture the form data
+        product_id = request.form.get('id')  # Hidden field with product ID
+        nama_pengguna = request.form.get('nama_pengguna')
+        nama_barang = request.form.get('nama_barang')
+        kode = request.form.get('kode')
+        quantity = request.form.get('quantity')
+        berat = request.form.get('berat')
+        harga = request.form.get('harga')
+        shipping_status = request.form.get('shippingstatus')
+        payment_status = request.form.get('paymentstatus')
+
+        # Query the product by ID and update its details
+        product = session.query(Product).filter(Product.id == product_id).first()
+        if product:
+            product.nama_pengguna = nama_pengguna
+            product.nama_barang = nama_barang
+            product.kode = kode
+            product.quantity = quantity
+            product.berat = berat
+            product.harga = harga
+            product.shipping_status = shipping_status
+            product.payment_status = payment_status
+
+            # Commit the changes to the database
+            session.commit()
+
+            # Optionally redirect back to the test page or elsewhere
+            return redirect(url_for('test'))  # Redirect to avoid resubmission
+        else:
+            return "Product not found", 404
+
+    # Handle GET request - Render the page with all products
     products = session.query(Product).all()
     session.close()
+
     return render_template("test.html", products=products)
 
 if __name__ == "__main__":
