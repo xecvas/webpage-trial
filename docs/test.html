@@ -108,6 +108,7 @@
                 veritatis nihil sed. Mollitia, repudiandae.
             </section>
             <br>
+            <button id="export-excel" class="btn btn-primary">Export as Excel</button>
 
             <!-- add data button -->
             <div class="mb-3">
@@ -356,31 +357,65 @@
                             <!-- Harga -->
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Rp.</span>
-                                <input type="number" class="form-control" id="harga" name="harga"
-                                    placeholder="Masukkan Harga">
+                                <input type="text" class="form-control" id="harga" name="harga" placeholder="Masukkan Harga">
+                                <span class="input-group-text calculator-icon" onclick="toggleCalculator()">
+                                    <img src="https://img.icons8.com/ios-glyphs/30/000000/calculator.png" alt="Calculator Icon">
+                                </span>
                             </div>
                             
+                            <!-- Calculator Popup -->
+                            <div class="calculator-popup" id="calculator-popup" style="display: none;">
+                                <!-- Display for calculator input -->
+                                <div class="calculator-display mb-2 p-2 border rounded" id="calculator-display">
+                                    0
+                                </div>
+                            
+                                <div class="calculator-grid">
+                                    <button onclick="clearCalculator(event)">C</button>
+                                    <button onclick="appendValue('/', event)">÷</button>
+                                    <button onclick="appendValue('*', event)">×</button>
+                                    <button onclick="appendValue('-', event)">−</button>
+                            
+                                    <button onclick="appendValue('7', event)">7</button>
+                                    <button onclick="appendValue('8', event)">8</button>
+                                    <button onclick="appendValue('9', event)">9</button>
+                                    <button onclick="appendValue('+', event)">+</button>
+                            
+                                    <button onclick="appendValue('4', event)">4</button>
+                                    <button onclick="appendValue('5', event)">5</button>
+                                    <button onclick="appendValue('6', event)">6</button>
+                                    <button class="btn-equal" onclick="calculateResult(event)">=</button>
+                            
+                                    <button onclick="appendValue('1', event)">1</button>
+                                    <button onclick="appendValue('2', event)">2</button>
+                                    <button onclick="appendValue('3', event)">3</button>
+                            
+                                    <button onclick="appendValue('0', event)" style="grid-column: span 2;">0</button>
+                                    <button onclick="appendValue('.', event)">.</button>
+                                </div>
+                            </div>
+
                             <!-- Shipping Status -->
                             <div class="input-group mb-3">
                                 <select class="form-select" id="shippingstatus" name="shippingstatus">
-                                  <option selected>Shipping Status...</option>
-                                  <option value="delivered">delivered</option>
-                                  <option value="pending">pending</option>
-                                  <option value="canceled">canceled</option>
-                                  <option value="on process">on process</option>
+                                    <option selected>Shipping Status...</option>
+                                    <option value="delivered">delivered</option>
+                                    <option value="pending">pending</option>
+                                    <option value="canceled">canceled</option>
+                                    <option value="on process">on process</option>
                                 </select>
-                              </div>
+                            </div>
 
                             <!-- Payment Status -->
                             <div class="input-group mb-3">
                                 <select class="form-select" id="paymentstatus" name="paymentstatus">
-                                  <option selected>Payment Status...</option>
-                                  <option value="paymented">paymented</option>
-                                  <option value="pending">pending</option>
-                                  <option value="canceled">canceled</option>
-                                  <option value="on process">on process</option>
+                                    <option selected>Payment Status...</option>
+                                    <option value="paymented">paymented</option>
+                                    <option value="pending">pending</option>
+                                    <option value="canceled">canceled</option>
+                                    <option value="on process">on process</option>
                                 </select>
-                              </div>
+                            </div>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -392,7 +427,8 @@
         </div>
 
         <!-- Edit Form -->
-        <div class="modal fade" id="datatable-edit-form" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+        <div class="modal fade" id="datatable-edit-form" tabindex="-1" aria-labelledby="formModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -443,28 +479,28 @@
                                 <input type="number" class="form-control" id="harga-edit" name="harga-edit"
                                     placeholder="Masukkan Harga">
                             </div>
-                            
+
                             <!-- Shipping Status -->
                             <div label for="shippingstatus-edit" class="input-group mb-3">
                                 <select class="form-select" id="shippingstatus-edit" name="shippingstatus">
-                                  <option selected>Shipping Status...</option>
-                                  <option value="delivered">delivered</option>
-                                  <option value="pending">pending</option>
-                                  <option value="canceled">canceled</option>
-                                  <option value="on process">on process</option>
+                                    <option selected>Shipping Status...</option>
+                                    <option value="delivered">delivered</option>
+                                    <option value="pending">pending</option>
+                                    <option value="canceled">canceled</option>
+                                    <option value="on process">on process</option>
                                 </select>
-                              </div>
+                            </div>
 
                             <!-- Payment Status -->
                             <div label for="paymentstatus-edit" class="input-group mb-3">
                                 <select class="form-select" id="paymentstatus-edit" name="paymentstatus">
-                                  <option selected>Payment Status...</option>
-                                  <option value="paymented">paymented</option>
-                                  <option value="pending">pending</option>
-                                  <option value="canceled">canceled</option>
-                                  <option value="on process">on process</option>
+                                    <option selected>Payment Status...</option>
+                                    <option value="paymented">paymented</option>
+                                    <option value="pending">pending</option>
+                                    <option value="canceled">canceled</option>
+                                    <option value="on process">on process</option>
                                 </select>
-                              </div>
+                            </div>
                         </form>
                     </div>
                     <div class="modal-footer">

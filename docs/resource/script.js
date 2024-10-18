@@ -166,6 +166,10 @@ function initTabs(tabSelector, table) {
       table.column(2).search("").draw();
     }
   });
+
+  $("#export-excel").click(function () {
+    window.location.href = "/export_excel";
+  });
 }
 
 // Function to set up click events for tabs
@@ -199,3 +203,54 @@ function saveToggleSetting() {
     JSON.stringify(document.getElementById("checkbox").checked)
   );
 }
+
+//Calculator Function
+let expression = ""; // Store the calculator expression
+
+// Toggle the visibility of the calculator popup
+function toggleCalculator() {
+  const calculatorPopup = document.getElementById("calculator-popup");
+  calculatorPopup.style.display =
+    calculatorPopup.style.display === "none" ? "block" : "none";
+}
+
+// Append value to the expression and update the display
+function appendValue(value, event) {
+  event.preventDefault(); // Prevent form submission
+  expression += value;
+  updateDisplay();
+}
+
+// Update both the input field and calculator display
+function updateDisplay() {
+  document.getElementById("harga").value = expression; // Sync with input field
+  document.getElementById("calculator-display").textContent = expression || "0";
+}
+
+// Clear the calculator input and update display
+function clearCalculator(event) {
+  event.preventDefault(); // Prevent form submission
+  expression = "";
+  updateDisplay();
+}
+
+// Calculate the result, update input field, and close calculator
+function calculateResult(event) {
+  event.preventDefault(); // Prevent form submission
+  try {
+    const result = eval(expression); // Evaluate the expression
+    expression = result.toString(); // Store result as new expression
+    updateDisplay(); // Update input field and display
+    toggleCalculator(); // Close the calculator
+  } catch (error) {
+    alert("Invalid Expression");
+    clearCalculator(event);
+  }
+}
+
+// Allow user to manually edit the input field
+const hargaInput = document.getElementById("harga");
+hargaInput.addEventListener("input", (e) => {
+  expression = e.target.value; // Update expression on manual input
+  updateDisplay(); // Sync with calculator display
+});
