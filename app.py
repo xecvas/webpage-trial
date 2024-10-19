@@ -82,16 +82,52 @@ def delete_product(id):
 
 @app.route("/get_product/<int:id>", methods=["GET"])
 def get_product(id):
-    db = next(get_db())  # Get a new database session
-    product = db.query(Product).filter(Product.id == id).first()
+    session = SessionLocal()
+    product = session.query(Product).filter_by(id=id).first()
+    session.close()
 
     if product:
-        return jsonify(product.to_dict())  # Use the model's `to_dict` method to return JSON
+        return jsonify(product.to_dict()), 200
     else:
-        return jsonify({'error': 'Product not found'}), 404
+        return jsonify({"error": "Product not found"}), 404
 
+@app.route("/update_product", methods=["POST"])
+def update_product():
+    try:
+        session = SessionLocal()
+        # Ensure 'id' is cast to integer
+        product_id = int(request.form['id'])
 
+        # Query the product by integer ID
+        product = session.query(Product).filter_by(id=product_id).first()
 
+        if not product:
+            session.close()
+            return jsonify({"error": "Product not found"}), 404
+
+        # Update product attributes from form data
+        product.nama_pengguna = request.form['nama_pengguna']
+        product.nama_barang = request.form['nama_barang']
+        product.kode = request.form['kode']
+        product.quantity = int(request.form['quantity'])
+        product.berat = float(request.form['berat'])
+        product.harga = int(request.form['harga'])
+        product.shipping_status = request.form['shipping_status']
+        product.payment_status = request.form['payment_status']
+
+        # Commit the changes
+        session.commit()
+        session.close()
+        return jsonify({"message": "Product updated successfully"}), 200
+
+    except ValueError:
+        # Handle cases where the ID or other numeric fields cannot be converted
+        return jsonify({"error": "Invalid input data"}), 400
+    except Exception as e:
+        session.rollback()  # Ensure the session is rolled back
+        print(f"Error: {e}")  # Print the actual error for debugging
+        return jsonify({"error": "Internal Server Error"}), 500
+    
 # Get data from the database with pagination
 @app.route('/data', methods=['GET'])
 def get_data():
@@ -180,6 +216,7 @@ def test():
 
     return render_template("test.html", products=products)
 
+# Export database to excel file 
 @app.route('/export_excel')
 def export_excel():
     # Create a new session to query the database

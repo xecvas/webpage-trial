@@ -91,26 +91,56 @@ $(document).ready(function () {
   $(document).on("click", ".edit-btn", function () {
     var id = $(this).data("id"); // Capture the ID
 
-    // Fetch the product data using AJAX
     $.ajax({
       url: "/get_product/" + id,
       type: "GET",
       success: function (data) {
-        // Pre-fill the form fields with the fetched data
-        $("#namapengguna-edit").val(data.nama_pengguna);
-        $("#namabarang-edit").val(data.nama_barang);
-        $("#kode-edit").val(data.kode);
-        $("#quantity-edit").val(data.quantity);
-        $("#berat-edit").val(data.berat);
-        $("#harga-edit").val(data.harga);
-        $("#shippingstatus-edit").val(data.shipping_status);
-        $("#paymentstatus-edit").val(data.payment_status);
+        if (data) {
+          // Pre-fill form fields
+          $("#product-id").val(data.id); // Make sure this hidden input is set
+          $("#namapengguna-edit").val(data.nama_pengguna);
+          $("#namabarang-edit").val(data.nama_barang);
+          $("#kode-edit").val(data.kode);
+          $("#quantity-edit").val(data.quantity);
+          $("#berat-edit").val(data.berat);
+          $("#harga-edit").val(data.harga);
+          $("#shippingstatus-edit").val(data.shipping_status);
+          $("#paymentstatus-edit").val(data.payment_status);
 
-        // Pre-fill the hidden ID field
-        $("#product-id").val(id); // Ensure the hidden field gets the correct product ID
+          // Show the edit modal
+          $("#datatable-edit-form").modal("show");
+        } else {
+          alert("Product data not found.");
+        }
+      },
+      error: function (xhr) {
+        console.error("Error fetching product:", xhr.responseText);
+      },
+    });
+  });
 
-        // Show the edit modal
-        $("#datatable-edit-form").modal("show");
+  $("#editProductForm").on("submit", function (e) {
+    e.preventDefault(); // Prevent page refresh
+
+    var formData = $(this).serialize(); // Serialize form data
+
+    $.ajax({
+      url: "/update_product",
+      type: "POST",
+      data: formData,
+      success: function (response) {
+        // Close the edit form modal
+        $("#datatable-edit-form").modal("hide");
+
+        // Reload the DataTable to reflect changes
+        table.ajax.reload(null, false); // Reload without resetting pagination
+
+        // Show the success modal
+        $("#success-edit-modal").modal("show");
+      },
+      error: function (xhr) {
+        console.error("Error updating product:", xhr.responseText);
+        alert("An error occurred while updating the product.");
       },
     });
   });
