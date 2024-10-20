@@ -52,7 +52,7 @@ $(document).ready(function () {
   });
 
   // Show the delete modal when the delete button is clicked
-  $(document).on("click", ".delete-btn", function () {
+  $(document).off("click", ".delete-btn").on("click", ".delete-btn", function () {
     var id = $(this).data("id"); // Get the ID from the clicked button
     rowToDelete = table.row($(this).closest("tr")); // Get the corresponding row
     $("#row-delete-yes").data("id", id); // Set the ID for the confirmation button
@@ -88,7 +88,7 @@ $(document).ready(function () {
 
   // Handle edit button click to show edit form modal
 
-  $(document).on("click", ".edit-btn", function () {
+  $(document).off("click", ".edit-btn").on("click", ".edit-btn", function () {
     var id = $(this).data("id"); // Capture the ID
 
     $.ajax({
@@ -114,7 +114,12 @@ $(document).ready(function () {
         }
       },
       error: function (xhr) {
-        console.error("Error fetching product:", xhr.responseText);
+        try {
+          const response = JSON.parse(xhr.responseText);
+          console.error("Error:", response.message || response);
+        } catch (e) {
+          console.error("Error fetching product:", xhr.responseText);
+        }
       },
     });
   });
@@ -139,8 +144,12 @@ $(document).ready(function () {
         $("#success-edit-modal").modal("show");
       },
       error: function (xhr) {
-        console.error("Error updating product:", xhr.responseText);
-        alert("An error occurred while updating the product.");
+        try {
+          const response = JSON.parse(xhr.responseText);
+          console.error("Error:", response.message || response);
+        } catch (e) {
+          console.error("Error fetching product:", xhr.responseText);
+        }
       },
     });
   });
@@ -168,7 +177,7 @@ $(document).ready(function () {
   if (checkbox) {
     loadToggleSetting();
     checkbox.addEventListener("change", function () {
-      $("body, canvas, form-text").toggleClass("dark");
+      $("body, canvas, .form-text").toggleClass("dark");
       saveToggleSetting();
     });
   }
@@ -236,10 +245,12 @@ function saveToggleSetting() {
 
 //Calculator Function
 let expression = ""; // Store the calculator expression
+let targetInput = null; // Reference to the input field being edited
 
-// Toggle the visibility of the calculator popup
-function toggleCalculator() {
-  const calculatorPopup = document.getElementById("calculator-popup");
+// Toggle the visibility of the shared calculator
+function toggleCalculator(input) {
+  targetInput = input; // Store the input field reference
+  const calculatorPopup = document.getElementById("shared-calculator");
   calculatorPopup.style.display =
     calculatorPopup.style.display === "none" ? "block" : "none";
 }
@@ -251,36 +262,39 @@ function appendValue(value, event) {
   updateDisplay();
 }
 
-// Update both the input field and calculator display
+// Update the calculator display and the target input field
 function updateDisplay() {
-  document.getElementById("harga").value = expression; // Sync with input field
   document.getElementById("calculator-display").textContent = expression || "0";
+  if (targetInput) {
+    targetInput.value = expression; // Sync with the input field
+  }
 }
 
-// Clear the calculator input and update display
+// Clear the calculator input and update the display
 function clearCalculator(event) {
   event.preventDefault(); // Prevent form submission
   expression = "";
   updateDisplay();
 }
 
-// Calculate the result, update input field, and close calculator
+// Calculate the result, update the target input field, and close the calculator
 function calculateResult(event) {
   event.preventDefault(); // Prevent form submission
   try {
-    const result = eval(expression); // Evaluate the expression
-    expression = result.toString(); // Store result as new expression
-    updateDisplay(); // Update input field and display
-    toggleCalculator(); // Close the calculator
+    const result = math.evaluate(expression); // Safely evaluate the expression
+    expression = result.toString(); // Store the result as the new expression
+    updateDisplay(); // Sync with input field and display
+    toggleCalculator(targetInput); // Close the calculator
   } catch (error) {
     alert("Invalid Expression");
     clearCalculator(event);
   }
 }
 
-// Allow user to manually edit the input field
-const hargaInput = document.getElementById("harga");
-hargaInput.addEventListener("input", (e) => {
-  expression = e.target.value; // Update expression on manual input
-  updateDisplay(); // Sync with calculator display
+// Allow manual input in both Add and Edit forms
+document.querySelectorAll("#harga, #harga-edit").forEach((input) => {
+  input.addEventListener("input", (e) => {
+    expression = e.target.value; // Update the expression
+    updateDisplay();
+  });
 });

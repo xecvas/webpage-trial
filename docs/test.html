@@ -25,6 +25,7 @@
         defer></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js" defer></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjs/lib/browser/math.js"></script>
     <script src="resource/script.js" defer></script>
 </head>
 
@@ -32,8 +33,9 @@
     <!-- navigation bar -->
     <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ url_for('main_page') }}">
-                <img src="resource/Icon.ico" width="40" height="40" class="d-inline-block align-text-top"> Dummy Page
+            <a class="navbar-brand icon-text" href="{{ url_for('main_page') }}">
+                <img src="resource/Icon.ico" class="icon" alt="Web Icon">
+                Dummy Page
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -121,8 +123,7 @@
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <!-- home tab -->
                     <li class="nav-item" id="home-tab">
-                        <a class="nav-link tab-header tab-header-home active" id="home-tab" data-toggle="tab"
-                            href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+                        <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#home" role="tab">Home</a>
                     </li>
                     <!-- deliver tab -->
                     <li class="nav-item" id="deliver-tab">
@@ -358,64 +359,32 @@
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Rp.</span>
                                 <input type="text" class="form-control" id="harga" name="harga"
-                                    placeholder="Masukkan Harga">
+                                    placeholder="Masukkan Harga" onclick="toggleCalculator(this)">
                                 <span class="input-group-text calculator-icon" onclick="toggleCalculator()">
                                     <img src="https://img.icons8.com/ios-glyphs/30/000000/calculator.png"
                                         alt="Calculator Icon">
                                 </span>
                             </div>
 
-                            <!-- Calculator Popup -->
-                            <div class="calculator-popup" id="calculator-popup" style="display: none;">
-                                <!-- Display for calculator input -->
-                                <div class="calculator-display mb-2 p-2 border rounded" id="calculator-display">
-                                    0
-                                </div>
-
-                                <div class="calculator-grid">
-                                    <button onclick="clearCalculator(event)">C</button>
-                                    <button onclick="appendValue('/', event)">÷</button>
-                                    <button onclick="appendValue('*', event)">×</button>
-                                    <button onclick="appendValue('-', event)">−</button>
-
-                                    <button onclick="appendValue('7', event)">7</button>
-                                    <button onclick="appendValue('8', event)">8</button>
-                                    <button onclick="appendValue('9', event)">9</button>
-                                    <button onclick="appendValue('+', event)">+</button>
-
-                                    <button onclick="appendValue('4', event)">4</button>
-                                    <button onclick="appendValue('5', event)">5</button>
-                                    <button onclick="appendValue('6', event)">6</button>
-                                    <button class="btn-equal" onclick="calculateResult(event)">=</button>
-
-                                    <button onclick="appendValue('1', event)">1</button>
-                                    <button onclick="appendValue('2', event)">2</button>
-                                    <button onclick="appendValue('3', event)">3</button>
-
-                                    <button onclick="appendValue('0', event)" style="grid-column: span 2;">0</button>
-                                    <button onclick="appendValue('.', event)">.</button>
-                                </div>
-                            </div>
-
                             <!-- Shipping Status -->
                             <div class="input-group mb-3">
                                 <select class="form-select" id="shippingstatus" name="shippingstatus">
-                                    <option selected>Shipping Status...</option>
-                                    <option value="delivered">delivered</option>
-                                    <option value="pending">pending</option>
-                                    <option value="canceled">canceled</option>
-                                    <option value="on process">on process</option>
+                                    <option disabled selected>Shipping Status...</option>
+                                    <option disabled selected value="delivered">delivered</option>
+                                    <option disabled selected value="pending">pending</option>
+                                    <option disabled selected value="canceled">canceled</option>
+                                    <option disabled selected value="on process">on process</option>
                                 </select>
                             </div>
 
                             <!-- Payment Status -->
                             <div class="input-group mb-3">
                                 <select class="form-select" id="paymentstatus" name="paymentstatus">
-                                    <option selected>Payment Status...</option>
-                                    <option value="paymented">paymented</option>
-                                    <option value="pending">pending</option>
-                                    <option value="canceled">canceled</option>
-                                    <option value="on process">on process</option>
+                                    <option disabled selected>Payment Status...</option>
+                                    <option disabled selected value="paymented">paymented</option>
+                                    <option disabled selected value="pending">pending</option>
+                                    <option disabled selected value="canceled">canceled</option>
+                                    <option disabled selected value="on process">on process</option>
                                 </select>
                             </div>
                         </form>
@@ -479,19 +448,22 @@
                             <!-- Harga -->
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Rp.</span>
-                                <input type="number" class="form-control" id="harga-edit" name="harga"
-                                    placeholder="Masukkan Harga">
+                                <input type="text" class="form-control" id="harga-edit" name="harga"
+                                    placeholder="Masukkan Harga" onclick="toggleCalculator(this)">
+                                <span class="input-group-text calculator-icon" onclick="toggleCalculator()">
+                                    <img src="https://img.icons8.com/ios-glyphs/30/000000/calculator.png"
+                                        alt="Calculator Icon">
                             </div>
 
                             <!-- Shipping Status -->
                             <div class="input-group mb-3">
                                 <label for="shippingstatus-edit" class="form-label">Shipping Status</label>
                                 <select class="form-select" id="shippingstatus-edit" name="shipping_status">
-                                    <option selected>Shipping Status...</option>
-                                    <option value="delivered">Delivered</option>
-                                    <option value="pending">Pending</option>
-                                    <option value="canceled">Canceled</option>
-                                    <option value="on process">On Process</option>
+                                    <option disabled selected>Shipping Status...</option>
+                                    <option disabled selected value="delivered">Delivered</option>
+                                    <option disabled selected value="pending">Pending</option>
+                                    <option disabled selected value="canceled">Canceled</option>
+                                    <option disabled selected value="on process">On Process</option>
                                 </select>
                             </div>
 
@@ -499,11 +471,11 @@
                             <div class="input-group mb-3">
                                 <label for="paymentstatus-edit" class="form-label">Payment Status</label>
                                 <select class="form-select" id="paymentstatus-edit" name="payment_status">
-                                    <option selected>Payment Status...</option>
-                                    <option value="paymented">Paymented</option>
-                                    <option value="pending">Pending</option>
-                                    <option value="canceled">Canceled</option>
-                                    <option value="on process">On Process</option>
+                                    <option disabled selected>Payment Status...</option>
+                                    <option disabled selected value="paymented">Paymented</option>
+                                    <option disabled selected value="pending">Pending</option>
+                                    <option disabled selected value="canceled">Canceled</option>
+                                    <option disabled selected value="on process">On Process</option>
                                 </select>
                             </div>
                         </form>
@@ -562,6 +534,35 @@
                 </div>
             </div>
         </div>
+
+        <!-- Shared Calculator Popup -->
+        <div class="calculator-popup" id="shared-calculator" style="display: none;">
+            <div class="calculator-display mb-2 p-2 border rounded" id="calculator-display">0</div>
+            <div class="calculator-grid">
+                <button onclick="clearCalculator(event)">C</button>
+                <button onclick="appendValue('/', event)">÷</button>
+                <button onclick="appendValue('*', event)">×</button>
+                <button onclick="appendValue('-', event)">−</button>
+
+                <button onclick="appendValue('7', event)">7</button>
+                <button onclick="appendValue('8', event)">8</button>
+                <button onclick="appendValue('9', event)">9</button>
+                <button onclick="appendValue('+', event)">+</button>
+
+                <button onclick="appendValue('4', event)">4</button>
+                <button onclick="appendValue('5', event)">5</button>
+                <button onclick="appendValue('6', event)">6</button>
+                <button class="btn-equal" onclick="calculateResult(event)">=</button>
+
+                <button onclick="appendValue('1', event)">1</button>
+                <button onclick="appendValue('2', event)">2</button>
+                <button onclick="appendValue('3', event)">3</button>
+
+                <button onclick="appendValue('0', event)" style="grid-column: span 2;">0</button>
+                <button onclick="appendValue('.', event)">.</button>
+            </div>
+        </div>
+
 
         <!-- Footer -->
         <footer class="footer text-center mt-5" id="footer">

@@ -6,6 +6,22 @@
     box-sizing: border-box;
 }
 
+.icon-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    /* Adjust gap between icon and text */
+    vertical-align: middle;
+}
+
+.icon {
+    width: 40px;
+    /* Adjust size to fit design */
+    height: 40px;
+    object-fit: contain;
+    /* Prevent distortion */
+}
+
 body {
     font-family: "Montserrat", sans-serif;
     background-color: #fff;
@@ -258,10 +274,10 @@ footer {
 /* Calculator Icon */
 .calculator-icon {
     cursor: pointer;
-  }
+}
 
-  /* Calculator Popup */
-  .calculator-popup {
+/* Calculator Popup */
+.calculator-popup {
     display: none;
     position: absolute;
     top: 60px;
@@ -272,15 +288,15 @@ footer {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     padding: 10px;
     z-index: 10;
-  }
+}
 
-  .calculator-grid {
+.calculator-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 5px;
-  }
+}
 
-  .calculator-grid button {
+.calculator-grid button {
     width: 100%;
     height: 60px;
     font-size: 24px;
@@ -288,17 +304,17 @@ footer {
     border-radius: 8px;
     background-color: #e9ecef;
     transition: background-color 0.3s;
-  }
+}
 
-  .calculator-grid button:hover {
+.calculator-grid button:hover {
     background-color: #ced4da;
-  }
+}
 
-  .btn-equal {
+.btn-equal {
     background-color: #0d6efd;
     color: white;
-  }
+}
 
-  .btn-equal:hover {
+.btn-equal:hover {
     background-color: #0a58ca;
-  }
+}
