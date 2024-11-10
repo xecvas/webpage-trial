@@ -247,12 +247,27 @@ function saveToggleSetting() {
 let expression = ""; // Store the calculator expression
 let targetInput = null; // Reference to the input field being edited
 
-// Toggle the visibility of the shared calculator
+// Toggle the visibility and position of the shared calculator
 function toggleCalculator(input) {
   targetInput = input; // Store the input field reference
+
   const calculatorPopup = document.getElementById("shared-calculator");
-  calculatorPopup.style.display =
-    calculatorPopup.style.display === "none" ? "block" : "none";
+
+  // Toggle visibility
+  if (calculatorPopup.style.display === "none") {
+    calculatorPopup.style.display = "block";
+    positionCalculator(input, calculatorPopup); // Position it near the input
+  } else {
+    calculatorPopup.style.display = "none";
+  }
+}
+
+// Position the calculator near the triggering input or icon
+function positionCalculator(input, calculatorPopup) {
+  const rect = input.getBoundingClientRect(); // Get the position of the input field
+
+  calculatorPopup.style.top = `${rect.bottom + window.scrollY + 10}px`; // Below the input
+  calculatorPopup.style.left = `${rect.left + window.scrollX}px`; // Align with the input
 }
 
 // Append value to the expression and update the display
@@ -262,7 +277,7 @@ function appendValue(value, event) {
   updateDisplay();
 }
 
-// Update the calculator display and the target input field
+// Update the calculator display and target input field
 function updateDisplay() {
   document.getElementById("calculator-display").textContent = expression || "0";
   if (targetInput) {
@@ -270,7 +285,7 @@ function updateDisplay() {
   }
 }
 
-// Clear the calculator input and update the display
+// Clear the calculator input and update display
 function clearCalculator(event) {
   event.preventDefault(); // Prevent form submission
   expression = "";
@@ -281,7 +296,7 @@ function clearCalculator(event) {
 function calculateResult(event) {
   event.preventDefault(); // Prevent form submission
   try {
-    const result = math.evaluate(expression); // Safely evaluate the expression
+    const result = math.evaluate(expression); // Evaluate the expression safely
     expression = result.toString(); // Store the result as the new expression
     updateDisplay(); // Sync with input field and display
     toggleCalculator(targetInput); // Close the calculator
@@ -291,7 +306,7 @@ function calculateResult(event) {
   }
 }
 
-// Allow manual input in both Add and Edit forms
+// Allow manual input to sync with the calculator display
 document.querySelectorAll("#harga, #harga-edit").forEach((input) => {
   input.addEventListener("input", (e) => {
     expression = e.target.value; // Update the expression
